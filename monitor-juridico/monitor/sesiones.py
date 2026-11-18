@@ -84,7 +84,7 @@ def texto_pdf(contenido: bytes) -> str:
         t = p.extract_text() or ""
         # el número de página (y adornos) queda al inicio o al final del texto de cada hoja;
         # si no se quita, aparece a media frase al unir las páginas ("Aguilar 49 Ortiz")
-        t = re.sub(r"^[\s“”_]*\d{1,3}[\s“”_]*(?=\S)", "", t)
+        t = re.sub(r"^[\s“”_]*\d{1,3}(?![.\d/])[\s“”_]*(?=\S)", "", t)
         t = re.sub(r"(?<=\S)[\s“”_]+\d{1,3}[\s“”_]*$", "", t)
         paginas.append(t)
     return "\n".join(paginas)
@@ -95,7 +95,8 @@ _LINEA_BASURA = re.compile(r"^[\s“”_]*$")
 
 def _plano(texto: str) -> str:
     """Une el texto en una sola línea, quitando números de página y adornos."""
-    lineas = [l for l in texto.replace("\f", "\n").splitlines() if not _LINEA_BASURA.match(l)]
+    texto = re.sub(r"\n[\s_]{10,}\n\s*\d{1,3}\s*\n", "\n", texto.replace("\f", "\n"))  # raya + n.º de página
+    lineas = [l for l in texto.splitlines() if not _LINEA_BASURA.match(l)]
     texto = " ".join(lineas).replace("“", " ").replace("”", " ")
     texto = re.sub(r"(\d) /\s*(\d{4})", r"\1/\2", texto)  # expediente partido en dos renglones
     return re.sub(r"\s+", " ", texto).strip()

@@ -259,3 +259,24 @@ class PruebasMaterias(unittest.TestCase):
         md = reporte.markdown("t", nov, 3, None, {"formato": "compacto", "interes": ["Penal"], "modo": "filtrar"})
         self.assertNotIn("Acuerdo fiscal", md)
         self.assertIn("DECRETO constitucional", md)  # lo prioritario siempre llega
+
+
+class PruebasPagina(unittest.TestCase):
+    def test_construir(self):
+        import json, tempfile
+        from pathlib import Path
+        from monitor import agenda, pagina, sesiones
+        F = Path(__file__).parent / "fixtures"
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "hist").mkdir()
+            ses = sesiones.parsear_sesion((F / "vt_extracto.txt").read_text(encoding="utf-8"), "https://x/vt.pdf")
+            lista = agenda.parsear_lista((F / "lista_extracto.txt").read_text(encoding="utf-8"), "https://x/l.pdf")
+            (d / "hist" / "2026-11-18.json").write_text(json.dumps({"sesiones": [ses.dict()], "agenda": [lista.dict()]}))
+            out = pagina.construir(d / "docs", d / "hist")
+            self.assertTrue((out / "index.html").exists())
+            js = (out / "datos" / "2026-11.js").read_text(encoding="utf-8")
+            self.assertIn('"f":"sesion"', js)
+            self.assertIn('"f":"agenda"', js)
+            self.assertIn("accion de inconstitucionalidad|25/2026", js)
+            self.assertNotRegex(lista.asuntos[1]["descripcion"], r" 2$")

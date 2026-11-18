@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-from monitor import agenda, comunicados, dof, estado, materias, notificar, reporte, sesiones, sjf
+from monitor import agenda, comunicados, dof, estado, materias, notificar, pagina, reporte, sesiones, sjf
 from monitor.clasificar import clasificar
 
 RAIZ = Path(__file__).resolve().parent
@@ -139,6 +139,14 @@ FUENTES = {
 
 
 # ------------------------------------------------------------------- flujo
+def actualizar_pagina() -> None:
+    try:
+        log(f"Página actualizada en {pagina.construir()}")
+    except Exception as e:  # noqa: BLE001 — la página nunca debe impedir el correo
+        traceback.print_exc()
+        log(f"No se pudo generar la página: {e}")
+
+
 def opciones_correo(cfg) -> dict:
     m = cfg.get("materias") or {}
     return {"formato": (cfg.get("envio") or {}).get("formato", "compacto"),
@@ -185,6 +193,7 @@ def diario(cfg, args) -> int:
     REPORTES.mkdir(exist_ok=True)
     (REPORTES / f"{hoy.isoformat()}.md").write_text(md, encoding="utf-8")
     vacio = not reporte.hay_algo(nov, pmax) and not errores
+    actualizar_pagina()
     enviar(titulo, md, cfg, args, vacio)
     print("\n" + md)
     return 0

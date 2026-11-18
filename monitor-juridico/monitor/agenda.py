@@ -21,12 +21,10 @@ LISTADO = SITIO + "/pleno/secretaria-general-de-acuerdos/listas-para-sesion?page
 MESES = {m: i for i, m in enumerate(
     "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split(), 1)}
 
-_ASUNTO = re.compile(
-    r"(?<!\d)(\d{1,3})\. (" + NUMERO + r") (?:VER )?(?:PROYECTO )?"
-    r"(?:\(Listado por primera vez el ([^)]+)\) )?"
-    r"(.+?)\(PONENCIA (?:DE LA|DEL|DE) (?:SEÑORA? )?(?:MINISTR[OA] )?(?:PRESIDENT[EA] )?([^)]+)\)\.?",
-    re.I,
-)
+_INICIO = re.compile(r"(?<![\d/])(\d{1,3})\. (" + NUMERO + r") ", re.I)
+_HISTORIAL = re.compile(r"\(((?:Listad|Retirad|Aplazad|Returnad|Devuelt)[^)]*)\)", re.I)
+_PONENCIA_L = re.compile(
+    r"\(PONENCIA (?:DE LA|DEL|DE) (?:SEÑORA? )?(?:MINISTR[OA] )?(?:PRESIDENT[EA] )?([^)]+)\)\.?", re.I)
 _TIPO = re.compile(r"^((?:[A-ZÁÉÍÓÚÑ]+ ?)+?)(?= [a-záéíóúñ]| *[.,(]|$)")
 _FECHA_SESION = re.compile(r"DEL (?:LUNES|MARTES|MIÉRCOLES|JUEVES|VIERNES) (\d{1,2} DE \w+ DE \d{4})", re.I)
 
@@ -93,19 +91,31 @@ def parsear_lista(texto: str, url: str, fecha: str = "", urls_proyectos: list[st
         plano = plano[:corte.start()]  # lo demás es la firma electrónica
     f = _FECHA_SESION.search(plano)
     asuntos = []
-    for m in _ASUNTO.finditer(plano):
-        orden, numero, primera, desc, ponente = m.groups()
-        desc = re.sub(r"\s+", " ", desc).strip(" .")
+    inicios = list(_INICIO.finditer(plano))
+    for i, m in enumerate(inicios):
+        fin = inicios[i + 1].start() if i + 1 < len(inicios) else len(plano)
+        orden, numero = m.group(1), m.group(2)
+        trozo = plano[m.end():fin]
+        trozo = re.sub(r"^(?:VER )?(?:PROYECTO )?", "", trozo.strip())
+        historial = [h.strip() for h in _HISTORIAL.findall(trozo)]
+        trozo = _HISTORIAL.sub(" ", trozo)
+        pon = _PONENCIA_L.search(trozo)
+        ponente = pon.group(1).strip() if pon else ""
+        desc = re.sub(r"\s+", " ", _PONENCIA_L.sub(" ", trozo)).strip(" .")
         t = _TIPO.match(desc)
         tipo = t.group(1).strip() if t else ""
+        primera = next((re.sub(r"^Listado por primera vez el ", "", h, flags=re.I) for h in historial
+                        if "primera vez" in h.lower()), "")
+        otros = [h for h in historial if "primera vez" not in h.lower()]
         asuntos.append({
             "orden": int(orden),
-            "numero": numero,
+            "numero": re.sub(r"\s+", " ", numero),
             "tipo": _titulo(tipo),
             "descripcion": desc[len(tipo):].strip(" ,.") if tipo else desc,
             "ponente": _titulo(" ".join(ponente.split()[-2:])) if ponente else "",
-            "ponente_completo": _titulo(ponente.strip()),
-            "listado_desde": (primera or "").strip(),
+            "ponente_completo": _titulo(ponente),
+            "listado_desde": primera,
+            "historial": otros,
             "proyecto": _liga_para(numero, urls_proyectos or []),
         })
     return Lista(url=url, fecha=(f.group(1).lower() if f else fecha), asuntos=asuntos)

@@ -97,6 +97,8 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             proy = f" · [proyecto]({a_['proyecto']})" if a_.get("proyecto") else ""
             desde = a_.get("listado_desde", "")
             antes = f" _(en lista desde el {desde})_" if desde and desde.lower() != lista["fecha"].lower() else ""
+            if a_.get("historial"):
+                antes += " _(" + "; ".join(h[:1].lower() + h[1:] for h in a_["historial"]) + ")_"
             L.append(f"{a_['orden']}. **{a_['tipo']} {a_['numero']}**{pon} — {desc}{proy}{antes}")
         L.append("")
 

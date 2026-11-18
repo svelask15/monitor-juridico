@@ -206,3 +206,34 @@ class PruebasAgenda(unittest.TestCase):
         self.assertEqual(a["271/2026"]["proyecto"], "")
         self.assertNotIn("CURP", str(l.asuntos))
         self.assertEqual(agenda.fecha_iso("19 de noviembre de 2026"), "2026-11-19")
+
+
+class PruebasCorrecciones2(unittest.TestCase):
+    def test_lista_sin_ponencia_e_historial(self):
+        from pathlib import Path
+        from monitor import agenda
+        texto = (Path(__file__).parent / "fixtures" / "lista_18nov.txt").read_text(encoding="utf-8")
+        a = {x["numero"]: x for x in agenda.parsear_lista(texto, "u").asuntos}
+        self.assertEqual(list(a), ["180/2026", "53/2026", "174/2024"])
+        self.assertEqual(a["180/2026"]["ponente"], "")
+        self.assertEqual(a["180/2026"]["tipo"], "Solicitud de Reasunción de Competencia")
+        self.assertEqual(a["53/2026"]["ponente"], "Guerrero García")
+        self.assertEqual(a["174/2024"]["tipo"], "Acción de Inconstitucionalidad")
+        self.assertEqual(a["174/2024"]["listado_desde"], "7 de abril de 2025")
+        self.assertIn("Retirado el 19 de agosto de 2026", a["174/2024"]["historial"])
+
+    def test_indice_numeros_partidos_y_paginas(self):
+        from monitor import sesiones
+        texto = """CELEBRADA EL JUEVES 5 DE NOVIEMBRE DE 2026. SECRETARÍA GENERAL DE ACUERDOS
+53
+/2026-CA RECURSO DE RECLAMACIÓN EN LA CONTROVERSIA CONSTITUCIONAL INTERPUESTO EN CONTRA DE LA 2843
+SENTENCIA. (PONENCIA DE LA SEÑORA MINISTRA HERRERÍAS GUERRA). 7 A 22 RESUELTO
+94/2026 Y ACUMULADAS 95/2026 ACCIONES DE INCONSTITUCIONALIDAD PROMOVIDAS POR X. 3 EN LISTA
+6/2026 SOLICITUD DE EJERCICIO DE LA FACULTAD DE ATRACCIÓN PREVISTA EN LA FRACCIÓN III DEL
+ARTÍCULO 105. 5 Y 6 NO EJERCE
+SUPREMA CORTE DE JUSTICIA DE LA NACIÓN TRIBUNAL PLENO SESIÓN PÚBLICA"""
+        a = {x["numero"]: x for x in sesiones.parsear_indice(sesiones._plano(texto))}
+        self.assertIn("53/2026-CA", a)
+        self.assertNotIn("2843", a["53/2026-CA"]["descripcion"])
+        self.assertIn("94/2026 Y ACUMULADAS 95/2026", a)
+        self.assertIn("Fracción III", a["6/2026"]["tipo"])

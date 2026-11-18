@@ -25,7 +25,7 @@ LISTADO = SITIO + "/multimedia/versiones-taquigraficas?page={pagina}"
 
 ESTADOS = (r"RESUELT[OA]S?|EN LISTA|RETIRAD[OA]S?|APLAZAD[OA]S?|NO EJERCE|SE EJERCE|EJERCE|NO REASUME|REASUME|"
            r"DESECHAD[OA]|SOBRESE[ÍI]D[OA]|DESIERT[OA]|INEXISTENTE|EXISTENTE|IMPROCEDENTE|SIN MATERIA")
-NUMERO = r"\d{1,5}/\d{4}(?:-[A-Z]{1,3})?(?: Y SUS? ACUMULADAS? (?:\d{1,5}(?:/\d{4})?(?:, | Y )?)+)?"
+NUMERO = r"\d{1,5}/\d{4}(?:-[A-Z]{1,3})?(?: Y (?:SUS? )?ACUMULAD[OA]S? (?:\d{1,5}(?:/\d{4})?(?:, | Y )?)+)?"
 _ENTRADA = re.compile(r"(?<![\w/])(" + NUMERO + r") (?=[A-ZÁÉÍÓÚÑ]{3,})")
 _PONENCIA = re.compile(
     r"\(PONENCIA (?:DE LA|DEL|DE) (?:SEÑORA? )?(?:MINISTR[OA] )?(?:PRESIDENT[EA] )?([A-ZÁÉÍÓÚÑ ]+?)\)\.?")
@@ -90,20 +90,31 @@ def texto_pdf(contenido: bytes) -> str:
     return "\n".join(paginas)
 
 
-_LINEA_BASURA = re.compile(r"^[\s“”_]*\d{0,3}[\s“”_]*$")
+_LINEA_BASURA = re.compile(r"^[\s“”_]*$")
 
 
 def _plano(texto: str) -> str:
     """Une el texto en una sola línea, quitando números de página y adornos."""
     lineas = [l for l in texto.replace("\f", "\n").splitlines() if not _LINEA_BASURA.match(l)]
     texto = " ".join(lineas).replace("“", " ").replace("”", " ")
+    texto = re.sub(r"(\d) /\s*(\d{4})", r"\1/\2", texto)  # expediente partido en dos renglones
     return re.sub(r"\s+", " ", texto).strip()
+
+
+_ROMANO = re.compile(r"^[IVXLC]+[.,]?$")
 
 
 def _titulo(s: str) -> str:
     menores = {"de", "del", "la", "las", "los", "el", "en", "y", "a", "por", "para"}
-    palabras = s.lower().split()
-    return " ".join(p if (i and p in menores) else p.capitalize() for i, p in enumerate(palabras))
+    salida = []
+    for i, p in enumerate(s.split()):
+        if _ROMANO.match(p) and p not in ("DE", "LA"):
+            salida.append(p)  # fracción III, artículo 105…
+        elif i and p.lower() in menores:
+            salida.append(p.lower())
+        else:
+            salida.append(p.capitalize())
+    return " ".join(salida)
 
 
 # ----------------------------------------------------------------- análisis
@@ -126,6 +137,9 @@ def parsear_indice(plano: str) -> list[dict]:
         desc = _PONENCIA.sub(" ", resto)
         desc = _PAGINAS.sub(" ", desc)
         desc = _ESTADO.sub(" ", desc)
+        # restos de la columna de páginas del índice ("37 A 43", "2843")
+        desc = re.sub(r"\b\d{1,3} (?:A|Y) \d{1,3}\b", " ", desc)
+        desc = re.sub(r"(?<![/\d])\b(?!19\d\d|20\d\d)\d{4}\b(?![/\d])", " ", desc)
         desc = re.sub(r"\s+", " ", desc).strip(" .")
         tipo = _TIPO.match(desc).group(1).strip()
         asuntos.append({
@@ -204,7 +218,11 @@ def obtener_nuevas(vistas: set[str], max_nuevas: int = 6, inicial: bool = False)
     s = nueva_sesion()
     r = s.get(LISTADO.format(pagina=0), timeout=30)
     r.raise_for_status()
-    filas = [f for f in parsear_listado(r.text) if f["url"] not in vistas]
+    filas = []
+    for f in parsear_listado(r.text):  # el listado va de la más reciente a la más antigua
+        if f["url"] in vistas:
+            break  # todo lo que sigue ya es anterior a la última sesión enviada
+        filas.append(f)
     if inicial:
         filas = filas[:2]  # la primera vez, solo las dos sesiones más recientes
     sesiones = []

@@ -6,21 +6,22 @@
 <title>Monitor jurídico · Archivo</title>
 <style>
   :root{
-    --tinta:#1d1b1a; --suave:#5f5a55; --linea:#e4ddd3; --papel:#faf7f2; --blanco:#fff;
+    --marino:#001f3f; --marino2:#003366; --marino3:#004080; --hielo:#eef3f9;
+    --tinta:#14202e; --suave:#55616f; --linea:#dbe3ec; --papel:#ffffff; --blanco:#fff;
     --vino:#6d1f2f; --vino-claro:#f3e6e8; --oro:#a57a1c; --oro-claro:#f8f0dc;
     --azul:#1f4e79; --verde:#2f6b3b; --gris:#8a847d;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--papel);color:var(--tinta);font:15px/1.5 "Iowan Old Style","Palatino Linotype",Georgia,serif}
-  a{color:var(--azul)}
-  header{background:var(--vino);color:#fff;padding:22px 20px 18px}
+  a{color:var(--marino3)}
+  header{background:linear-gradient(120deg,var(--marino),var(--marino2) 60%,var(--marino3));color:#fff;padding:22px 20px 18px}
   header h1{margin:0;font-size:26px;letter-spacing:.3px;font-weight:600}
   header p{margin:4px 0 0;opacity:.85;font:13px system-ui,sans-serif}
   nav{display:flex;gap:4px;overflow-x:auto;background:#fff;border-bottom:1px solid var(--linea);padding:0 12px;position:sticky;top:0;z-index:5}
   nav button{border:0;background:none;padding:12px 12px;font:600 14px system-ui,sans-serif;color:var(--suave);cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
-  nav button.activo{color:var(--vino);border-bottom-color:var(--vino)}
+  nav button.activo{color:var(--marino2);border-bottom-color:var(--marino3)}
   .contenedor{max-width:1100px;margin:0 auto;padding:16px}
-  .filtros{background:#fff;border:1px solid var(--linea);border-radius:10px;padding:14px;display:grid;gap:10px;font-family:system-ui,sans-serif;font-size:14px}
+  .filtros{background:var(--hielo);border:1px solid var(--linea);border-radius:10px;padding:14px;display:grid;gap:10px;font-family:system-ui,sans-serif;font-size:14px}
   .filtros{grid-template-columns:minmax(0,1fr)}
   .fila{display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-width:0}
   .filtros input[type=search]{flex:1;min-width:0;width:100%;padding:10px 12px;border:1px solid var(--linea);border-radius:8px;font-size:15px}
@@ -28,11 +29,11 @@
   .filtros input[type=date]{flex:0 1 150px;min-width:0}
   .filtros select,.filtros input[type=date]{padding:7px 8px;border:1px solid var(--linea);border-radius:8px;background:#fff;font-size:14px}
   .chip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:4px 11px;font:13px system-ui,sans-serif;cursor:pointer;color:var(--suave)}
-  .chip.on{background:var(--vino);border-color:var(--vino);color:#fff}
+  .chip.on{background:var(--marino2);border-color:var(--marino2);color:#fff}
   label.check{display:flex;gap:6px;align-items:center;color:var(--suave)}
   .resumen{margin:14px 2px 6px;color:var(--suave);font:13px system-ui,sans-serif;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
-  .dia{margin:22px 0 8px;font:700 13px system-ui,sans-serif;text-transform:uppercase;letter-spacing:.8px;color:var(--gris)}
-  .tarjeta{background:#fff;border:1px solid var(--linea);border-left:4px solid var(--gris);border-radius:8px;padding:12px 14px;margin:8px 0}
+  .dia{margin:22px 0 8px;font:700 13px system-ui,sans-serif;text-transform:uppercase;letter-spacing:.8px;color:var(--marino2)}
+  .tarjeta{background:#fff;box-shadow:0 1px 2px rgba(0,31,63,.05);border:1px solid var(--linea);border-left:4px solid var(--gris);border-radius:8px;padding:12px 14px;margin:8px 0}
   .tarjeta.sesion{border-left-color:var(--vino)} .tarjeta.agenda{border-left-color:var(--oro)}
   .tarjeta.tesis{border-left-color:var(--azul)} .tarjeta.dof{border-left-color:var(--verde)}
   .tarjeta.comunicado{border-left-color:var(--suave)} .tarjeta.scjn{background:linear-gradient(90deg,var(--oro-claro),#fff 40%)}
@@ -44,23 +45,23 @@
   .titulo{font-size:16.5px;font-weight:600;margin:4px 0 2px}
   .texto{margin:4px 0;color:#2f2b28}
   .mats{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
-  .mat{font:12px system-ui,sans-serif;background:var(--papel);border:1px solid var(--linea);border-radius:999px;padding:1px 8px;color:var(--suave)}
+  .mat{font:12px system-ui,sans-serif;background:var(--hielo);border:1px solid var(--linea);border-radius:999px;padding:1px 8px;color:var(--suave)}
   .acciones{font:13px system-ui,sans-serif;margin-top:8px;display:flex;flex-wrap:wrap;gap:12px}
-  .acciones button{background:none;border:0;color:var(--azul);cursor:pointer;padding:0;font:inherit;text-decoration:underline}
-  details{margin-top:6px} summary{cursor:pointer;color:var(--azul);font:13px system-ui,sans-serif}
+  .acciones button{background:none;border:0;color:var(--marino3);cursor:pointer;padding:0;font:inherit;text-decoration:underline}
+  details{margin-top:6px} summary{cursor:pointer;color:var(--marino3);font:13px system-ui,sans-serif}
   .bloque{font-size:14px;color:#3b3632;margin:6px 0;white-space:pre-wrap}
   ul.votos{margin:6px 0;padding-left:18px;font-size:14px}
   .vacio{text-align:center;color:var(--suave);padding:50px 10px;font-family:system-ui,sans-serif}
   .mas{display:block;margin:16px auto;padding:10px 18px;border-radius:8px;border:1px solid var(--linea);background:#fff;cursor:pointer;font:14px system-ui,sans-serif}
   dialog{border:0;border-radius:12px;max-width:720px;width:94%;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-  dialog .cab{background:var(--vino);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;align-items:start}
+  dialog .cab{background:var(--marino);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;align-items:start}
   dialog .cab h2{margin:0;font-size:18px} dialog .cab button{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
   dialog .cuerpo{padding:14px 18px;max-height:70vh;overflow:auto}
   .linea-tiempo{border-left:2px solid var(--linea);margin-left:6px;padding-left:16px}
   .hito{position:relative;margin:0 0 14px}
   .hito:before{content:"";position:absolute;left:-23px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--oro)}
   .hito.sesion:before{background:var(--vino)}
-  footer{color:var(--gris);font:12px system-ui,sans-serif;text-align:center;padding:30px 10px}
+  footer{background:var(--marino);color:#c9d6e6;margin-top:30px;font:12px system-ui,sans-serif;text-align:center;padding:30px 10px}
 </style>
 </head>
 <body>
@@ -104,6 +105,9 @@
   const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
   const fechaLarga = (f) => { const p = (f || "").split("-"); return p.length === 3 ? `${+p[2]} de ${MESES[+p[1]-1]} de ${p[0]}` : (f || "Sin fecha"); };
+  const SINGULAR = {"Resueltos": "Resuelto", "Retirados": "Retirado", "Aplazados": "Aplazado", "Quedaron en lista": "Quedó en lista",
+    "Desechados": "Desechado", "Sobreseídos": "Sobreseído", "Desiertos": "Desierto", "Improcedentes": "Improcedente"};
+  const estado1 = (e) => SINGULAR[e] || e || "";
   const NOMBRE = {sesion: "Sesión del Pleno", agenda: "Agenda", tesis: "Tesis", dof: "DOF", comunicado: "Comunicado"};
 
   if (typeof INDICE === "undefined") { $("estado").textContent = "Todavía no hay datos: la página se llena después de la primera revisión."; return; }
@@ -156,7 +160,7 @@
     let meta = `<span class="badge ${r.f}">${NOMBRE[r.f] || r.f}</span>`;
     let extra = "", acciones = [];
     if (r.f === "sesion") {
-      meta += `<span>${esc(r.estado)}</span>` + (r.ponente ? `<span>Ponencia ${esc(r.ponente)}</span>` : "");
+      meta += `<span>${esc(estado1(r.estado))}</span>` + (r.ponente ? `<span>Ponencia ${esc(r.ponente)}</span>` : "");
       acciones.push(`<button data-ses="${esc(r.sesion)}">Ver sesión y votaciones</button>`);
       acciones.push(`<a href="${esc(r.url)}" target="_blank" rel="noopener">Versión taquigráfica</a>`);
     } else if (r.f === "agenda") {
@@ -226,7 +230,7 @@
     const l = (porClave[clave] || []).slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
     $("mTitulo").textContent = "Seguimiento · " + l[0].titulo;
     $("mCuerpo").innerHTML = `<p class="texto">${esc(l[0].texto)}</p><div class="linea-tiempo">` + l.map((r) =>
-      `<div class="hito ${r.f}"><b>${esc(fechaLarga(r.fecha))}</b> — ${r.f === "agenda" ? "En la lista para sesión" + (r.orden ? " (núm. " + r.orden + ")" : "") : "Sesión: " + esc(r.estado)}
+      `<div class="hito ${r.f}"><b>${esc(fechaLarga(r.fecha))}</b> — ${r.f === "agenda" ? "En la lista para sesión" + (r.orden ? " (núm. " + r.orden + ")" : "") : "Sesión: " + esc(estado1(r.estado).toLowerCase())}
        ${r.ponente ? "<br><span class='meta'>Ponencia " + esc(r.ponente) + "</span>" : ""}
        ${r.proyecto ? `<br><a href="${esc(r.proyecto)}" target="_blank" rel="noopener">Proyecto</a>` : ""}
        ${r.sesion ? `<br><button class="chip" onclick="document.dispatchEvent(new CustomEvent('ses',{detail:'${esc(r.sesion)}'}))">Ver votaciones de la sesión</button>` : ""}</div>`).join("") + `</div>`;

@@ -19,7 +19,7 @@ def _orden_dof(notas: list[dict], prioridad_max: int):
 
 def hay_algo(nov: dict, prioridad_max: int) -> bool:
     return bool(
-        nov.get("comunicados") or nov.get("tesis")
+        nov.get("comunicados") or nov.get("tesis") or nov.get("sesiones")
         or any(n["prioridad"] <= prioridad_max for n in nov.get("dof", []))
     )
 
@@ -30,7 +30,8 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
     alertas = [t for t in tesis if t.get("alertas_vigencia")]
     com = nov.get("comunicados", [])
     dof = [n for n in nov.get("dof", []) if n["prioridad"] <= prioridad_max]
-    L.append(f"**Resumen:** {len(com)} comunicados del Pleno · {len(tesis)} tesis nuevas "
+    ses_n = len(nov.get("sesiones", []))
+    L.append(f"**Resumen:** {ses_n} sesiones del Pleno · {len(com)} comunicados · {len(tesis)} tesis nuevas "
              f"({sum(t['tipo'] == 'Jurisprudencia' for t in tesis)} jurisprudencias, "
              f"{sum(bool(t.get('contradiccion')) for t in tesis)} por contradicción de criterios) · "
              f"{len(alertas)} alertas de vigencia · {len(dof)} publicaciones relevantes en el DOF")
@@ -58,6 +59,30 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             if c["votaciones"]:
                 L.append(f"- _Votaciones mencionadas:_ {'; '.join(c['votaciones'])}")
             L.append(f"[Leer comunicado]({c['url']})")
+            L.append("")
+
+    for ses in nov.get("sesiones", []):
+        L += [f"## 🎙️ Sesión del Pleno · {ses['fecha']}", f"[Versión taquigráfica (PDF)]({ses['url']})", ""]
+        grupos: dict = {}
+        for a_ in ses["asuntos"]:
+            grupos.setdefault(a_["estado"] or "Sin estado", []).append(a_)
+        for estado_ in sorted(grupos, key=lambda e: (e != "Resueltos", e)):
+            L.append(f"**{estado_} ({len(grupos[estado_])})**")
+            for a_ in grupos[estado_]:
+                desc = a_["descripcion"]
+                if desc.upper().startswith(a_["tipo"].upper()):
+                    desc = desc[len(a_["tipo"]):].strip(" ,.")
+                desc = desc[:1].upper() + desc[1:220].lower() + ("…" if len(desc) > 220 else "")
+                pon = f" · ponencia {a_['ponente']}" if a_["ponente"] else ""
+                L.append(f"- **{a_['tipo']} {a_['numero']}**{pon} — {desc}")
+            L.append("")
+        if ses["votaciones"]:
+            L.append("**Votaciones informadas por la Secretaría**")
+            L += [f"- {v}" for v in ses["votaciones"]]
+            L.append("")
+        if ses["votos_anunciados"]:
+            L.append("**Votos anunciados**")
+            L += [f"- _{v['quien']}:_ {v['texto']}" for v in ses["votos_anunciados"]]
             L.append("")
 
     if tesis:

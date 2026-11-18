@@ -45,6 +45,16 @@ COMUNICADO_HTML = """<html><body><div>Suprema Corte de Justicia</div><div>Comuni
 
 
 class PruebasDOF(unittest.TestCase):
+    def test_encabezados_y_licitaciones(self):
+        data = {"NotasMatutinas": [
+            {"codNota": 1, "fecha": "17-11-2026", "nombreCodOrgaUno": "PODER JUDICIAL", "codOrgaDos": "SUPREMA CORTE DE JUSTICIA DE LA NACION"},
+            {"codNota": 2, "titulo": "COMISION NACIONAL DE LOS DERECHOS HUMANOS - REF:582467", "fecha": "17-11-2026",
+             "nombreCodOrgaUno": "", "codOrgaDos": "CONVOCATORIAS PARA CONCURSOS DE ADQUISICIONES"}]}
+        notas = dof.parsear_dia(data)
+        self.assertEqual([n.codigo for n in notas], [2])  # el encabezado sin título se descarta
+        c = clasificar(notas[0], ["derechos humanos"])
+        self.assertEqual((c["prioridad"], c["palabras_clave"]), (4, []))
+
     def test_parseo_y_clasificacion(self):
         notas = dof.parsear_dia(SIDOF)
         self.assertEqual(len(notas), 5)
@@ -65,12 +75,22 @@ class PruebasSemanario(unittest.TestCase):
         self.assertEqual(t.tipo, "Jurisprudencia")
         self.assertNotIn("<p>", t.rubro)
         alertas = sjf.detectar_cambios_vigencia(t)
-        texto = " ".join(alertas)
-        self.assertIn("queda sin efectos", texto)
-        self.assertIn("2019876", texto)
-        self.assertIn("P./J. 4/2019", texto)
+        self.assertIn("criterio que queda sin efectos", alertas)
+        self.assertTrue(t.contradiccion)
+        refs = " ".join(t.referencias)
+        self.assertIn("2019876", refs)
+        self.assertIn("P./J. 4/2019", refs)
         self.assertTrue(sjf.instancia_permitida(t, ["Pleno"]))
         self.assertFalse(sjf.instancia_permitida(t, ["Plenos Regionales"]))
+        t2 = sjf.parsear_tesis({**TESIS_API, "instancia": "Pleno de la Suprema Corte de Justicia de la Nación"})
+        self.assertTrue(sjf.instancia_permitida(t2, ["Pleno", "Suprema Corte"]))
+
+    def test_contradiccion_no_es_alerta(self):
+        t = sjf.parsear_tesis({**TESIS_API, "texto": "Criterio jurídico: procede la suspensión.",
+                                "fechaPublicacion": "2026-10-30 10:40:00.0"})
+        self.assertEqual(sjf.detectar_cambios_vigencia(t), [])
+        self.assertTrue(t.contradiccion)
+        self.assertEqual(t.fecha_publicacion, "30/10/2026")
 
     def test_sin_falsos_positivos(self):
         t = sjf.parsear_tesis({**TESIS_API, "texto": "Hechos: ... Criterio jurídico: ...", "precedentes": []})
@@ -101,6 +121,7 @@ class PruebasReporte(unittest.TestCase):
         nov = {"dof": notas, "tesis": [t.dict()], "comunicados": [c.dict()]}
         md = reporte.markdown("Prueba", nov, 2, ["Semanario: BloqueoFirewall"])
         self.assertIn("Criterios que podrían haber dejado de estar vigentes", md)
+        self.assertIn("Pleno de la SCJN (1)", md)
         self.assertIn("Reformas a la Constitución", md)
         self.assertNotIn("licitación", md)  # prioridad 4 queda fuera
         html = reporte.html_desde_markdown(md)
@@ -109,3 +130,55 @@ class PruebasReporte(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PruebasCorrecciones(unittest.TestCase):
+    def test_campos_numericos_semanario(self):
+        t = sjf.parsear_tesis({**TESIS_API, "ta_tj": 1, "tipoTesis": None, "tipoDocumento": 2,
+                                "fechaPublicacion": 1763164800000})
+        self.assertEqual(t.tipo, "Jurisprudencia")
+        self.assertEqual(t.fecha_publicacion, "15/11/2025")
+
+    def test_listado_comunicados(self):
+        html = """<table><thead><tr><th>Comunicado</th><th>Tema</th></tr></thead><tbody>
+        <tr><td>Comunicado 162</td><td><a href="https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8586"
+          title="Este comunicado se abrirá en una nueva página.">La Suprema Corte fija límites al acceso a datos.</a></td></tr>
+        <tr><td>Comunicado 161</td><td><a href="https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8585">Otro tema.</a></td></tr>
+        </tbody></table>"""
+        filas = comunicados.parsear_listado(html)
+        self.assertEqual(filas[0], {"id": 8586, "numero": "162", "titulo": "La Suprema Corte fija límites al acceso a datos."})
+        self.assertEqual(filas[1]["id"], 8585)
+
+
+class PruebasSesiones(unittest.TestCase):
+    def setUp(self):
+        from pathlib import Path
+        from monitor import sesiones
+        self.m = sesiones
+        texto = (Path(__file__).parent / "fixtures" / "vt_extracto.txt").read_text(encoding="utf-8")
+        self.s = sesiones.parsear_sesion(texto, "https://x/vt.pdf")
+
+    def test_indice(self):
+        a = {x["numero"]: x for x in self.s.asuntos}
+        self.assertEqual(self.s.fecha, "12 de Noviembre de 2026")
+        self.assertEqual(len(a), 6)
+        self.assertEqual(a["24/2026-CA"]["estado"], "Resueltos")
+        self.assertEqual(a["158/2026"]["ponente"], "Esquivel Mossa")  # índice partido entre páginas
+        self.assertEqual(a["164/2026"]["ponente"], "Aguilar Ortiz")
+        self.assertEqual(a["84/2026"]["estado"], "Quedaron en lista")
+        self.assertEqual(a["1189/2026"]["estado"], "No se ejerce la facultad de atracción")
+        self.assertEqual(a["25/2026"]["tipo"], "Acción de Inconstitucionalidad")
+
+    def test_debate(self):
+        self.assertEqual(len(self.s.votaciones), 2)
+        self.assertIn("vota en contra el Ministro Figueroa Mejía", self.s.votaciones[1])
+        quien = [v["quien"] for v in self.s.votos_anunciados]
+        self.assertEqual(quien, ["Ríos González", "Batres Guadarrama"])
+        self.assertTrue(any("NO SE EJERCE" in d for d in self.s.decisiones))
+
+    def test_listado(self):
+        html = """<table><tr><td>12 de Noviembre de 2026</td><td>Pleno</td>
+        <td><a href="/sites/default/files/versiones-taquigraficas/documento/2026-11-13/12%20noviembre.pdf">x</a></td></tr></table>"""
+        f = self.m.parsear_listado(html)
+        self.assertEqual(f[0]["url"], "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-13/12%20noviembre.pdf")
+        self.assertEqual(f[0]["instancia"], "Pleno")

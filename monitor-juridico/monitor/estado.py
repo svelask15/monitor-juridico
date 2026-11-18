@@ -21,6 +21,7 @@ VACIO = {
     "sjf_registros": [],
     "sjf_inicializado": False,
     "comunicados_ultimo_id": None,
+    "sesiones_vistas": [],
 }
 
 
@@ -35,6 +36,7 @@ def guardar(estado: dict) -> None:
     # se recortan las listas para que el archivo no crezca sin límite
     estado["dof_codigos"] = sorted(set(estado["dof_codigos"]))[-20000:]
     estado["sjf_registros"] = sorted(set(estado["sjf_registros"]))
+    estado["sesiones_vistas"] = list(dict.fromkeys(estado.get("sesiones_vistas", [])))[-400:]
     ARCHIVO.write_text(json.dumps(estado, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
@@ -50,7 +52,7 @@ def guardar_historico(fecha: dt.date, novedades: dict) -> Path:
 
 
 def leer_historico(desde: dt.date, hasta: dt.date) -> dict:
-    junto: dict = {"dof": [], "tesis": [], "comunicados": []}
+    junto: dict = {"dof": [], "tesis": [], "comunicados": [], "sesiones": []}
     d = desde
     while d <= hasta:
         ruta = HISTORICO / f"{d.isoformat()}.json"

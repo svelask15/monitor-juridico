@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-from monitor import comunicados, dof, estado, notificar, reporte, sjf
+from monitor import comunicados, dof, estado, notificar, reporte, sesiones, sjf
 from monitor.clasificar import clasificar
 
 RAIZ = Path(__file__).resolve().parent
@@ -114,10 +114,19 @@ def revisar_comunicados(cfg, est, hoy, nov):
     log(f"Comunicados: {len(nuevos)} nuevos (último id {est['comunicados_ultimo_id']})")
 
 
+def revisar_sesiones(cfg, est, hoy, nov):
+    vistas = set(est.get("sesiones_vistas", []))
+    nuevas = sesiones.obtener_nuevas(vistas, inicial=not vistas)
+    est.setdefault("sesiones_vistas", []).extend(x.url for x in nuevas)
+    nov["sesiones"] = [x.dict() for x in nuevas]
+    log(f"Sesiones del Pleno: {len(nuevas)} versiones taquigráficas nuevas")
+
+
 FUENTES = {
     "dof": ("Diario Oficial (SIDOF)", revisar_dof),
     "semanario": ("Semanario Judicial de la Federación", revisar_semanario),
     "comunicados": ("Comunicados de prensa de la SCJN", revisar_comunicados),
+    "sesiones": ("Versiones taquigráficas del Pleno", revisar_sesiones),
 }
 
 
@@ -138,7 +147,7 @@ def enviar(asunto, md, cfg, args, vacio):
 def diario(cfg, args) -> int:
     hoy = dt.datetime.now(TZ).date()
     est = estado.cargar()
-    nov: dict = {"dof": [], "tesis": [], "comunicados": []}
+    nov: dict = {"dof": [], "tesis": [], "comunicados": [], "sesiones": []}
     errores = []
     for clave, (nombre, fn) in FUENTES.items():
         if args.solo and clave not in args.solo:

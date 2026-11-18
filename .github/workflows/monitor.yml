@@ -54,7 +54,7 @@ jobs:
         run: |
           git config user.name "monitor-juridico"
           git config user.email "monitor@users.noreply.github.com"
-          git add data reportes
+          git add data reportes ../docs
           git diff --cached --quiet || git commit -m "Actualización $(TZ=America/Mexico_City date +%F)"
           git pull --rebase
           git push

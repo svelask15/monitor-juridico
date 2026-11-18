@@ -1,0 +1,55 @@
+name: Monitor jurídico
+
+on:
+  schedule:
+    # GitHub usa hora UTC. Ciudad de México = UTC-6.
+    - cron: "37 2 * * *"   # diario ~20:37 (después de la edición vespertina del DOF)
+    - cron: "13 15 * * 0"  # domingo ~9:13: resumen semanal
+  workflow_dispatch:        # botón "Run workflow" para correrlo a mano
+    inputs:
+      modo:
+        description: "diario o semanal"
+        default: "diario"
+
+permissions:
+  contents: write  # para guardar data/ y reportes/ en el repositorio
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Ejecutar
+        env:
+          CORREO_REMITENTE: ${{ secrets.CORREO_REMITENTE }}
+          CORREO_CONTRASENA: ${{ secrets.CORREO_CONTRASENA }}
+          CORREO_DESTINO: ${{ secrets.CORREO_DESTINO }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ "${{ github.event.schedule }}" = "13 15 * * 0" ] || [ "${{ inputs.modo }}" = "semanal" ]; then
+            python run.py --semanal
+          else
+            python run.py
+          fi
+
+      - name: Guardar estado y reportes
+        run: |
+          git config user.name "monitor-juridico"
+          git config user.email "monitor@users.noreply.github.com"
+          git add data reportes
+          git diff --cached --quiet || git commit -m "Actualización $(TZ=America/Mexico_City date +%F)"
+          git push

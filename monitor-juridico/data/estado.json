@@ -1957,6 +1957,17 @@
  "comunicados_ultimo_id": 8586,
  "sesiones_vistas": [
   "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-13/12%20noviembre%20%202026%20-%20Versi%C3%B3n%20definitiva%203.pdf",
-  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-18/17%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva.pdf"
- ]
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-18/17%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva.pdf",
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-04/3%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva.pdf",
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-05/4%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva_1.pdf",
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-06/5%20noviembre%20%202026%20-%20Versi%C3%B3n%20definitiva.pdf",
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-10/9%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva.pdf",
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-11/10%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva.pdf",
+  "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-12/11%20de%20noviembre%20de%202026%20-%20Versi%C3%B3n%20definitiva_1.pdf"
+ ],
+ "agenda_vista": {
+  "2026-11-18": "https://www.scjn.gob.mx/sites/default/files/listas/documento/2026-11-17/18%20de%20noviembre%20de%202026%20Oficial%202.pdf",
+  "2026-11-19": "https://www.scjn.gob.mx/sites/default/files/listas/documento/2026-11-13/19%20de%20noviembre%20de%202026%20-%20LISTA%20OFICIAL%202.pdf",
+  "2026-11-23": "https://www.scjn.gob.mx/sites/default/files/listas/documento/2026-11-17/23%20de%20noviembre%20de%202026.pdf"
+ }
 }

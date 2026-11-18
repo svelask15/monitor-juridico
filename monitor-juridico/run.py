@@ -88,14 +88,19 @@ def revisar_comunicados(cfg, est, hoy, nov):
     c = cfg["comunicados"]
     inicial = est["comunicados_ultimo_id"] is None
     ultimo = est["comunicados_ultimo_id"] or c.get("id_inicial", 8545)
-    nuevos = comunicados.obtener_nuevos(ultimo)
+    nuevos, avisos = comunicados.obtener_nuevos(ultimo)
+    nov.setdefault("avisos", []).extend(f"Comunicados: {a}" for a in avisos)
     if nuevos:
         est["comunicados_ultimo_id"] = max(x.id for x in nuevos)
     elif inicial:
         est["comunicados_ultimo_id"] = ultimo
     if inicial:
         limite = hoy - dt.timedelta(days=c.get("dias_iniciales", 10))
-        nuevos = [x for x in nuevos if (fecha_es(x.fecha) or hoy) >= limite]
+        con_fecha = [x for x in nuevos if fecha_es(x.fecha)]
+        if con_fecha:
+            nuevos = [x for x in nuevos if (fecha_es(x.fecha) or hoy) >= limite]
+        else:  # sin fechas (solo listado): mostrar los más recientes
+            nuevos = nuevos[-c.get("mostrar_al_iniciar", 6):]
     nov["comunicados"] = [x.dict() for x in nuevos]
     log(f"Comunicados: {len(nuevos)} nuevos (último id {est['comunicados_ultimo_id']})")
 
@@ -136,11 +141,13 @@ def diario(cfg, args) -> int:
             errores.append(f"{nombre}: {type(e).__name__}: {str(e)[:200]}")
 
     pmax = cfg["dof"].get("prioridad_maxima", 2)
-    nov_guardar = {**nov, "dof": [n for n in nov["dof"] if n["prioridad"] <= pmax]}
+    nov_guardar = {k: v for k, v in nov.items() if k != "avisos"}
+    nov_guardar["dof"] = [n for n in nov["dof"] if n["prioridad"] <= pmax]
     estado.guardar_historico(hoy, nov_guardar)
     estado.guardar(est)
 
     titulo = f"Monitor jurídico — {hoy:%d/%m/%Y}"
+    errores += nov.pop("avisos", [])
     md = reporte.markdown(titulo, nov, pmax, errores)
     REPORTES.mkdir(exist_ok=True)
     (REPORTES / f"{hoy.isoformat()}.md").write_text(md, encoding="utf-8")

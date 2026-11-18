@@ -32,6 +32,8 @@ comunicados:
   id_inicial: 8545
   # La primera vez, solo se reportan los comunicados de estos últimos días
   dias_iniciales: 10
+  # Si no hay fechas disponibles, cuántos de los más recientes mostrar la primera vez
+  mostrar_al_iniciar: 6
 
 envio:
   # Enviar correo/Telegram aunque no haya novedades (para saber que sigue vivo)

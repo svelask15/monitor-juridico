@@ -92,13 +92,80 @@ def parsear(html_texto: str, id_: int) -> Comunicado | None:
     )
 
 
-def obtener_nuevos(ultimo_id: int, max_vacios: int = 4, max_nuevos: int = 60) -> list[Comunicado]:
+LISTADO = "https://www.scjn.gob.mx/multimedia/comunicados?page={pagina}"
+_ID = re.compile(r"comunicado\.asp\?id=(\d+)", re.I)
+CABECERAS = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Referer": "https://www.scjn.gob.mx/multimedia/comunicados",
+}
+
+
+def parsear_listado(html_texto: str) -> list[dict]:
+    """Tabla 'Comunicado | Tema' de scjn.gob.mx → [{id, numero, titulo}]."""
+    sopa = BeautifulSoup(html_texto, "html.parser")
+    filas = []
+    for a in sopa.find_all("a", href=_ID):
+        id_ = int(_ID.search(a["href"]).group(1))
+        tr = a.find_parent("tr")
+        celdas = [c.get_text(" ", strip=True) for c in tr.find_all("td")] if tr else []
+        numero = next((re.sub(r"\D", "", c) for c in celdas if re.search(r"comunicado\s*\d+|^\d+$", c, re.I)), "")
+        filas.append({"id": id_, "numero": numero, "titulo": a.get_text(" ", strip=True)})
+    return filas
+
+
+def leer_listado(s, ultimo_id: int, max_paginas: int = 5) -> list[dict]:
+    nuevos = {}
+    for pagina in range(max_paginas):
+        r = s.get(LISTADO.format(pagina=pagina), timeout=30, headers=CABECERAS)
+        r.raise_for_status()
+        filas = parsear_listado(r.text)
+        for f in filas:
+            if f["id"] > ultimo_id:
+                nuevos[f["id"]] = f
+        if not filas or min(f["id"] for f in filas) <= ultimo_id:
+            break
+        pausa(1)
+    return [nuevos[k] for k in sorted(nuevos)]
+
+
+def obtener_nuevos(ultimo_id: int, max_vacios: int = 4, max_nuevos: int = 60) -> tuple[list[Comunicado], list[str]]:
+    """Devuelve (comunicados, avisos).
+
+    1) Lee el listado de scjn.gob.mx para saber qué comunicados hay.
+    2) Intenta abrir cada uno en internet2.scjn.gob.mx para sacar asuntos y votaciones.
+       Si ese servidor bloquea la conexión, se reporta al menos número, tema y liga.
+    Si el listado falla, prueba los id consecutivos directamente.
+    """
     s = nueva_sesion()
+    avisos: list[str] = []
+    try:
+        listado = leer_listado(s, ultimo_id)[:max_nuevos]
+    except Exception as e:  # noqa: BLE001
+        avisos.append(f"listado de scjn.gob.mx no disponible ({e}); se prueban id consecutivos")
+        listado = None
+
+    if listado is not None:
+        resultado, bloqueado = [], False
+        for f in listado:
+            c = None
+            if not bloqueado:
+                try:
+                    r = s.get(URL.format(id=f["id"]), timeout=30, headers=CABECERAS)
+                    r.raise_for_status()
+                    r.encoding = r.apparent_encoding or "windows-1252"
+                    c = parsear(r.text, f["id"])
+                except Exception as e:  # noqa: BLE001
+                    bloqueado = True  # no insistir con el resto
+                    avisos.append(f"el texto completo de los comunicados no se pudo abrir ({e}); se muestran solo número y tema")
+                pausa(1)
+            resultado.append(c or Comunicado(id=f["id"], numero=f["numero"], fecha="", titulo=f["titulo"]))
+        return resultado, avisos
+
     nuevos: list[Comunicado] = []
     vacios = 0
     id_ = ultimo_id + 1
     while vacios < max_vacios and len(nuevos) < max_nuevos:
-        r = s.get(URL.format(id=id_), timeout=30)
+        r = s.get(URL.format(id=id_), timeout=30, headers=CABECERAS)
         if r.status_code == 404:
             c = None
         else:
@@ -112,4 +179,4 @@ def obtener_nuevos(ultimo_id: int, max_vacios: int = 4, max_nuevos: int = 60) ->
             vacios += 1
         id_ += 1
         pausa(1)
-    return nuevos
+    return nuevos, avisos

@@ -46,7 +46,7 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
     if com:
         L += ["## 🏛️ Lo que resolvió el Pleno de la SCJN", ""]
         for c in com:
-            L.append(f"### {c['numero']} · {c['fecha']}")
+            L.append(f"### Comunicado {c['numero']}" + (f" · {c['fecha']}" if c["fecha"] else ""))
             if c["titulo"]:
                 L.append(f"**{c['titulo']}**  ")
             if c["resumen"]:
@@ -86,7 +86,7 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             L.append("")
 
     if errores:
-        L += ["## ❗ Fuentes que no se pudieron revisar", ""] + [f"- {e}" for e in errores] + [""]
+        L += ["## ❗ Fuentes con problemas", ""] + [f"- {e}" for e in errores] + [""]
     if not hay_algo(nov, prioridad_max) and not errores:
         L.append("Sin novedades relevantes.")
     return "\n".join(L)

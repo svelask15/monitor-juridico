@@ -72,11 +72,21 @@ def limpiar(valor) -> str:
 
 
 def _tipo(o: dict) -> str:
-    t = (o.get("tipoTesis") or "").lower()
-    ta = (o.get("ta_tj") or "").upper().replace(".", "").replace(" ", "")
+    t = str(o.get("tipoTesis") or "").lower()
+    ta = str(o.get("ta_tj") or "").upper().replace(".", "").replace(" ", "")
     if "jurisprud" in t or ta == "TJ" or str(o.get("tipoDocumento")) == "2":
         return "Jurisprudencia"
     return "Tesis aislada"
+
+
+def _fecha(valor) -> str:
+    """La API entrega la fecha como texto o como epoch en milisegundos."""
+    import datetime as dt
+    if isinstance(valor, (int, float)) or (isinstance(valor, str) and valor.isdigit() and len(valor) >= 10):
+        n = int(valor)
+        n = n / 1000 if n > 10**11 else n
+        return dt.datetime.fromtimestamp(n, dt.timezone.utc).strftime("%d/%m/%Y")
+    return limpiar(valor)
 
 
 def parsear_tesis(o: dict) -> Tesis:
@@ -93,7 +103,7 @@ def parsear_tesis(o: dict) -> Tesis:
         instancia=limpiar(o.get("instancia") or o.get("instanciaAbr")),
         materias=limpiar(o.get("materias") or o.get("materia")),
         epoca=limpiar(o.get("epoca") or o.get("epocaAbr")),
-        fecha_publicacion=limpiar(o.get("fechaPublicacion") or o.get("fecha")),
+        fecha_publicacion=_fecha(o.get("fechaPublicacion") or o.get("fecha")),
         texto=limpiar(o.get("texto")),
         precedentes=limpiar(o.get("precedentes") or o.get("precedente")),
         votos=[v for v in votos if v],

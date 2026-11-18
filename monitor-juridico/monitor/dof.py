@@ -67,19 +67,19 @@ def parsear_dia(data: dict) -> list[NotaDOF]:
 def obtener_dia(fecha: dt.date, sesion=None) -> list[NotaDOF]:
     s = sesion or nueva_sesion()
     f = fecha.strftime("%d-%m-%Y")
-    ultimo_error: Exception | None = None
+    errores: list[str] = []
     for base in BASES:
         try:
-            r = s.get(f"{base}/notas/{f}", timeout=30, headers={"Accept": "application/json"})
+            r = s.get(f"{base}/notas/{f}", timeout=30, headers={"Accept": "*/*"})
             r.raise_for_status()
             data = r.json()
             if data.get("messageCode") not in (200, "200", None):
                 raise RuntimeError(f"SIDOF respondió {data.get('messageCode')}: {data.get('response')}")
             return parsear_dia(data)
         except Exception as e:  # noqa: BLE001 — probamos el respaldo
-            ultimo_error = e
+            errores.append(f"{base.split('/')[2]}: {e}")
             pausa(2)
-    raise RuntimeError(f"No se pudo leer el DOF del {f}: {ultimo_error}")
+    raise RuntimeError(f"No se pudo leer el DOF del {f} → " + " | ".join(errores))
 
 
 def obtener_rango(desde: dt.date, hasta: dt.date) -> list[NotaDOF]:

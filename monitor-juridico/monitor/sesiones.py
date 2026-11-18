@@ -19,6 +19,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 from .http import nueva_sesion, pausa
+from .ortografia import tipo as _tipo
 
 SITIO = "https://www.scjn.gob.mx"
 LISTADO = SITIO + "/multimedia/versiones-taquigraficas?page={pagina}"
@@ -145,7 +146,7 @@ def parsear_indice(plano: str) -> list[dict]:
         tipo = _TIPO.match(desc).group(1).strip()
         asuntos.append({
             "numero": num,
-            "tipo": _titulo(tipo),
+            "tipo": _tipo(tipo),
             "descripcion": desc,
             "ponente": _titulo(pon.group(1)) if pon else "",
             "estado": _estado_legible(est[-1]) if est else "",
@@ -206,7 +207,7 @@ def parsear_sesion(texto: str, url: str, fecha_listado: str = "") -> Sesion:
     votaciones, votos, decisiones = parsear_debate(plano)
     return Sesion(
         url=url,
-        fecha=_titulo(f.group(1)) if f else fecha_listado,
+        fecha=f.group(1).lower() if f else fecha_listado,
         asuntos=parsear_indice(plano),
         votaciones=votaciones,
         votos_anunciados=votos,

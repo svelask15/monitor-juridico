@@ -19,6 +19,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from .materias import anotar, normalizar
+from .ortografia import nombre_organo, oracion, tipo as tipo_legible
 
 RAIZ = Path(__file__).resolve().parent.parent
 HISTORICO = RAIZ / "data" / "historico"
@@ -67,9 +68,7 @@ def _resumen(texto: str, n: int = 260, tipo: str = "") -> str:
     texto = re.sub(r"\s+", " ", texto or "").strip()
     if tipo and texto.upper().startswith(tipo.upper()):
         texto = texto[len(tipo):].strip(" ,.")
-    if texto.isupper():
-        texto = texto.lower()
-    texto = texto[:1].upper() + texto[1:]
+    texto = oracion(texto)
     return texto[:n] + ("…" if len(texto) > n else "")
 
 
@@ -78,6 +77,11 @@ def registros_de_dia(dia: str, nov: dict) -> tuple[list[dict], list[dict]]:
     anotar(nov)
     regs: list[dict] = []
     sesiones: list[dict] = []
+
+    for grupo in ("sesiones", "agenda"):
+        for doc in nov.get(grupo, []):
+            for a in doc.get("asuntos", []):
+                a["tipo"] = tipo_legible(a["tipo"])
 
     for ses in nov.get("sesiones", []):
         f = iso(ses.get("fecha", ""), dia)
@@ -115,9 +119,11 @@ def registros_de_dia(dia: str, nov: dict) -> tuple[list[dict], list[dict]]:
                      "scjn": (t.get("instancia", "").lower() == "pleno" or "suprema corte" in t.get("instancia", "").lower())})
 
     for n in nov.get("dof", []):
+        if not (n.get("titulo") or "").strip():
+            continue  # encabezados de sección vacíos guardados antes de la corrección
         regs.append({"id": f"dof-{n['codigo']}", "f": "dof", "fecha": iso(n.get("fecha", ""), dia),
                      "tipo": n.get("categoria_etiqueta", ""), "titulo": n.get("titulo", ""),
-                     "texto": n.get("organismo") or n.get("poder", ""), "materias": n.get("materias", []),
+                     "texto": nombre_organo(n.get("organismo") or n.get("poder", "")), "materias": n.get("materias", []),
                      "url": n.get("url", ""), "prioridad": n.get("prioridad", 4), "edicion": n.get("edicion", "")})
 
     for c in nov.get("comunicados", []):

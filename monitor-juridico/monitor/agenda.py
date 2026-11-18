@@ -14,6 +14,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 from .http import nueva_sesion, pausa
+from .ortografia import tipo as _tipo
 from .sesiones import NUMERO, _plano, _titulo, texto_pdf
 
 SITIO = "https://www.scjn.gob.mx"
@@ -110,7 +111,7 @@ def parsear_lista(texto: str, url: str, fecha: str = "", urls_proyectos: list[st
         asuntos.append({
             "orden": int(orden),
             "numero": re.sub(r"\s+", " ", numero),
-            "tipo": _titulo(tipo),
+            "tipo": _tipo(tipo),
             "descripcion": desc[len(tipo):].strip(" ,.") if tipo else desc,
             "ponente": _titulo(" ".join(ponente.split()[-2:])) if ponente else "",
             "ponente_completo": _titulo(ponente),

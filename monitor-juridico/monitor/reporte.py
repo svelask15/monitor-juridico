@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 
 from .clasificar import CATEGORIAS
 from .materias import de_interes
+from .ortografia import nombre_organo, oracion, tipo as tipo_legible
 
 ABREV_ESTADO = {"Resueltos": "", "Quedaron en lista": "en lista", "Retirados": "retirado", "Aplazados": "aplazado"}
 
@@ -41,10 +42,8 @@ def _desc(a: dict, n: int) -> str:
     d = a.get("descripcion", "")
     if d.upper().startswith((a.get("tipo") or "").upper()):
         d = d[len(a["tipo"]):].strip(" ,.")
-    if d.isupper():
-        d = d.lower()
-    d = d[:n] + ("…" if len(d) > n else "")
-    return d[:1].upper() + d[1:]
+    d = oracion(d)
+    return d[:n] + ("…" if len(d) > n else "")
 
 
 def _es_scjn(t: dict) -> bool:
@@ -96,6 +95,10 @@ def hay_algo(nov: dict, prioridad_max: int) -> bool:
 def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] | None = None,
              opciones: dict | None = None) -> str:
     op = {"formato": "completo", "interes": [], "modo": "priorizar", **(opciones or {})}
+    for grupo in ("sesiones", "agenda"):  # 'Contradicción de Criterios' → 'Contradicción de criterios'
+        for doc in nov.get(grupo, []):
+            for a_ in doc.get("asuntos", []):
+                a_["tipo"] = tipo_legible(a_["tipo"])
     L = [f"# {titulo}", ""]
     tesis = [t for t in nov.get("tesis", []) if _visible(t.get("materias_lista", []), op) or t.get("alertas_vigencia")]
     tesis = _orden_interes(tesis, op, "materias_lista")
@@ -146,7 +149,7 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             L.append("")
 
     for ses in nov.get("sesiones", []):
-        L += [f"## 🎙️ Sesión del Pleno · {ses['fecha']}", f"[Versión taquigráfica (PDF)]({ses['url']})", ""]
+        L += [f"## 🎙️ Sesión del Pleno · {ses['fecha'].lower()}", f"[Versión taquigráfica (PDF)]({ses['url']})", ""]
         asuntos = ses["asuntos"]
         if op["formato"] == "compacto":
             conteo = Counter(a_["estado"] or "Sin estado" for a_ in asuntos)
@@ -245,7 +248,7 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             for n in notas:
                 kw = f" 🔎 _{', '.join(n['palabras_clave'])}_" if n["palabras_clave"] else ""
                 titulo = n["titulo"] or "(SIDOF no dio título)"
-                L.append(f"- {n['fecha']} · [{titulo[:300]}]({n['url']}) — {n['organismo'] or n['poder']}{kw}"
+                L.append(f"- {n['fecha']} · [{titulo[:300]}]({n['url']}) — {nombre_organo(n['organismo'] or n['poder'])}{kw}"
                          f"{_etiquetas(n.get('materias', []), op)}")
             L.append("")
 

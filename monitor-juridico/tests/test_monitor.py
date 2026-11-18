@@ -160,14 +160,14 @@ class PruebasSesiones(unittest.TestCase):
 
     def test_indice(self):
         a = {x["numero"]: x for x in self.s.asuntos}
-        self.assertEqual(self.s.fecha, "12 de Noviembre de 2026")
+        self.assertEqual(self.s.fecha, "12 de noviembre de 2026")
         self.assertEqual(len(a), 6)
         self.assertEqual(a["24/2026-CA"]["estado"], "Resueltos")
         self.assertEqual(a["158/2026"]["ponente"], "Esquivel Mossa")  # índice partido entre páginas
         self.assertEqual(a["164/2026"]["ponente"], "Aguilar Ortiz")
         self.assertEqual(a["84/2026"]["estado"], "Quedaron en lista")
         self.assertEqual(a["1189/2026"]["estado"], "No se ejerce la facultad de atracción")
-        self.assertEqual(a["25/2026"]["tipo"], "Acción de Inconstitucionalidad")
+        self.assertEqual(a["25/2026"]["tipo"], "Acción de inconstitucionalidad")
 
     def test_debate(self):
         self.assertEqual(len(self.s.votaciones), 2)
@@ -195,11 +195,11 @@ class PruebasAgenda(unittest.TestCase):
         self.assertEqual(l.fecha, "19 de noviembre de 2026")
         a = {x["numero"]: x for x in l.asuntos}
         self.assertEqual(list(a), ["360/2026", "1/2026-CA", "271/2026", "2932/2022"])
-        self.assertEqual(a["360/2026"]["tipo"], "Controversia Constitucional")
+        self.assertEqual(a["360/2026"]["tipo"], "Controversia constitucional")
         self.assertEqual(a["360/2026"]["ponente"], "Guerrero García")
         self.assertTrue(a["360/2026"]["proyecto"].endswith("CC360_2026.pdf"))
         self.assertTrue(a["1/2026-CA"]["proyecto"].endswith("AI1_2026_CA.pdf"))
-        self.assertEqual(a["1/2026-CA"]["tipo"], "Queja en la Controversia Constitucional")
+        self.assertEqual(a["1/2026-CA"]["tipo"], "Queja en la controversia constitucional")
         self.assertEqual(a["271/2026"]["ponente"], "Ortiz Ahlf")
         self.assertEqual(a["2932/2022"]["ponente"], "Aguilar Ortiz")
         self.assertEqual(a["2932/2022"]["listado_desde"], "2 de octubre de 2025")
@@ -216,9 +216,9 @@ class PruebasCorrecciones2(unittest.TestCase):
         a = {x["numero"]: x for x in agenda.parsear_lista(texto, "u").asuntos}
         self.assertEqual(list(a), ["180/2026", "53/2026", "174/2024"])
         self.assertEqual(a["180/2026"]["ponente"], "")
-        self.assertEqual(a["180/2026"]["tipo"], "Solicitud de Reasunción de Competencia")
+        self.assertEqual(a["180/2026"]["tipo"], "Solicitud de reasunción de competencia")
         self.assertEqual(a["53/2026"]["ponente"], "Guerrero García")
-        self.assertEqual(a["174/2024"]["tipo"], "Acción de Inconstitucionalidad")
+        self.assertEqual(a["174/2024"]["tipo"], "Acción de inconstitucionalidad")
         self.assertEqual(a["174/2024"]["listado_desde"], "7 de abril de 2025")
         self.assertIn("Retirado el 19 de agosto de 2026", a["174/2024"]["historial"])
 
@@ -236,7 +236,7 @@ SUPREMA CORTE DE JUSTICIA DE LA NACIÓN TRIBUNAL PLENO SESIÓN PÚBLICA"""
         self.assertIn("53/2026-CA", a)
         self.assertNotIn("2843", a["53/2026-CA"]["descripcion"])
         self.assertIn("94/2026 Y ACUMULADAS 95/2026", a)
-        self.assertIn("Fracción III", a["6/2026"]["tipo"])
+        self.assertIn("fracción III", a["6/2026"]["tipo"])
 
 
 class PruebasMaterias(unittest.TestCase):
@@ -280,3 +280,15 @@ class PruebasPagina(unittest.TestCase):
             self.assertIn('"f":"agenda"', js)
             self.assertIn("accion de inconstitucionalidad|25/2026", js)
             self.assertNotRegex(lista.asuntos[1]["descripcion"], r" 2$")
+
+
+class PruebasOrtografia(unittest.TestCase):
+    def test_oracion(self):
+        from monitor.ortografia import oracion
+        t = oracion("FORMULADA POR EL MINISTRO ESPINOSA BETANZO, DEL ÍNDICE DEL TERCER TRIBUNAL COLEGIADO EN MATERIA "
+                    "ADMINISTRATIVA DEL PRIMER CIRCUITO, LEY DE INGRESOS DEL MUNICIPIO DE MEZQUITAL, DEL ESTADO DE DURANGO, "
+                    "FRACCIÓN IX, APARTADOS Q Y S")
+        for esperado in ("Ministro Espinosa Betanzo", "Tercer Tribunal Colegiado en Materia Administrativa del Primer Circuito",
+                         "Ley de Ingresos del Municipio de Mezquital", "Estado de Durango", "fracción IX", "apartados Q y S"):
+            self.assertIn(esperado, t)
+        self.assertEqual(oracion("Promovida por el Municipio de San Juan"), "Promovida por el Municipio de San Juan")

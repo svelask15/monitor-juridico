@@ -1,5 +1,580 @@
 {
- "dof": [],
- "tesis": [],
- "comunicados": []
+ "dof": [
+  {
+   "codigo": 5803872,
+   "fecha": "17-11-2026",
+   "edicion": "Matutina",
+   "titulo": "",
+   "poder": "PODER JUDICIAL",
+   "organismo": "SUPREMA CORTE DE JUSTICIA DE LA NACION",
+   "pagina": 83,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5803872&fecha=17/11/2026",
+   "categoria": "scjn_acuerdo",
+   "categoria_etiqueta": "SCJN: acuerdos generales y avisos",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5803873,
+   "fecha": "17-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Sentencia dictada por el Tribunal Pleno de la Suprema Corte de Justicia de la Nación en la Controversia Constitucional 120/2026, así como el Voto Concurrente de la señora Ministra Lenia Batres Guadarrama.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "SUPREMA CORTE DE JUSTICIA DE LA NACION",
+   "pagina": 83,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5803873&fecha=17/11/2026",
+   "categoria": "scjn_sentencia",
+   "categoria_etiqueta": "SCJN: sentencias y votos publicados",
+   "prioridad": 1,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804025,
+   "fecha": "17-11-2026",
+   "edicion": "Matutina",
+   "titulo": "COMISION NACIONAL DE LOS DERECHOS HUMANOS - REF:582467",
+   "poder": "CONVOCATORIAS PARA CONCURSOS DE ADQUISICIONES, ARRENDAMIENTOS, OBRAS Y SERVICIOS DEL SECTOR PUBLICO",
+   "organismo": "",
+   "pagina": 134,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804025&fecha=17/11/2026",
+   "categoria": "otros",
+   "categoria_etiqueta": "Otros",
+   "prioridad": 2,
+   "palabras_clave": [
+    "derechos humanos"
+   ]
+  },
+  {
+   "codigo": 5803991,
+   "fecha": "17-11-2026",
+   "edicion": "Matutina",
+   "titulo": "COMISION NACIONAL DE LOS DERECHOS HUMANOS - REF:582466",
+   "poder": "CONVOCATORIAS PARA CONCURSOS DE ADQUISICIONES, ARRENDAMIENTOS, OBRAS Y SERVICIOS DEL SECTOR PUBLICO",
+   "organismo": "",
+   "pagina": 134,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5803991&fecha=17/11/2026",
+   "categoria": "otros",
+   "categoria_etiqueta": "Otros",
+   "prioridad": 2,
+   "palabras_clave": [
+    "derechos humanos"
+   ]
+  },
+  {
+   "codigo": 5804097,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Decreto por el que se reforman y adicionan diversos artículos del Decreto por el que se crea el organismo descentralizado denominado Financiera para el Bienestar, antes Telégrafos Nacionales.",
+   "poder": "PODER EJECUTIVO",
+   "organismo": "PRESIDENCIA DE LA REPUBLICA",
+   "pagina": 5,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804097&fecha=18/11/2026",
+   "categoria": "reforma_legal",
+   "categoria_etiqueta": "Reformas, adiciones y derogaciones legales",
+   "prioridad": 1,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804115,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "",
+   "poder": "PODER JUDICIAL",
+   "organismo": "SUPREMA CORTE DE JUSTICIA DE LA NACION",
+   "pagina": 173,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804115&fecha=18/11/2026",
+   "categoria": "scjn_acuerdo",
+   "categoria_etiqueta": "SCJN: acuerdos generales y avisos",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804116,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Sentencia dictada por el Tribunal Pleno de la Suprema Corte de Justicia de la Nación en la Controversia Constitucional 119/2026.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "SUPREMA CORTE DE JUSTICIA DE LA NACION",
+   "pagina": 173,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804116&fecha=18/11/2026",
+   "categoria": "scjn_sentencia",
+   "categoria_etiqueta": "SCJN: sentencias y votos publicados",
+   "prioridad": 1,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804118,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se reforman y adicionan diversas disposiciones de los Lineamientos de Supervisión de los especialistas de concursos mercantiles.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 199,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804118&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804117,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 199,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804117&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804119,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se modifican y adicionan diversas disposiciones de las Reglas de Carácter General de la Ley de Concursos Mercantiles.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 200,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804119&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804120,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se modifican y adicionan diversas disposiciones de la Metodología para la obtención de información en integración del cuadro diagnóstico de evaluación para la categorización de los especialistas (etapa de quiebra).",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 201,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804120&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804121,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se modifican diversas disposiciones de los Criterios de Selección y Actualización de los Especialistas de Concursos Mercantiles.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 202,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804121&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804122,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se modifican los Lineamientos para acreditar ante el Instituto Federal de Especialistas de Concursos Mercantiles la actualización de los conocimientos para la  renovación del Registro.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 203,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804122&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804123,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se abroga el Código de Ética de los Especialistas del Instituto Federal de Especialistas de Concursos Mercantiles publicado el 18 de abril de 2022 y en su lugar se aprueba el Código de Ética y Conducta de las Personas Especialistas de Concursos Mercantiles.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 204,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804123&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  },
+  {
+   "codigo": 5804124,
+   "fecha": "18-11-2026",
+   "edicion": "Matutina",
+   "titulo": "Acuerdo por el que se modifican, adicionan y derogan diversas disposiciones del Reglamento Interior del Instituto Federal de Especialistas de Concursos Mercantiles.",
+   "poder": "PODER JUDICIAL",
+   "organismo": "ORGANO DE ADMINISTRACION JUDICIAL",
+   "pagina": 205,
+   "url": "https://dof.gob.mx/nota_detalle.php?codigo=5804124&fecha=18/11/2026",
+   "categoria": "judicial",
+   "categoria_etiqueta": "Otros órganos del Poder Judicial",
+   "prioridad": 2,
+   "palabras_clave": []
+  }
+ ],
+ "tesis": [
+  {
+   "registro": 2032853,
+   "rubro": "PRESCRIPCIÓN EN MATERIA LABORAL. EL CÓMPUTO DEL PLAZO GENÉRICO PREVISTO EN EL ARTÍCULO 516 DE LA LEY FEDERAL DEL TRABAJO PARA RECLAMAR PRESTACIONES ADEUDADAS A UNA PERSONA TRABAJADORA FALLECIDA POR CAUSAS NATURALES, INICIA A PARTIR DEL DÍA SIGUIENTE AL DECESO Y NO DESDE LA DECLARATORIA DE PERSONAS BENEFICIARIAS.",
+   "clave": "PR.P.T.CS. J/32 L (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Laboral",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-10-30 10:40:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al determinar el momento a partir del cual inicia el cómputo del plazo de prescripción de la acción de las personas beneficiarias para reclamar prestaciones adeudadas a una persona trabajadora fallecida por causas naturales. Mientras que uno determinó que dicho plazo comienza a partir del día siguiente al fallecimiento, porque quienes estimen tener derecho pueden solicitar conjuntamente la declaratoria de personas beneficiarias y el pago de las prestaciones pendientes; el otro consideró que la obligación se hace exigible cuando se emite la declaratoria correspondiente, pues sólo entonces existe certeza sobre la titularidad del derecho. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿Cuándo inicia el cómputo del plazo prescriptivo de la acción para reclamar el pago de prestaciones adeudadas a un trabajador, con su fallecimiento o con la declaratoria de beneficiarios correspondiente? Criterio jurídico: El plazo genérico de prescripción de 1 año previsto en el artículo 516 de la Ley Federal del Trabajo, aplicable para reclamar el pago de prestaciones adeudadas a una persona trabajadora fallecida por causas naturales, inicia a partir del día siguiente al deceso, con independencia de la fecha en que se emita la declaratoria de personas beneficiarias, porque desde el fallecimiento dichas prestaciones se vuelven exigibles para quienes estimen tener derecho a reclamarlas, aunque su calidad aún deba ser reconocida por la autoridad laboral competente, aunado a que ambas pretensiones pueden ejercerse de manera conjunta. Justificación: El artículo citado establece la regla general conforme a la cual las acciones de trabajo prescriben en 1 año, contado a partir del día siguiente a aquel en que la obligación sea exigible, salvo los supuestos expresamente previstos en los artículos 517 a 519 del propio ordenamiento. Como la legislación laboral no establece un plazo especial para la acción de las personas beneficiarias que reclaman prestaciones adeudadas a una persona trabajadora fallecida por causas naturales, resulta directamente aplicable esta regla general y no alguno de los plazos especiales. El fallecimiento constituye el hecho objetivo que actualiza la posibilidad jurídica de que quienes estimen tener derecho reclamen las prestaciones pendientes de pago. Para ello, la legislación laboral permite solicitar conjuntamente la declaratoria de personas beneficiarias y el pago correspondiente, sin que sea indispensable obtener previamente el reconocimiento de esa calidad. Así, dicha declaratoria no tiene naturaleza constitutiva respecto de las prestaciones adeudadas ni determina el momento en que éstas se hacen exigibles. Su función es establecer quién o quiénes se encuentran legitimados para recibirlas y, en su caso, la proporción correspondiente. Por esa razón, el reconocimiento posterior de la calidad de persona beneficiaria no desplaza ni reinicia el plazo de prescripción. En consecuencia, el término respectivo debe computarse a partir del día siguiente al fallecimiento de la persona trabajadora. Entender lo contrario haría depender el inicio del plazo prescriptivo de la fecha variable en que se obtuviera la declaratoria correspondiente, pese a que su reconocimiento y el pago de las prestaciones pueden solicitarse en una misma demanda, lo que resultaría contrario a la certeza y seguridad jurídica. PLENO REGIONAL EN MATERIAS PENAL Y DE TRABAJO DE LA REGIÓN CENTRO-SUR, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 82/2026. Entre los sustentados por los Tribunales Colegiados Quinto en Materia de Trabajo del Primer Circuito y Segundo en Materia de Trabajo del Tercer Circuito. 23 de septiembre de 2026. Mayoría de votos de las personas Magistradas Vanessa Heidi Nambo Huerta y Rodolfo Alejandro Ramos Santillán. Disidente: Alan Antonio Morán Herrera, secretario en funciones de Magistrado, quien formuló voto particular. Ponente: Vanessa Heidi Nambo Huerta. Secretaria: Carolina Herrera Rodríguez. Tesis y/o criterios contendientes: El Segundo Tribunal Colegiado en Materia de Trabajo del Tercer Circuito, al resolver el amparo directo 463/2022, el cual dio origen a la tesis aislada III.2o.T.41 L (11a.), de rubro: \"PRESCRIPCIÓN DE LA ACCIÓN PARA RECLAMAR EL PAGO DE PRESTACIONES ADEUDADAS A UN TRABAJADOR QUE FALLECIÓ POR CAUSAS NATURALES. EMPIEZA A PARTIR DE ESTE SUCESO Y NO DE LA DECLARATORIA DE BENEFICIARIOS.\", publicada en el Semanario Judicial de la Federación del viernes 2 de junio de 2023 a las 10:08 horas y en la Gaceta del Semanario Judicial de la Federación, Undécima Época, Libro 26, Tomo VII, junio de 2023, página 6911, con número de registro digital: 2026587, y El sustentado por el Quinto Tribunal Colegiado en Materia de Trabajo del Primer Circuito, al resolver el amparo directo 106/2026.",
+   "votos": [
+    "47764"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 30 de octubre de 2026 a las 10:40 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 3 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2026587"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032853"
+  },
+  {
+   "registro": 2032856,
+   "rubro": "RECURSO DE QUEJA PREVISTO EN EL ARTÍCULO 404, FRACCIÓN I, DEL CÓDIGO DE PROCEDIMIENTOS CIVILES DEL ESTADO DE AGUASCALIENTES. PROCEDE CONTRA LA RESOLUCIÓN EN LA QUE LA PERSONA JUZGADORA SE INHIBE DE CONOCER DE LA DENUNCIA DE SUCESIÓN INTESTAMENTARIA AL ESTIMAR CARECER DE COMPETENCIA, SIN DECLINARLA EN FAVOR DE OTRO ÓRGANO JURISDICCIONAL.",
+   "clave": "PR.A.C.CN. J/8 C (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Civil",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-10-30 10:40:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al analizar qué recurso procede contra la resolución emitida por la persona juzgadora de primera instancia que se inhibe de conocer de la denuncia de sucesión intestamentaria al estimar carecer de competencia por razón de territorio y sin declinarla en favor de un diverso órgano jurisdiccional. Mientras que uno consideró que procede el recurso de revocación previsto en el artículo 394 del Código de Procedimientos Civiles del Estado de Aguascalientes, al estimar que no se desechó la denuncia, sino que la persona juzgadora se inhibió de su conocimiento por falta de competencia; el otro concluyó que procede el diverso de queja previsto en el artículo 404, fracción I, del mismo ordenamiento, al producir los efectos de una inadmisión o desechamiento de demanda. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿Qué recurso procede contra la resolución en la que la persona juzgadora de primera instancia se inhibe de conocer de una denuncia de sucesión intestamentaria, por estimar que carece de competencia legal por razón de territorio, sin declinar competencia en favor de diverso órgano jurisdiccional, conforme a la legislación procesal civil del Estado de Aguascalientes? Criterio jurídico: Procede el recurso de queja previsto en el artículo 404, fracción I, del Código de Procedimientos Civiles del Estado de Aguascalientes, contra la resolución en la que la persona juzgadora se inhibe de conocer de una denuncia de sucesión intestamentaria y la devuelve al actor, por estimar que carece de competencia legal, sin declinarla en favor de diverso órgano jurisdiccional, al implicar una inadmisión de demanda. Justificación: El artículo 145 del referido código adjetivo dispone que son las partes quienes pueden plantear un conflicto de competencia por inhibitoria o declinatoria, sin que el Juez pueda plantearlo de oficio; no obstante, de estimar que carece de competencia puede inhibirse de conocer del asunto desde su inicio. En ese sentido, la referida resolución no constituye un conflicto de competencia, ya que, en uso de una facultad conferida, el juzgador se inhibe de conocer de la denuncia de sucesión intestamentaria y la devuelve al actor, cuyo efecto no es otro que el de no dar prosecución al asunto sometido a su consideración, lo que de forma válida puede considerarse como una negativa de admisión de demanda. Por tanto, si la denuncia de sucesión intestamentaria a que se refiere el artículo 686 de la codificación en cita, es el acto a través del cual se insta al órgano jurisdiccional para iniciar ese procedimiento, la resolución en la que el Juez se inhibe de conocer de la misma y la devuelve al actor, por estimar que carece de competencia, sin declinarla en favor de otro órgano jurisdiccional, actualiza el supuesto de procedencia previsto en el artículo y fracción citados, al significar materialmente la inadmisión de la referida denuncia, con independencia de la denominación que le haya dado la persona juzgadora. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 100/2026. Entre los sustentados por los Tribunales Colegiados Primero y Tercero, ambos del Trigésimo Circuito. 20 de agosto de 2026. Unanimidad de votos de las Magistradas Mónica Saloma Palacios, Virginia Pétriz Herrera y Mayra Sandoval Mendoza. Ponente: Mónica Saloma Palacios. Secretaria: Dulce Rebeca González Osorio. Tesis y/o criterios contendientes: El sustentado por el Primer Tribunal Colegiado del Trigésimo Circuito, al resolver el amparo directo 56/2021, y el diverso sustentado por el Tercer Tribunal Colegiado del Trigésimo Circuito, al resolver el amparo directo 27/2026.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 30 de octubre de 2026 a las 10:40 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 3 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032856"
+  },
+  {
+   "registro": 2032859,
+   "rubro": "SALARIO REMUNERADOR DE LAS PERSONAS TRABAJADORAS DE LAS INSTITUCIONES PÚBLICAS DE LA CIUDAD DE MÉXICO. LA PREVISIÓN CONTENIDA EN EL ARTÍCULO 10, APARTADO C, NUMERAL 6, DE LA CONSTITUCIÓN LOCAL, ESTÁ SUJETA AL RÉGIMEN DE EFICACIA TEMPORAL PREVISTO EN SU ARTÍCULO TERCERO TRANSITORIO, AUN CUANDO SEA SUSCEPTIBLE DE APLICACIÓN DIRECTA.",
+   "clave": "PR.P.T.CS. J/31 L (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Laboral",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-10-30 10:40:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sostuvieron criterios contradictorios al analizar la aplicación directa del referido artículo 10, apartado C, numeral 6, y el régimen temporal previsto para la producción de sus efectos. Mientras que uno determinó que la disposición era de aplicación directa para resolver sobre las prestaciones reclamadas; los otros consideraron que, aunque fuera susceptible de aplicación directa, su eficacia jurídica se encontraba diferida y el derecho invocado no era exigible antes de la fecha prevista para su entrada en vigor. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿La aplicación directa del artículo 10, apartado C, numeral 6, de la Constitución Política de la Ciudad de México permite reconocer sus efectos jurídicos antes de la fecha prevista en el artículo tercero transitorio para su entrada en vigor, o su eficacia se encuentra temporalmente diferida hasta que se actualice dicha fecha? Criterio jurídico: La previsión contenida en el indicado artículo 10, apartado C, numeral 6, está sujeta al régimen de eficacia temporal previsto en el artículo tercero transitorio del decreto por el que se expidió dicha Constitución y sus posteriores modificaciones. Por tanto, aun cuando sea susceptible de aplicación directa, las consecuencias jurídicas que reconoce no resultan exigibles antes de la fecha establecida para el inicio de su vigencia. Justificación: La aplicación directa de una disposición y el inicio de su vigencia corresponden a aspectos jurídicos distintos. La primera se refiere a la aptitud de la norma para individualizar sus consecuencias sin necesidad de un acto normativo posterior; la segunda determina el momento a partir del cual la disposición se incorpora al orden jurídico con fuerza obligatoria y puede producir esos efectos. Por tanto, la aptitud de una norma constitucional para producir consecuencias jurídicas, una vez vigente, no permite prescindir del régimen temporal expresamente establecido para el inicio de su vigencia. Bajo tales consideraciones, el contenido normativo del artículo mencionado debe analizarse en forma sistemática con las disposiciones transitorias que determinan el momento a partir del cual producirá efectos jurídicos. Al respecto, del artículo tercero transitorio del decreto por el que se expidió la referida norma constitucional y sus posteriores modificaciones, se desprende expresamente que las disposiciones relativas a los derechos y relaciones laborales entre las instituciones públicas de la ciudad y sus personas trabajadoras, contenidas en el artículo antes citado, y demás relativos de la Constitución local, entrarán en vigor el 1 de enero de 2030. Ese régimen transitorio forma parte del propio ordenamiento constitucional local, por lo que hasta en tanto se actualice el presupuesto temporal que expresamente contempla, la sola suficiencia normativa del artículo 10, apartado C, numeral 6, no permite anticipar las consecuencias jurídicas cuya producción fue diferida por el propio Constituyente Local. PLENO REGIONAL EN MATERIAS PENAL Y DE TRABAJO DE LA REGIÓN CENTRO-SUR, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 73/2026. Entre los sustentados por los Tribunales Colegiados Tercero, Quinto, Décimo Primero y Décimo Sexto, todos en Materia de Trabajo del Primer Circuito. 23 de septiembre de 2026. Unanimidad de votos de las personas Magistradas Vanessa Heidi Nambo Huerta y Rodolfo Alejandro Ramos Santillán, y de Alan Antonio Morán Herrera, secretario en funciones de Magistrado. Ponente: Vanessa Heidi Nambo Huerta. Secretaria: Carolina Herrera Rodríguez. Tesis y/o criterios contendientes: El sustentado por el Tercer Tribunal Colegiado en Materia de Trabajo del Primer Circuito, al resolver el amparo directo 548/2024, el sustentado por el Décimo Primer Tribunal Colegiado en Materia de Trabajo del Primer Circuito, al resolver los amparos directos 868/2025 y 869/2025, y el diverso sustentado por el Décimo Sexto Tribunal Colegiado en Materia de Trabajo del Primer Circuito, al resolver el amparo directo 332/2025.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 30 de octubre de 2026 a las 10:40 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 3 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032859"
+  },
+  {
+   "registro": 2032861,
+   "rubro": "SUSPENSIÓN PROVISIONAL CON EFECTOS RESTITUTORIOS. PROCEDE CONTRA LA OMISIÓN DEL TRIBUNAL DE CONCILIACIÓN Y ARBITRAJE DE CONTINUAR CON LA EJECUCIÓN DE UN LAUDO FIRME.",
+   "clave": "PR.P.T.CN. J/16 L (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Laboral, Común",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-10-30 10:40:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al analizar si procede la suspensión provisional con efectos restitutorios contra la omisión del Tribunal de Conciliación y Arbitraje de continuar con la ejecución de un laudo. Mientras que uno sostuvo que la medida cautelar produciría un beneficio definitivo e irreversible que podría dejar sin materia el amparo; el otro estimó que podía concederse para que la autoridad responsable continuara realizando las actuaciones legalmente procedentes dentro del procedimiento de ejecución, sin anticipar un pronunciamiento sobre la existencia de la omisión. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿Es procedente conceder la suspensión provisional, con efectos restitutorios, contra la omisión del Tribunal de Conciliación y Arbitraje de realizar los actos necesarios para llevar a cabo la ejecución del laudo? Criterio jurídico: Procede la suspensión provisional con efectos restitutorios a fin de que el Tribunal de Conciliación y Arbitraje continúe realizando los actos necesarios para la ejecución de un laudo firme, sin que ello implique su cumplimiento anticipado ni la consumación definitiva de las prestaciones en él reconocidas. Justificación: La procedencia de la suspensión con efectos restitutorios debe determinarse a partir del análisis de los requisitos previstos en el artículo 128 de la Ley de Amparo, sin que la naturaleza omisiva del acto reclamado impida concederla. Así, cuando se reclama la omisión del tribunal laboral de realizar los actos necesarios para llevar a cabo la ejecución de un laudo firme, tales requisitos se satisfacen al existir una razonable probabilidad de que la persona quejosa sea titular de un derecho previamente declarado en una resolución jurisdiccional que adquirió firmeza y, además, de no concederse la medida cautelar, la dilación y los obstáculos que han impedido su ejecución prolongarían la afectación de los derechos y prestaciones que le fueron reconocidos en dicha resolución. Además, dicha medida procederá cuando: a) existan cantidades líquidas determinadas; b) haya transcurrido el plazo para su cumplimiento voluntario; c) medie petición de ejecución; y, d) pese a ello, subsista la omisión de la autoridad responsable. De configurarse tales requisitos, el otorgamiento de la suspensión provisional sería para el efecto de que la autoridad responsable continúe el procedimiento de ejecución, sin que ello implique modificar o restringir derechos, ni constituir alguno que la parte quejosa no tuviera antes de promover el amparo, sino únicamente permitir provisionalmente su materialización. Por tanto, la medida cautelar conserva su carácter transitorio, pues su vigencia se encuentra limitada a la resolución del medio de control constitucional. Al tratarse de una medida de carácter transitorio cuyos efectos pueden retrotraerse, su otorgamiento no agota ni deja sin materia el amparo principal ni implica un pronunciamiento anticipado sobre el fondo del asunto, pues en caso de que se dicte una sentencia adversa a la parte quejosa, podrán dejarse sin efectos las actuaciones realizadas tendientes a la ejecución del laudo. PLENO REGIONAL EN MATERIAS PENAL Y DE TRABAJO DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 76/2026. Entre los sustentados por el Primer y el Segundo Tribunales Colegiados, ambos en Materias Penal y de Trabajo del Décimo Noveno Circuito. 24 de septiembre de 2026. Unanimidad de votos de las personas Magistradas Miguel Ernesto Leetch San Pedro, Angélica Iveth Leyva Guzmán y Verónica Alejandra Curiel Sandoval. Ponente: Angélica Iveth Leyva Guzmán. Secretaria: Ivet del Carmen Jiménez del Ángel. Tesis y/o criterios contendientes: El sustentado por el Primer Tribunal Colegiado en Materias Penal y de Trabajo del Décimo Noveno Circuito, al resolver las quejas 214/2026 y 295/2026, y el diverso sustentado por el Segundo Tribunal Colegiado en Materias Penal y de Trabajo del Décimo Noveno Circuito, al resolver la queja 306/2026.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 30 de octubre de 2026 a las 10:40 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 3 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032861"
+  },
+  {
+   "registro": 2032867,
+   "rubro": "ARRENDAMIENTO DE INMUEBLES CON PROPÓSITO DE ESPECULACIÓN COMERCIAL. LA COMPETENCIA PARA CONOCER DE ESTAS CONTROVERSIAS CORRESPONDE A LOS JUZGADOS DE LO CIVIL DE PROCESO ORAL, CUANDO SEAN DE CUANTÍA DETERMINADA O DETERMINABLE Y NO ESTÉN SUJETAS A UNA TRAMITACIÓN ESPECIAL (INTERPRETACIÓN ARMÓNICA DE LOS ARTÍCULOS 59, FRACCIÓN VIII Y 105, FRACCIÓN III, DE LA LEY ORGÁNICA DEL PODER JUDICIAL DE LA CIUDAD DE MÉXICO).",
+   "clave": "PR.A.C.CS. J/12 C (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Civil",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-06 10:17:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al analizar si en una controversia derivada de un contrato de arrendamiento de bienes inmuebles destinados a fines comerciales, la competencia para dirimirla se surtía en favor de los Jueces Civiles de Proceso Oral o de Proceso Escrito. Mientras que uno consideró que la controversia debía ser conocida por los Juzgados de lo Civil de Proceso Oral de la Ciudad de México, ya que el artículo 105, fracción III, de la Ley Orgánica del Poder Judicial de la Ciudad de México les atribuye el conocimiento de los asuntos de jurisdicción concurrente conforme al artículo 1390 Bis del Código de Comercio; el otro estimó que correspondía a los Juzgados de lo Civil de Proceso Escrito, con fundamento en el artículo 59, fracción VIII, de la misma ley orgánica, pues regula de manera específica la competencia de éstos para dirimir las controversias de arrendamiento de inmuebles. Criterio jurídico: Cuando una controversia derivada de un contrato de arrendamiento de inmueble celebrado con propósito de especulación comercial sea de cuantía determinada o determinable y no esté sujeta a una tramitación especial, la competencia corresponde a los Juzgados de lo Civil de Proceso Oral. Justificación: De conformidad con los artículos 4o., 75, 1049 y 1055 del Código de Comercio y la tesis jurisprudencial 1a./J. 170/2023 (11a.), de rubro: \"ARRENDAMIENTO DE BIENES INMUEBLES. PARA DETERMINAR SI PROCEDE LA VÍA MERCANTIL PARA RESOLVER LAS CONTROVERSIAS DERIVADAS DE DICHO ACTO, EL JUZGADOR DEBE DEFINIR SI CONSTITUYE O NO UN ACTO DE COMERCIO AL REALIZARSE CON EL PROPÓSITO DE ESPECULACIÓN COMERCIAL, PUES EL CATÁLOGO DEL ARTÍCULO 75 DEL CÓDIGO DE COMERCIO DEBE INTERPRETARSE DE MANERA ENUNCIATIVA Y NO LIMITATIVA (ABANDONO DE LA JURISPRUDENCIA 1a./J. 63/98).\", cuando un contrato de arrendamiento de inmueble se celebra con propósito de especulación comercial tiene naturaleza mercantil, y las controversias que deriven de él deben regirse por la legislación de esa materia. Determinada la naturaleza, los artículos 1390 Bis y 1390 Bis 1 del propio código establecen que, si la controversia es de cuantía determinada o determinable y no tiene señalada una tramitación especial, debe sustanciarse en la vía oral mercantil. En ese supuesto se actualiza la regla específica de competencia prevista en el artículo 105, fracción III, de la Ley Orgánica del Poder Judicial de la Ciudad de México, que atribuye a los Juzgados de lo Civil de Proceso Oral el conocimiento de los negocios de jurisdicción concurrente previstos en el artículo 1390 Bis del Código de Comercio. Por otro lado, el artículo 59, fracción VIII, de la propia ley orgánica debe interpretarse sistemáticamente como aplicable a las controversias en materia de arrendamiento que no queden comprendidas en aquella hipótesis específica. En ese sentido, ambas disposiciones pueden interpretarse de manera armónica a partir de sus respectivos ámbitos de aplicación, ya que una disposición local de organización judicial no puede interpretarse en el sentido de modificar, restringir o desplazar las reglas procesales establecidas por la legislación mercantil federal, pues la jurisdicción concurrente permite a los órganos jurisdiccionales locales conocer de controversias mercantiles, pero no alterar la vía prevista por el Código de Comercio para su tramitación. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-SUR, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 51/2026. Entre los sustentados por los Tribunales Colegiados Sexto y Décimo Quinto, ambos en Materia Civil del Primer Circuito. 2 de septiembre de 2026. Unanimidad de votos de las personas Magistradas Jorge Alberto Orantes López, Diana Elda Pérez Medina y Mariana Flores Vega. Ponente: Diana Elda Pérez Medina. Secretaria: Auri Gabriela Cauich Vázquez. Tesis y/o criterios contendientes: El sustentado por el Sexto Tribunal Colegiado en Materia Civil del Primer Circuito, al resolver el amparo directo 385/2025, y el diverso sustentado por el Décimo Quinto Tribunal Colegiado en Materia Civil del Primer Circuito, al resolver el amparo directo 718/2025. Nota: La tesis de jurisprudencia 1a./J. 170/2023 (11a.) citada, aparece publicada en el Semanario Judicial de la Federación del viernes 10 de noviembre de 2023 a las 10:21 horas y en la Gaceta del Semanario Judicial de la Federación, Undécima Época, Libro 31, Tomo II, noviembre de 2023, página 1810, con número de registro digital: 2027554.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 06 de noviembre de 2026 a las 10:17 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del lunes 09 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2027554",
+    "tesis mencionadas: 1a./J. 170/2023 (11a.)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032867"
+  },
+  {
+   "registro": 2032868,
+   "rubro": "AUTO DE VINCULACIÓN A PROCESO. LA OMISIÓN DE EMITIRLO POR ESCRITO NO CONSTITUYE UN ACTO DE IMPOSIBLE REPARACIÓN Y, POR TANTO, EN SU CONTRA ES IMPROCEDENTE EL AMPARO INDIRECTO.",
+   "clave": "PR.P.T.CN. J/21 P (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Común, Penal",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-06 10:17:00.0",
+   "texto": "Hechos: Los órganos jurisdiccionales contendientes sustentaron criterios contradictorios al analizar si la omisión de la persona juzgadora de control de emitir por escrito el auto de vinculación a proceso vulnera derechos sustantivos y, en consecuencia, si es impugnable en amparo indirecto. Mientras que uno consideró que la omisión constituía una violación procesal que no afectaba derechos sustantivos y, por ende, no procedía el juicio de amparo; el otro concedió la protección constitucional para que se emitiera la versión escrita del auto de vinculación a proceso, de lo que se desprendía que consideraba procedente dicho juicio. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿La omisión del juez de control de emitir la versión escrita del auto de vinculación a proceso, de conformidad con el artículo 67, párrafo segundo, fracción IV, del Código Nacional de Procedimientos Penales, es un acto que afecta derechos sustantivos y por consecuencia contra esta omisión procede o no el juicio de amparo indirecto? Criterio jurídico: La omisión de la persona juzgadora de control de emitir por escrito el auto de vinculación a proceso, si bien es una violación procesal, no constituye un acto de imposible reparación, porque no afecta materialmente derechos sustantivos de la persona imputada y, por tanto, en su contra es improcedente el amparo indirecto. Justificación: El artículo 107, fracción V, de la Ley de Amparo establece que el juicio de amparo indirecto procede contra actos dictados dentro de juicio cuyos efectos sean de imposible reparación, entendidos como aquellos que afectan materialmente derechos sustantivos tutelados por la Constitución Política de los Estados Unidos Mexicanos y los tratados internacionales de los que el Estado Mexicano sea Parte. Por ello, las irregularidades que únicamente inciden en derechos de naturaleza procesal no actualizan ese supuesto de procedencia. El artículo 67, párrafo segundo, fracción IV, del Código Nacional de Procedimientos Penales impone a la persona juzgadora la obligación de emitir por escrito el auto de vinculación a proceso después de pronunciarlo oralmente. Sin embargo, la omisión de cumplir ese deber constituye una irregularidad procesal que no repercute en el derecho de defensa de la persona imputada, porque la fundamentación y motivación de la determinación se expresan en la audiencia inicial, en presencia de ésta y de su defensa, y quedan registradas en la videograbación correspondiente, la cual puede ser consultada para preparar la defensa o controvertir la determinación a través de los medios de impugnación procedentes. Además, la versión escrita no puede exceder ni limitar lo pronunciado oralmente en la audiencia. De ahí que su falta de emisión no genera incertidumbre que impida a la persona imputada conocer la decisión judicial, preparar su defensa en las etapas subsecuentes del procedimiento o impugnarla. En consecuencia, aunque la falta de emisión escrita del auto de vinculación a proceso implica el incumplimiento de una obligación procesal a cargo de la persona juzgadora, no produce una afectación material a derechos sustantivos de la persona imputada y, por tanto, no constituye un acto de imposible reparación para efectos de la procedencia del juicio de amparo indirecto. Ello no exime a la persona juzgadora del cumplimiento de esa obligación ni de las consecuencias que, en su caso, deriven de su inobservancia. PLENO REGIONAL EN MATERIAS PENAL Y DE TRABAJO DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 78/2026. Entre los sustentados por el extinto Pleno en Materia Penal del Segundo Circuito y el Segundo Tribunal Colegiado en Materias Penal y Administrativa del Décimo Séptimo Circuito. 1 de octubre de 2026. Unanimidad de votos de las personas Magistradas Miguel Ernesto Leetch San Pedro, Angélica Iveth Leyva Guzmán y Verónica Alejandra Curiel Sandoval. Ponente: Angélica Iveth Leyva Guzmán. Secretario: Denis Reyes Huerta. Tesis y/o criterios contendientes: El Pleno en Materia Penal del Segundo Circuito, al resolver la contradicción de tesis 2/2020, la cual dio origen a las tesis de jurisprudencia PC.II.P. J/11 P (10a.) y PC.II.P. J/12 P (10a.), de rubros: \"LA JURISPRUDENCIA 1a./J. 34/2017 (10a.) EMITIDA POR LA PRIMERA SALA DE LA SUPREMA CORTE DE JUSTICIA DE LA NACIÓN. NO JUSTIFICA LA FALTA DE ELABORACIÓN DE LA VERSIÓN ESCRITA DEL AUTO DE VINCULACIÓN A PROCESO QUE SE EMITE CONFORME AL CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES.\" y \"AUTO DE VINCULACIÓN A PROCESO. CONFORME AL CONTENIDO DEL ARTÍCULO 67, PÁRRAFO SEGUNDO, FRACCIÓN IV, DEL CÓDIGO NACIONAL DE PROCEDIMIENTOS PENALES DEBE EMITIRSE DE MANERA ORAL Y POSTERIORMENTE POR ESCRITO (PIEZA PAPEL).\", publicadas en el Semanario Judicial de la Federación del viernes 4 de junio de 2021 a las 10:10 horas y en la Gaceta del Semanario Judicial de la Federación, Undécima Época, Libro 2, Tomo IV, junio de 2021, páginas 3910 y 3908, con números de registro digital: 2023207 y 2023192, respectivamente, y El sustentado por el Segundo Tribunal Colegiado en Materias Penal y Administrativa del Décimo Séptimo Circuito, al resolver la queja 407/2025.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 06 de noviembre de 2026 a las 10:17 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del lunes 09 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2023207",
+    "tesis mencionadas: 1a./J. 34/2017 (10a.)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032868"
+  },
+  {
+   "registro": 2032870,
+   "rubro": "COMISIÓN NACIONAL PARA LA PROTECCIÓN Y DEFENSA DE LOS USUARIOS DE SERVICIOS FINANCIEROS (CONDUSEF). ANTES DE LA REFORMA A LA LEY DE PROTECCIÓN Y DEFENSA AL USUARIO DE SERVICIOS FINANCIEROS, PUBLICADA EL 24 DE ENERO DE 2024, YA CONTABA CON FACULTADES PARA REGULAR LAS NOTIFICACIONES ELECTRÓNICAS DE SUS ACTOS, POR LO QUE LA DISPOSICIÓN EN MATERIA DE REGISTROS ANTE ELLA Y SU ACUERDO MODIFICATORIO NO VIOLAN LOS PRINCIPIOS DE RESERVA DE LEY Y DE SUBORDINACIÓN JERÁRQUICA.",
+   "clave": "PR.A.C.CN. J/61 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Constitucional, Administrativa",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-06 10:17:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al analizar si con anterioridad a la reforma señalada la Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (Condusef) contaba con facultades para emitir disposiciones administrativas de carácter general destinadas a regular el sistema de notificaciones electrónicas de los actos administrativos emitidos por la propia Comisión (Disposición en Materia de Registros ante la Condusef, publicada el 14 de octubre de 2022 y Acuerdo por el que se modifican los Anexos I, II y IV de esa disposición, publicado el 28 de septiembre de 2023). Mientras que uno consideró que dichas disposiciones violan los principios de reserva de ley y de subordinación jerárquica, porque \"derogan\" el artículo 7o. de la ley citada, vigente antes de dicha reforma; el otro estimó lo contrario, porque las facultades legales conferidas a la Condusef para emitir disposiciones de carácter general constituían una cláusula habilitante suficiente para regular las notificaciones electrónicas. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿con anterioridad a la reforma señalada, la Condusef contaba con facultades jurídicas suficientes para emitir disposiciones administrativas de carácter general destinadas a regular el sistema de notificaciones electrónicas, a partir de las atribuciones de organización, funcionamiento y desarrollo normativo conferidas a dicho organismo, o bien, por el contrario, la ausencia de una habilitación legal expresa le impedía el ejercicio de tales facultades, por contravenirse los principios de reserva de ley y de subordinación jerárquica? Criterio jurídico: Antes de la reforma a la Ley de Protección y Defensa al Usuario de Servicios Financieros, publicada el 24 de enero de 2024, la Condusef contaba con facultades para emitir disposiciones administrativas de carácter general destinadas a regular el sistema de notificaciones electrónicas, por lo que la emisión de la disposición y acuerdo referidos no viola los principios de reserva de ley y de subordinación jerárquica. Justificación: De la interpretación concatenada de los artículos 69-C de la Ley Federal de Procedimiento Administrativo, 27 de la Ley para la Transparencia y Ordenamiento de los Servicios Financieros, 11, fracciones XXVIII, XXXIV y XXXV, 22, fracciones VI y XII, 26, fracción VIII, 46 y 92 Bis 1 de la Ley de Protección y Defensa al Usuario de Servicios Financieros, se advierte que la Condusef cuenta con amplias facultades para expedir normas de organización internas, lineamientos y otras disposiciones de carácter general tendentes al cumplimiento de las funciones que legalmente tiene encomendadas, como son las relativas a la supervisión, inspección y vigilancia de las instituciones financieras, lo que implica la regulación a que se sujetarán éstas, incluyendo lo relativo a la práctica de las notificaciones electrónicas. La reforma al referido artículo 7o. introdujo al texto normativo una nueva cláusula habilitante conforme a la cual se facultó de manera expresa a la Condusef para emitir disposiciones generales en materia de notificaciones electrónicas, la cual si bien no existía expresamente señalada, ello no implica que con anterioridad careciera de facultades para emitir regulación en esa materia, pues ese aspecto debe determinarse tomando en cuenta la totalidad del contexto normativo que regía al momento de la emisión de la disposición y acuerdo señalados. La habilitación legal otorgada a la Condusef para emitir disposiciones de carácter general en materia de registros y, dentro de esa particular materia, en lo que respecta al sistema de notificaciones electrónicas frente a los sujetos regulados, no contraviene el principio de reserva de ley, en la medida en que no se advierte la existencia de una norma que expresamente reserve a la ley la regulación de la materia correspondiente a dichas notificaciones, por el contrario, la facultó para emitir reglas de carácter general tendentes a regular la organización y funcionamiento del Registro de Prestadores de Servicios Financieros, lo que incluye la implementación de sistemas de comunicación electrónica que permitan la utilización de tecnologías de la información. El ejercicio de tal habilitación mediante la expedición de la Disposición en Materia de Registros ante la Condusef tampoco contraviene el principio de subordinación jerárquica, porque no modificó o alteró el indicado artículo 7o., en su texto anterior a la reforma publicada el 24 de enero de 2024, en cuanto disponía que para efectos de las notificaciones de los actos administrativos emitidos por la propia Comisión, a falta de norma que proveyera un procedimiento específico, se aplicaría lo dispuesto en la Ley Federal de Procedimiento Administrativo. Ello, pues esa disposición al contener una regulación específica en lo que respecta a las notificaciones de los actos administrativos emitidos por la Condusef colmó el vacío normativo que permitía la remisión a la señalada ley federal para la práctica de notificaciones, de manera que con su emisión y entrada en vigor dejó de operar fácticamente en el plano del derecho positivo la posibilidad de que esta última ley se aplicara en lo que respecta a esa materia. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 98/2026. Entre los sustentados por el Cuarto y el Décimo Noveno Tribunales Colegiados, ambos en Materia Administrativa del Primer Circuito. 10 de septiembre de 2026. Unanimidad de votos de las Magistradas Mayra Sandoval Mendoza, Virginia Pétriz Herrera y Mónica Saloma Palacios. Ponente: Virginia Pétriz Herrera. Secretario: Alejandro Lucero de la Rosa. Tesis y/o criterios contendientes: El Cuarto Tribunal Colegiado en Materia Administrativa del Primer Circuito, al resolver el amparo directo 113/2025, el cual dio origen a la tesis aislada I.4o.A.49 A (11a.), de rubro: \"DISPOSICIONES GENERALES EMITIDAS POR EL PRESIDENTE DE LA COMISIÓN NACIONAL PARA LA PROTECCIÓN Y DEFENSA DE LOS USUARIOS DE SERVICIOS FINANCIEROS (CONDUSEF). LAS EMITIDAS PARA REGULAR LAS NOTIFICACIONES ELECTRÓNICAS VIOLAN LOS PRINCIPIOS DE RESERVA DE LEY Y DE SUBORDINACIÓN JERÁRQUICA (NORMATIVA VIGENTE HASTA EL 24 DE ENERO DE 2024).\", publicada en el Semanario Judicial de la Federación del viernes 8 de mayo de 2026 a las 10:13 horas y en la Gaceta del Semanario Judicial de la Federación, Duodécima Época, Libro 9, mayo de 2026, Tomo I, Volumen 1, página 680, con número de registro digital: 2032088, y El sustentado por el Décimo Noveno Tribunal Colegiado en Materia Administrativa del Primer Circuito, al resolver el amparo directo 329/2025.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 06 de noviembre de 2026 a las 10:17 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del lunes 09 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2032088"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032870"
+  },
+  {
+   "registro": 2032871,
+   "rubro": "COMPETENCIA POR MATERIA PARA CONOCER DEL AMPARO INDIRECTO CONTRA EL SISTEMA NORMATIVO CONTENIDO EN EL DECRETO EN MATERIA DE FORTALECIMIENTO DE BÚSQUEDA, LOCALIZACIÓN E IDENTIFICACIÓN DE PERSONAS DESAPARECIDAS. CORRESPONDE A UN JUZGADO DE DISTRITO ESPECIALIZADO O SEMIESPECIALIZADO EN MATERIA ADMINISTRATIVA.",
+   "clave": "PR.A.C.CS. J/9 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Común, Administrativa",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-06 10:17:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al resolver recursos de queja derivados de juicios de amparo indirecto promovidos contra el Decreto por el que se reforman, adicionan y derogan diversas disposiciones de la Ley General en Materia de Desaparición Forzada de Personas, Desaparición Cometida por Particulares y del Sistema Nacional de Búsqueda de Personas, así como de la Ley General de Población, en materia de fortalecimiento de búsqueda, localización e identificación de personas desaparecidas, publicado el dieciséis de julio de dos mil veinticinco. Mientras que uno mantuvo implícitamente el conocimiento del asunto en la materia administrativa; el otro consideró que el interés fundamental tutelado se vincula con la investigación y persecución de delitos. Criterio jurídico: El Pleno Regional en Materias Administrativa y Civil de la Región Centro-Sur determina que la competencia por materia para conocer de los amparos indirectos contra el sistema normativo contenido en el referido decreto, relacionado con las disposiciones que regulan la incorporación de datos biométricos a la Clave Única de Registro de Población, la Plataforma Única de Identidad, la validación y autenticación de identidad, la interconexión de registros y la consulta de información para la búsqueda, localización e identificación de personas desaparecidas o no localizadas, corresponde a los Juzgados de Distrito semiespecializados o especializados en Materia Administrativa. Justificación: Tratándose del amparo indirecto contra normas generales, la competencia por materia debe determinarse atendiendo al bien jurídico o interés fundamental sobre el que versan las disposiciones reclamadas y no únicamente a la naturaleza formal del acto legislativo o de las autoridades que intervinieron en su emisión. Cuando las disposiciones reclamadas cumplen más de una finalidad o tienen conexiones con distintas ramas del derecho, debe identificarse su objeto normativo directo y predominante. El del referido decreto consiste en: 1) organizar el Registro Nacional de Población y un sistema de identificación personal mediante la Clave Única de Registro de Población (CURP); 2) regular la integración y administración de datos biométricos; 3) establecer la Plataforma Única de Identidad; 4) disponer la interconexión y consulta de registros públicos y privados; y 5) fijar mecanismos de seguridad, control y coordinación para la búsqueda, localización e identificación de personas. Si bien dicha infraestructura puede utilizarse por autoridades ministeriales o de seguridad pública durante una investigación penal, ese uso es instrumental y no modifica el objeto predominante de la regulación, por lo que ello no basta para clasificar como penal el señalado sistema normativo. Aunque la búsqueda de personas desaparecidas y la investigación penal se encuentran estrechamente relacionadas y deben coordinarse y reforzarse mutuamente, tienen entidad jurídica propia. Por ello, el bien jurídico o interés fundamental predominante del sistema normativo reclamado se ubica en la materia administrativa. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-SUR, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 81/2026. Entre los sustentados por el Segundo y el Tercer Tribunales Colegiados, ambos en Materia Administrativa del Sexto Circuito. 2 de septiembre de 2026. Mayoría de votos de las Magistradas Mariana Flores Vega y Diana Elda Pérez Medina, quien formuló voto concurrente, en cuanto a la existencia de la contradicción de criterios. Disidente: Jorge Alberto Orantes López, quien formuló voto particular. Unanimidad de votos de las personas Magistradas Diana Elda Pérez Medina, Mariana Flores Vega y Jorge Alberto Orantes López, respecto al fondo del asunto. Ponente: Diana Elda Pérez Medina. Secretario: Ivann Alvarez Hernández. Tesis y/o criterios contendientes: El sustentado por el Segundo Tribunal Colegiado en Materia Administrativa del Sexto Circuito, al resolver la queja 378/2025, y el diverso sustentado por el Tercer Tribunal Colegiado en Materia Administrativa del Sexto Circuito, al resolver la queja 403/2025.",
+   "votos": [
+    "47768",
+    "47769"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 06 de noviembre de 2026 a las 10:17 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del lunes 09 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032871"
+  },
+  {
+   "registro": 2032890,
+   "rubro": "SUSPENSIÓN PROVISIONAL EN AMPARO INDIRECTO CONTRA EL ASEGURAMIENTO DE UN INMUEBLE DERIVADO DE UNA ORDEN DE CATEO. LA FALTA DEL ACTA CIRCUNSTANCIADA Y DEL INVENTARIO DE LOS BIENES ASEGURADOS NO IMPIDE, POR SÍ SOLA, SU OTORGAMIENTO.",
+   "clave": "PR.P.T.CN. J/20 P (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Común, Penal",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-06 10:17:00.0",
+   "texto": "Hechos: Los tribunales colegiados de circuito contendientes sustentaron criterios contradictorios al analizar si procede la suspensión provisional contra el aseguramiento de un inmueble derivado de la ejecución de una orden de cateo, en específico la posibilidad de modular los efectos de dicho aseguramiento, cuando al resolver sobre la medida cautelar no se contaba con el acta circunstanciada de la diligencia ni con el inventario que permitiera individualizar los bienes asegurados vinculados con la investigación penal y distinguirlos de los ajenos a ella. Mientras que uno consideró que la ausencia de dichos documentos impedía contar con elementos objetivos suficientes para identificar cuáles bienes se encontraban relacionados con la investigación penal y cuáles eran ajenos a ella, por lo que no era posible determinar respecto de cuáles podían modularse los efectos del aseguramiento sin comprometer los fines de la investigación; el otro sostuvo que la ausencia documental no impedía, por sí misma, conceder la suspensión provisional, porque no era indispensable que la parte quejosa identificara exhaustivamente los bienes cuando la documentación necesaria para ello se encontrara bajo el control de la autoridad; de modo que podían mantenerse asegurados los instrumentos, objetos o productos relacionados con el hecho investigado y suspenderse los efectos respecto de los bienes ajenos a éste. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿La falta de incorporación al incidente de suspensión del acta circunstanciada del cateo y del inventario de los bienes asegurados constituye, por sí misma, un obstáculo para conceder la suspensión provisional contra el aseguramiento de un establecimiento comercial y de los bienes localizados en su interior o, pese a esa ausencia, puede el órgano jurisdiccional modular los efectos de la medida con base en los demás elementos disponibles, preservando los bienes vinculados con la investigación penal? Criterio jurídico: La falta del acta circunstanciada del cateo y del inventario de los bienes asegurados no constituye, por sí misma, un impedimento para conceder la suspensión provisional contra el aseguramiento de un inmueble derivado de una orden de cateo, por lo que el órgano jurisdiccional debe valorar los demás elementos disponibles para determinar, con el grado de conocimiento propio de esa etapa cautelar, el alcance que puede atribuirse al aseguramiento y fijar los efectos de la suspensión de manera que se preserven los efectos necesarios del aseguramiento respecto de los bienes cuya vinculación con el hecho investigado pueda advertirse, incluso indiciariamente, sin considerar sujetos al aseguramiento, por su sola localización dentro del inmueble, aquellos respecto de los cuales no exista elemento que permita establecer esa relación. Justificación: Los artículos 128 y 138 de la Ley de Amparo establecen los presupuestos y parámetros que rigen el otorgamiento de la suspensión, para lo cual el órgano jurisdiccional debe atender a la naturaleza del acto reclamado y realizar un análisis ponderado de la apariencia del buen derecho, el interés social y el orden público. Tratándose de técnicas de investigación o medidas cautelares concedidas por autoridad judicial, el artículo 128 prevé como regla general que no serán objeto de suspensión; sin embargo, el Tribunal Pleno de la Suprema Corte de Justicia de la Nación, al resolver la acción de inconstitucionalidad 62/2016, determinó que dicha previsión no establece una prohibición absoluta, pues corresponde al órgano jurisdiccional examinar las particularidades de cada caso para determinar si, excepcionalmente, puede concederse la medida cautelar. Por su parte, los artículos 229, 230 y 288 del Código Nacional de Procedimientos Penales delimitan los bienes susceptibles de aseguramiento y regulan su individualización y documentación. El primero establece que podrán asegurarse los instrumentos, objetos o productos del delito, así como los bienes en que existan huellas o que pudieran tener relación con éste; el segundo exige elaborar un inventario de \"todos y cada uno\" de los bienes que se pretendan asegurar, adoptar las medidas necesarias para su preservación, ponerlos a disposición de la autoridad competente e informar la calidad que guardan frente al hecho delictivo; mientras que el artículo 288 dispone que al concluir el cateo deberá levantarse el acta circunstanciada correspondiente. En consecuencia, cuando al resolver sobre la suspensión provisional no obren el acta circunstanciada del cateo ni el inventario de los bienes asegurados, esa ausencia documental no produce, por sí misma, la presunción de que la totalidad de los bienes localizados dentro del inmueble quedó sometida al estado jurídico de indisponibilidad propio del aseguramiento. Pero tampoco permite sostener la presunción inversa, esto es, que todos los bienes sean ajenos a la investigación y deban quedar necesariamente comprendidos en los efectos de la suspensión. Corresponde al órgano jurisdiccional examinar los demás elementos disponibles en el incidente y determinar, con el grado de conocimiento propio de esa etapa cautelar, si existen datos que permitan advertir, incluso indiciariamente, la vinculación de determinados bienes con el hecho investigado. De advertirse esa vinculación, deben preservarse respecto de esos bienes los efectos necesarios del aseguramiento; en cambio, la sola ausencia del acta circunstanciada y del inventario no permite considerar comprendidos en éste, por su mera localización dentro del inmueble, aquellos bienes respecto de los cuales no exista elemento que permita establecer su relación con el hecho investigado. Una conclusión distinta atribuye a la ausencia documental un alcance que no deriva de las disposiciones que regulan esa técnica de investigación y traslada a la parte que solicita la tutela cautelar las consecuencias de la falta de incorporación de documentos cuya elaboración y resguardo corresponden a las autoridades que intervienen en el cateo y el aseguramiento. Lo anterior es congruente con la tesis jurisprudencial P./J. 30/2001, de rubro: \"SUSPENSIÓN. EN LOS CASOS DE ASEGURAMIENTO DE BIENES INMUEBLES EN MATERIA PENAL PROCEDE CONCEDERLA SIEMPRE Y CUANDO NO SE AFECTE EL INTERÉS SOCIAL NI EL ORDEN PÚBLICO, CONFORME AL ARTÍCULO 124, FRACCIÓN II, DE LA LEY DE AMPARO Y ALGUNA OTRA LEY.\", en la que el Tribunal Pleno de la Suprema Corte de Justicia de la Nación estableció que, tratándose de bienes inmuebles, la suspensión puede incidir provisionalmente sobre determinados efectos materiales del aseguramiento sin dejarlo jurídicamente insubsistente, siempre que no se afecten el interés social ni el orden público. PLENO REGIONAL EN MATERIAS PENAL Y DE TRABAJO DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 74/2026. Entre los sustentados por el Segundo y el Tercer Tribunales Colegiados en Materias Penal y de Trabajo del Décimo Noveno Circuito. 24 de septiembre de 2026. Mayoría de votos de las personas magistradas Miguel Ernesto Leetch San Pedro y Verónica Alejandra Curiel Sandoval. Disidente: Magistrada Angélica Iveth Leyva Guzmán, quien formuló voto particular. Ponente: Miguel Ernesto Leetch San Pedro. Secretaria: Arely Pechir Magaña. Tesis y/o criterios contendientes: El sustentado por el Segundo Tribunal Colegiado en Materias Penal y de Trabajo del Décimo Noveno Circuito, al resolver la queja 299/2026, y el diverso sustentado por el Tercer Tribunal Colegiado en Materias Penal y de Trabajo del Décimo Noveno Circuito, al resolver las quejas 230/2026 y 231/2026. Nota: La tesis de jurisprudencia P./J. 30/2001 citada, aparece publicada en el Semanario Judicial de la Federación y su Gaceta, Novena Época, Tomo XIII, abril de 2001, página 218, con número de registro digital: 189853. La sentencia relativa a la acción de inconstitucionalidad 62/2016 citada, aparece publicada en el Semanario Judicial de la Federación del viernes 27 de abril de 2018 a las 10:31 horas y en la Gaceta del Semanario Judicial de la Federación, Décima Época, Libro 53, Tomo I, abril de 2018, página 144, con número de registro digital: 27774.",
+   "votos": [
+    "47770"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 06 de noviembre de 2026 a las 10:17 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del lunes 09 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 189853",
+    "tesis mencionadas: P./J. 30/2001"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032890"
+  },
+  {
+   "registro": 2032891,
+   "rubro": "SUSPENSIÓN PROVISIONAL EN AMPARO INDIRECTO. ES IMPROCEDENTE CONTRA LA PUBLICACIÓN DE LA INFORMACIÓN PREVISTA EN EL ARTÍCULO 65, FRACCIÓN XL, DE LA LEY GENERAL DE TRANSPARENCIA Y ACCESO A LA INFORMACIÓN PÚBLICA, RELATIVA AL NOMBRE Y APELLIDOS DE LAS PERSONAS EX SERVIDORAS PÚBLICAS JUBILADAS Y PENSIONADAS.",
+   "clave": "PR.A.C.CN. J/63 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Administrativa, Común",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-06 10:17:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al analizar si procede la suspensión provisional contra la inclusión y permanencia del nombre de diversas personas en una lista publicada en la página de Internet de Transparencia para el Pueblo del Gobierno de México, en la que se les identifica como ex servidoras públicas beneficiarias de una pensión, prevista en el artículo 65, fracción XL, de la Ley General de Transparencia y Acceso a la Información Pública, así como la difusión de sus datos personales y percepciones económicas, en específico el nombre y apellidos. Mientras que dos la negaron al estimar que se seguiría perjuicio al interés social y se contravendrían disposiciones de orden público, porque la extinta Primera Sala de la Suprema Corte de Justicia de la Nación, en el amparo en revisión 605/2024, en el que estudió la constitucionalidad del artículo 70, fracción XLII, de la referida ley general, abrogada, de contenido similar al 65, fracción XL, citado, sostuvo que dicha información debe ser pública, pues su transparencia abona a la rendición de cuentas de los sujetos obligados en materia de acceso a la información pública y al combate a la corrupción; los otros dos consideraron que sí procede, con base en la tesis jurisprudencial 2a./J. 4/2025 (11a.) de la extinta Segunda Sala del Alto Tribunal, porque si bien existe un interés constitucional relevante de garantizar el acceso a la información y transparencia respecto del ejercicio de los recursos públicos, ese derecho no tiene el carácter de absoluto, debiendo armonizarse con la protección a los datos personales y el derecho a la privacidad. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿La concesión de la suspensión provisional respecto de la publicación, en cumplimiento a obligaciones en materia de transparencia, de la información relativa a la pensión que percibe una persona ex servidora pública, en cuanto al nombre y apellidos, constituye un acto que afecta el interés social y contraviene disposiciones de orden público, en virtud de que dicha información debe ser de carácter público al contribuir a la rendición de cuentas del Estado y al combate a la corrupción, así como por vulnerar diversas disposiciones en materia de acceso a la información, tanto de rango constitucional como legal? Criterio jurídico: Es improcedente la suspensión provisional contra la inclusión y permanencia del nombre y apellidos en una lista publicada en la página de Internet de Transparencia para el Pueblo del Gobierno de México, en la que se identifica a las personas ex servidoras públicas beneficiarias de una pensión, ya que con su concesión se seguiría perjuicio al interés social y se contravendrían disposiciones de orden público. Justificación: Lo resuelto en el amparo en revisión 605/2024 y en la tesis jurisprudencial 2a./J. 4/2025 (11a.) se complementa. En el primero, se estimó correcto que se publique el nombre y el monto recibido por la persona pensionada o jubilada, en términos del principio de transparencia previsto en el artículo 6o. de la Constitución Federal, lo que permite el escrutinio ciudadano sobre el ejercicio del gasto público, reduce la opacidad y contribuye a evitar conductas irregulares en atención al principio de máxima publicidad y, por lo tanto, existe un menor riesgo de corrupción, por lo que no viola el derecho de protección a los datos personales. En la segunda, se sostuvo que la autoridad administrativa debe ponderar si para la finalidad que tiene la publicación de la lista señalada es necesario que se divulgue el nombre de la persona que ejerce la oposición, o si puede suprimirse sin que ello repercuta en la transparencia del destino de los recursos públicos. La información que debe difundirse conforme al indicado artículo 65, fracción XL, tiene como parámetro mínimo que se publique el listado de personas jubiladas y pensionadas, así como el monto que reciben, lo cual inicialmente está justificado. Del análisis inicial y provisional de dicha información se considera que no se invade la privacidad de dichas personas con su publicación, toda vez que desde antes de adquirir la calidad de pensionadas y jubiladas ya se difundían su nombre y sus ingresos como servidoras públicas. Además, el artículo 6o., párrafo segundo y apartado A, fracción I, constitucional prevé que: 1) toda persona tiene derecho al libre acceso a información plural y oportuna; 2) para el ejercicio del derecho de acceso a la información, la Federación y las entidades federativas, en el ámbito de sus respectivas competencias, se regirán por los principios y bases de que toda la información en posesión de cualquier autoridad, entidad, órgano y organismo de los Poderes Ejecutivo, Legislativo y Judicial, órganos autónomos, partidos políticos, fideicomisos y fondos públicos, así como de cualquier persona física, moral o sindicato que reciba y ejerza recursos públicos, es pública y su información sólo podrá ser reservada temporalmente por razones de interés público y seguridad nacional, en los términos que fijen las leyes; y 3) en la interpretación del derecho de acceso a la información deberá prevalecer el principio de máxima publicidad. Por ello, la reserva de la información personal y el derecho a la privacidad no son irrestrictos cuando se trata de personas ex servidoras públicas. En consecuencia, al ponderar los efectos de la suspensión provisional solicitada frente al interés social y a las disposiciones de orden público, deriva que su concesión causaría un daño significativo a la colectividad al privar a la sociedad del beneficio que ordinariamente le corresponde de conocer de forma constante los datos mínimos de nombres y apellidos de esas personas, así como los montos que reciben por concepto de pensión y jubilación respecto de los recursos públicos destinados para ello, máxime que la difusión de esos datos produciría mayor beneficio a la sociedad que los daños que pudieran provocarse con su divulgación, pues existe una preocupación respecto al combate a la corrupción, por lo que debe privilegiarse su transparencia y difusión. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 90/2026. Entre los sustentados por el Décimo Sexto Tribunal Colegiado en Materia Administrativa del Primer Circuito y los Tribunales Colegiados Segundo, Tercero y Cuarto del Trigésimo Circuito. 27 de agosto de 2026. Unanimidad de votos de las magistradas Mayra Sandoval Mendoza, Virginia Pétriz Herrera y Mónica Saloma Palacios. Ponente: Virginia Pétriz Herrera. Secretaria: Alba Silvia Pérez Bribiesca. Tesis y/o criterios contendientes: El sustentado por el Décimo Sexto Tribunal Colegiado en Materia Administrativa del Primer Circuito, al resolver la queja 243/2026, el sustentado por el Segundo Tribunal Colegiado del Trigésimo Circuito, al resolver la queja 225/2026, el sustentado por el Tercer Tribunal Colegiado del Trigésimo Circuito, al resolver la queja 140/2026, y el diverso sustentado por el Cuarto Tribunal Colegiado del Trigésimo Circuito, al resolver la queja 225/2026. Nota: La tesis de jurisprudencia 2a./J. 4/2025 (11a.) citada, aparece publicada con el rubro: \"DERECHO A LA PROTECCIÓN DE DATOS PERSONALES. INTERPRETACIÓN CONFORME DEL ARTÍCULO 70, FRACCIÓN XLII, DE LA LEY GENERAL DE TRANSPARENCIA Y ACCESO A LA INFORMACIÓN PÚBLICA.\", en el Semanario Judicial de la Federación del viernes 14 de febrero de 2025 a las 10:16 horas y en la Gaceta del Semanario Judicial de la Federación, Undécima Época, Libro 46, febrero de 2025, Tomo II, Volumen 1, página 182, con número de registro digital: 2029916.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 06 de noviembre de 2026 a las 10:17 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del lunes 09 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2029916",
+    "tesis mencionadas: 2a./J. 4/2025 (11a.)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032891"
+  },
+  {
+   "registro": 2032893,
+   "rubro": "ACTO DE AUTORIDAD PARA EFECTOS DEL JUICIO DE AMPARO INDIRECTO. NO LO CONSTITUYE LA SUSPENSIÓN O RESTRICCIÓN DEL USO DE ÁREAS COMUNES O AMENIDADES POR PARTE DE LOS ÓRGANOS DE ADMINISTRACIÓN DE UN CONDOMINIO PRIVADO, CUANDO DERIVA EXCLUSIVAMENTE DE LAS REGLAS DE ORGANIZACIÓN INTERNA DEL RÉGIMEN CONDOMINAL.",
+   "clave": "PR.A.C.CS. J/14 C (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Común, Civil",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-13 10:24:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al analizar si los actos consistentes en la suspensión o restricción del uso de áreas comunes o amenidades atribuidos a los órganos de administración de condominios privados son equivalentes a los de autoridad para efectos del juicio de amparo. Mientras que uno consideró que dichos actos no eran equivalentes a los de autoridad y que esa circunstancia podía determinarse desde el auto inicial; el otro estimó que en esa etapa procesal no existían elementos suficientes para definirlo, por lo que consideró que no se actualizaba una causa manifiesta e indudable de improcedencia. Criterio jurídico: La suspensión o restricción del uso de áreas comunes o amenidades atribuida a los órganos de administración de un condominio privado no constituye un acto equivalente a los de autoridad para efectos del juicio de amparo indirecto, cuando deriva exclusivamente de las reglas de organización interna del régimen condominal y no del ejercicio de una potestad pública conferida por una norma general. Justificación: El artículo 5o., fracción II, segundo párrafo, de la Ley de Amparo establece que los particulares sólo pueden ser considerados autoridades responsables cuando realizan actos equivalentes a los de autoridad, que afecten derechos y cuyas funciones estén determinadas por una norma general. Para establecer esa equivalencia debe verificarse, por una parte, la existencia de un nexo normativo de origen estatal que coloque al particular en una posición diferenciada para producir unilateralmente la afectación y, por otra, que la potestad ejercida constituya materialmente una función pública. Por ello, no basta que una ley reconozca o regule las facultades de los órganos de administración de un condominio, sino que es necesario que les atribuya una potestad que corresponda originariamente al Estado o que materialmente revista naturaleza pública. Cuando la suspensión o restricción del uso de áreas comunes deriva del reglamento interno, de acuerdos de la asamblea o de las reglas que disciplinan la convivencia entre los condóminos, el órgano de administración actúa dentro de una relación de coordinación entre particulares y no en ejercicio de una potestad pública delegada. En esas condiciones no se actualizan los elementos necesarios para equiparar su actuación a un acto de autoridad. Si esa naturaleza puede establecerse objetivamente a partir de la demanda, sus anexos y el marco normativo aplicable, sin necesidad de esclarecer hechos controvertidos o allegarse de elementos susceptibles de modificar la conclusión durante la sustanciación, el órgano jurisdiccional puede examinar la cuestión desde el auto inicial y, en su caso, desechar la demanda conforme al artículo 113 de la Ley de Amparo. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-SUR, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 60/2026. Entre los sustentados por el Primer Tribunal Colegiado en Materia Administrativa y el Segundo Tribunal Colegiado en Materia Civil, ambos del Sexto Circuito. 23 de septiembre de 2026. Mayoría de votos de las personas Magistradas Jorge Alberto Orantes López y Diana Elda Pérez Medina. Disidente: Mariana Flores Vega. Ponente: Diana Elda Pérez Medina. Secretaria: Auri Gabriela Cauich Vázquez. Tesis y/o criterios contendientes: El sustentado por el Primer Tribunal Colegiado en Materia Administrativa del Sexto Circuito, al resolver la queja 186/2021, y el diverso sustentado por el Segundo Tribunal Colegiado en Materia Civil del Sexto Circuito, al resolver la queja 411/2025. Nota: De la sentencia que recayó a la queja 186/2021, resuelta por el Primer Tribunal Colegiado en Materia Administrativa del Sexto Circuito, derivó la tesis aislada VI.1o.A.5 A (11a.), de rubro: \"RÉGIMEN DE PROPIEDAD EN CONDOMINIO PARA EL ESTADO DE PUEBLA. EL ACTO DE APLICACIÓN NECESARIO PARA RECLAMAR EN EL JUICIO DE AMPARO LA LEY QUE LO REGULA, PUEDE DERIVAR DE LA ACTUACIÓN DEL ADMINISTRADOR O DEL COMITÉ DE ADMINISTRACIÓN DE UN CONDOMINIO PRIVADO.\", publicada en el Semanario Judicial de la Federación del viernes 1 de abril de 2022 a las 10:05 horas y en la Gaceta del Semanario Judicial de la Federación, Undécima Época, Libro 12, Tomo IV, abril de 2022, página 2855, con número de registro digital: 2024399.",
+   "votos": [
+    "47779"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 13 de noviembre de 2026 a las 10:24 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 17 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2024399"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032893"
+  },
+  {
+   "registro": 2032897,
+   "rubro": "AUTO INICIAL DE TRÁMITE DE LA DEMANDA DE AMPARO INDIRECTO. NO ES LA ACTUACIÓN PROCESAL OPORTUNA PARA DETERMINAR SI SE ACTUALIZA UNA CAUSA MANIFIESTA E INDUDABLE DE IMPROCEDENCIA CUANDO SE SEÑALA COMO AUTORIDAD RESPONSABLE A UNA CONCESIONARIA DE TELECOMUNICACIONES POR LA EJECUCIÓN DE LOS LINEAMIENTOS PARA LA IDENTIFICACIÓN DE LÍNEAS TELEFÓNICAS MÓVILES.",
+   "clave": "PR.CRT. J/4 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Común, Administrativa",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-13 10:24:00.0",
+   "texto": "Hechos: Los tribunales colegiados de circuito contendientes sustentaron criterios contradictorios al analizar si desde el auto admisorio de la demanda de amparo indirecto se puede determinar que una prestadora del servicio de telefonía móvil tiene el carácter de autoridad responsable por la ejecución de los lineamientos referidos, publicados el 9 de diciembre de 2025. Mientras que uno consideró que desde la lectura de la demanda resultaba manifiesta e indudable la improcedencia del juicio, porque los concesionarios de telecomunicaciones no actúan con discrecionalidad ni con imperio frente a las personas usuarias, sino en cumplimiento de obligaciones irrenunciables impuestas por una norma general en auxilio de la función regulatoria del Estado; el otro estimó que ese análisis debe ser exhaustivo, propio de la sentencia definitiva. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿Cuando en el juicio de amparo indirecto se señala como autoridad responsable a una concesionaria de telecomunicaciones a la que se atribuye la ejecución de los lineamientos señalados, resulta manifiesta e indudable, desde el auto admisorio de la demanda, la causa de improcedencia derivada de que dicha concesionaria carece del carácter de autoridad responsable para efectos del juicio de amparo, por actuar como auxiliar del ente estatal sin margen de discrecionalidad; o bien, esa determinación requiere de un análisis exhaustivo que únicamente puede realizarse en la sentencia definitiva, por lo que no procede el desechamiento en esa fase procesal? Criterio jurídico: Cuando en la demanda de amparo indirecto se señala como autoridad responsable a una concesionaria de telecomunicaciones por la ejecución de los Lineamientos para la Identificación de Líneas Telefónicas Móviles, el auto inicial de trámite no es la actuación procesal oportuna para determinar si se actualiza una causa manifiesta e indudable de improcedencia. Justificación: La extinta Segunda Sala de la Suprema Corte de Justicia de la Nación, en la tesis jurisprudencial 2a./J. 54/2012 (10a.), sostuvo la regla general de que en el proveído inicial no es posible realizar un análisis exhaustivo, pues sólo se cuenta con lo manifestado en la demanda y con las pruebas adjuntas. Por esta razón, dicho auto no es la actuación procesal oportuna para verificar si una autoridad tiene tal carácter para efectos del juicio de amparo y, por ende, si la acción procede contra el acto que se reclama. En ese contexto, no es posible determinar de forma manifiesta e indudable si los citados lineamientos le otorgan al concesionario un margen de discrecionalidad o de decisión propio con los atributos de un acto de autoridad, que le permitan incidir unilateralmente en la esfera jurídica de las personas, a fin de definir si le reviste o no ese carácter, pues para ello es necesario emprender un estudio exhaustivo de toda la normativa vinculada con las normas reclamadas, lo que no es propio del auto inicial de trámite, sino de la sentencia de fondo. PLENO REGIONAL ESPECIALIZADO EN COMPETENCIA ECONÓMICA, RADIODIFUSIÓN Y TELECOMUNICACIONES.",
+   "precedentes": "Contradicción de criterios 9/2026. Entre los sustentados por los Tribunales Colegiados de Circuito Primero y Segundo, ambos en Materia Administrativa Especializados en Competencia Económica, Radiodifusión y Telecomunicaciones, con residencia en la Ciudad de México y jurisdicción en toda la República. 2 de junio de 2026. Mayoría de votos de las personas magistradas Mayra Sandoval Mendoza y Urbano Martínez Hernández, por lo que respecta al segundo resolutivo. Disidente y ponente: Magistrada Paula María García Villegas Sánchez Cordero. Secretario: Mario Rafael Sulvaran Viñas. Tesis y/o criterios contendientes: El sustentado por el Primer Tribunal Colegiado de Circuito en Materia Administrativa Especializado en Competencia Económica, Radiodifusión y Telecomunicaciones, con residencia en la Ciudad de México y jurisdicción en toda la República, al resolver la queja 22/2026, y el diverso sustentado por el Segundo Tribunal Colegiado de Circuito en Materia Administrativa Especializado en Competencia Económica, Radiodifusión y Telecomunicaciones, con residencia en la Ciudad de México y jurisdicción en toda la República, al resolver la queja 48/2026. Nota: La tesis de jurisprudencia 2a./J. 54/2012 (10a.) citada, aparece publicada con el rubro: \"AUTO INICIAL DE TRÁMITE DE LA DEMANDA DE AMPARO. NO ES LA ACTUACIÓN PROCESAL OPORTUNA PARA ANALIZAR SI EL ACTO RECLAMADO PROVIENE DE UNA AUTORIDAD PARA EFECTOS DEL JUICIO DE AMPARO, CUANDO SE IMPUGNA EL ACUERDO DE FIJACIÓN DE TARIFAS PARA SUMINISTRO Y VENTA DE ENERGÍA ELÉCTRICA.\", en el Semanario Judicial de la Federación del viernes 17 de junio de 2016 a las 10:17 horas y en la Gaceta del Semanario Judicial de la Federación, Décima Época, Libro 31, Tomo II, junio de 2016, página 829, con número de registro digital: 2011888.",
+   "votos": [
+    "47783"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 13 de noviembre de 2026 a las 10:24 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 17 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)",
+    "registros mencionados: 2011888",
+    "tesis mencionadas: 2a./J. 54/2012 (10a.)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032897"
+  },
+  {
+   "registro": 2032903,
+   "rubro": "IMPROCEDENCIA DEL AMPARO INDIRECTO. PROCEDE DESECHAR DE PLANO LA DEMANDA CUANDO SEA MANIFIESTA E INDUDABLE LA NATURALEZA PATRONAL DEL CAMBIO DE ADSCRIPCIÓN DE PERSONAL DE LOS TRIBUNALES AGRARIOS.",
+   "clave": "PR.A.C.CS. J/10 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Administrativa, Común",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-13 10:24:00.0",
+   "texto": "Hechos: Los Tribunales Colegiados de Circuito contendientes sustentaron criterios contradictorios al resolver recursos de queja interpuestos contra los acuerdos mediante los cuales se admitieron demandas de amparo indirecto en las que personas trabajadoras de los Tribunales Agrarios reclamaron cambios de adscripción acordados por el Pleno del Tribunal Superior Agrario. Mientras que uno consideró que desde el auto inicial del juicio de amparo podía advertirse de manera manifiesta e indudable que dicho órgano había actuado como patrón, dentro de una relación de coordinación y no con imperio o potestad pública, por lo que procedía desechar la demanda; el otro estimó que en ese momento procesal no podía determinarse si había actuado como autoridad responsable, pues para ello debía realizarse un análisis profundo y exhaustivo de la relación jurídica existente entre la persona trabajadora, propio de la sentencia. Criterio jurídico: Debe desecharse de plano la demanda de amparo indirecto contra el cambio de adscripción acordado por el Pleno del Tribunal Superior Agrario, cuando del examen integral de la demanda, sus aclaraciones y anexos, a la luz del régimen normativo aplicable, se advierta de manera manifiesta e indudable que: 1) la persona promovente está sujeta a un vínculo laboral con los Tribunales Agrarios; 2) la medida constituye exclusivamente una decisión de administración de esa relación; y 3) el órgano emisor actuó como patrón. Justificación: De los artículos 8o., fracción VII, 11, fracciones I, IV y XI, y 26 de la Ley Orgánica de los Tribunales Agrarios, resulta que la administración del personal comprende decisiones relativas a su nombramiento, adscripción y separación, esto es, funciones propias de la organización de los recursos humanos, aunque sean ejercidas por órganos que, en otros ámbitos, realizan funciones jurisdiccionales o de gobierno. Cuando el cambio de adscripción se emite en ejercicio de esas facultades y únicamente modifica el lugar en el que la persona continuará desempeñando las funciones de su nombramiento, emana de la relación de trabajo y el órgano emisor actúa como patrón, sin ejercer una potestad pública distinta de esa función patronal. La adopción de la medida en una sesión administrativa, su unilateralidad u obligatoriedad y la invocación de necesidades del servicio no modifican por sí solas esa naturaleza; tampoco depende de la clasificación del personal como de base o de confianza, pues ello es para efecto de distinguir el régimen de derechos aplicable. El órgano jurisdiccional debe expresar las razones por las cuales, aun tomando en consideración los hechos narrados y el contenido del acto, sin presunciones ni prejuzgar sobre la legalidad del cambio de adscripción, los elementos disponibles le permiten reconocer exclusivamente una actuación patronal. La improcedencia no podrá sustentarse en la afirmación genérica de que todos los cambios de adscripción son laborales, ni en que todas las decisiones de un órgano público respecto de su personal carecen del carácter de autoridad. No basta que la persona se identifique como trabajadora de esa institución o la denominación del acto reclamado como un cambio de adscripción, ni se le puede imponer la carga de acreditar desde el inicio que el órgano emisor actuó como autoridad, sino que la conclusión debe resultar del contenido de la demanda y de sus anexos. Si esos elementos permiten definir con certeza la relación laboral y la calidad material del emisor, de modo que la sustanciación del juicio no podría modificar esa conclusión, se actualiza la causa de improcedencia prevista en el artículo 61, fracción XXIII, en relación con los diversos 1o., fracción I, y 5o., fracción II, este último interpretado a contrario sensu, de la Ley de Amparo y, conforme a su artículo 113 debe desecharse la demanda respecto de ese acto. En cambio, cuando se requiera información adicional para esclarecer esos aspectos, no procederá su desechamiento inicial por esta causa. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-SUR, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 108/2026. Entre los sustentados por el Primer Tribunal Colegiado del Vigésimo Noveno Circuito y el Tercer Tribunal Colegiado en Materias Administrativa y de Trabajo del Décimo Primer Circuito. 29 de septiembre de 2026. Mayoría de votos de las personas magistradas Diana Elda Pérez Medina y Jorge Alberto Orantes López. Disidente: Magistrada Mariana Flores Vega, quien formuló voto particular. Ponente: Diana Elda Pérez Medina. Secretario: Ivann Alvarez Hernández. Tesis y/o criterios contendientes: El sustentado por el Primer Tribunal Colegiado del Vigésimo Noveno Circuito, al resolver la queja 219/2025, y el diverso sustentado por el Tercer Tribunal Colegiado en Materias Administrativa y de Trabajo del Décimo Primer Circuito, al resolver la queja 1/2026.",
+   "votos": [
+    "47785"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 13 de noviembre de 2026 a las 10:24 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 17 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032903"
+  },
+  {
+   "registro": 2032905,
+   "rubro": "IMPUESTO SOBRE ADQUISICIÓN DE INMUEBLES. LA TABLA CONTENIDA EN EL ARTÍCULO 8 DE LA LEY DE INGRESOS PARA EL MUNICIPIO DE TIJUANA, BAJA CALIFORNIA, POR LO QUE HACE AL AUMENTO EN LOS LÍMITES INFERIORES DE LOS DISTINTOS RANGOS, NO TRANSGREDE EL PRINCIPIO DE PROPORCIONALIDAD TRIBUTARIA (LEGISLACIÓN VIGENTE EN 2024).",
+   "clave": "PR.A.C.CN. J/64 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Constitucional, Administrativa",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-13 10:24:00.0",
+   "texto": "Hechos: Los tribunales colegiados de circuito contendientes sustentaron criterios contradictorios al analizar la tabla contenida en el citado artículo 8. Mientras que uno sostuvo que es constitucional; el otro estimó que no lo es, por la falta de progresividad de las tarifas establecidas en los límites inferiores de cada rango. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿La tabla de cantidades contenida en el artículo 8 de la Ley de Ingresos del Municipio de Tijuana, Baja California, correspondiente al ejercicio fiscal 2024, por lo que hace al aumento en los límites inferiores de los distintos rangos, transgrede el principio de proporcionalidad tributaria? Criterio jurídico: La tabla contenida en el artículo 8 de la Ley de Ingresos del Municipio de Tijuana, Baja California, para el ejercicio fiscal del 2024, por lo que hace al aumento en los límites inferiores de los distintos rangos que prevé, no transgrede el principio de proporcionalidad tributaria, al ser progresiva, ya que en la medida en que se incrementa el valor del inmueble, también aumenta el monto a pagar por este impuesto. Justificación: Conforme al artículo 31, fracción IV, de la Constitución Política de los Estados Unidos Mexicanos, es obligación de los mexicanos contribuir para los gastos públicos, así de la Federación, como de los Estados, de la Ciudad de México y del Municipio en que residan, de manera proporcional y equitativa. La proporcionalidad radica medularmente en que los sujetos pasivos deben contribuir a los gastos públicos en función de su respectiva capacidad económica, debiendo aportar una parte justa y adecuada de sus ingresos, utilidades y rendimientos. Conforme a lo anterior, los gravámenes deben fijarse de acuerdo con la capacidad económica de cada sujeto pasivo, de manera que las personas que obtengan ingresos elevados tributen en forma cualitativa superior a los de medianos y reducidos recursos. Para que un gravamen sea proporcional, se requiere que el hecho imponible del tributo establecido por el Estado refleje una auténtica manifestación de capacidad económica del sujeto pasivo, entendida ésta como la potencialidad de contribuir a los gastos públicos. El impuesto sobre adquisición de inmuebles es una contribución que formaliza la transmisión de la propiedad y se establece directamente en razón del valor del inmueble. Se trata de un impuesto local, por lo que cada entidad fija las bases conforme a las cuales se implementa. En ese contexto, a partir de 2021 se estableció que el impuesto sobre adquisición de inmuebles para el Municipio de Tijuana, Baja California, se calcularía de un modo distinto al que se hacía, pues se estableció una tarifa progresiva, que subsiste para el ejercicio fiscal de 2024. El cálculo del impuesto puede hacerse a través de tasas fijas o progresivas. La Suprema Corte de Justicia de la Nación ha considerado que la progresividad de la tarifa no implica un incremento en la alícuota al cambiar al renglón siguiente, sino que es necesario que su aumento sea proporcional al del ingreso. Para poder analizar la efectiva progresividad de la tarifa es indispensable atender al mecanismo que la establece –en función de menor a mayor ingreso–, pero no sólo en relación con la cantidad inmersa entre un límite inferior y uno superior y considerando que la tasa del impuesto se aplica sobre el excedente del límite inferior en un porcentaje al que se le suma la cuota, sino que además debe valorarse que el aumento de alícuota entre un renglón y otro sea proporcional al del ingreso que conduce al cambio de renglón. Para que un impuesto se considere progresivo, los rangos de los que se compone no necesariamente deben tener un aumento exactamente igual, pues lo determinante es que el aumento sea proporcional al del ingreso. Esto es, a fin de verificar la proporcionalidad en un impuesto, es menester hacer un análisis en conjunto de la dinámica para su cálculo. No puede hacerse un análisis aislado, pues de ser así, no se podría decir si en su cálculo existe o no progresividad. La tarifa del impuesto sobre adquisición de inmuebles prevista en la ley citada se asegura mediante la aplicación de los elementos integrantes de la tabla que la contiene y, por ende, su estructura no se puede analizar aisladamente, o considerarla en partes, sino que es necesario estudiarla en su conjunto. A fin de aplicar la mecánica establecida en el artículo 8 señalado, para calcular el impuesto a pagar por concepto de adquisición de inmuebles, primero debe ubicarse el valor del inmueble en el rango que le corresponda; luego, al valor del inmueble debe restársele la cantidad establecida en el límite inferior del rango, y al resultado se le multiplicará la tasa marginal. Al resultante se le sumará la cuota fija, y la sobre tasa y la cantidad que arroje será el importe a pagar por concepto de dicho impuesto. Del análisis de la tabla contenida en ese precepto se advierte que por lo que hace a los rangos uno a dos y dos a tres, existe una diferencia constante de la base gravable de ochocientos mil pesos. Sin embargo, dicha diferencia no se mantiene con posterioridad. No obstante que no existe una proporción igual en el aumento entre los diferentes rangos, ello no es suficiente para estimar su inconstitucionalidad, pues la progresividad de la tarifa no implica un incremento en la alícuota al cambiar al siguiente renglón, sino que su aumento debe ser proporcional al ingreso. A pesar de que la diferencia numeraria de los límites inferiores entre los distintos rangos no es igual en todos, pues en los primeros rangos el aumento es de ochocientos mil pesos y posteriormente dicho aumento va variando, lo cierto es que al hacer el ejercicio en cada uno de los rangos, con una cantidad que supera en cien mil pesos el límite inferior de cada rango, el aumento del monto a pagar –sin la cuota fija– siempre es constante y de modo proporcional, esto es, en quinientos pesos. Incluso, si se hace un ejercicio con la mecánica completa, sin tomar en cuenta la sobretasa, se advierte que existe un aumento proporcional conforme al aumento del valor del bien inmueble. De la aplicación conjunta de la mecánica establecida en la tabla deriva que para efecto del cálculo del impuesto sobre adquisición de inmuebles, el legislador configuró la tarifa aplicable de una manera progresiva, pues en la medida en que aumenta la base gravable, se incrementa la cuota fija y la tasa marginal, y al hacer el cálculo correspondiente, conforme a la fórmula prevista en el artículo 8 referido, se genera un incremento progresivo en el impuesto a pagar conforme aumenta el valor del inmueble. PLENO REGIONAL EN MATERIAS ADMINISTRATIVA Y CIVIL DE LA REGIÓN CENTRO-NORTE, CON RESIDENCIA EN LA CIUDAD DE MÉXICO",
+   "precedentes": "Contradicción de criterios 92/2026. Entre los sustentados por los Tribunales Colegiados Segundo y Tercero, ambos del Décimo Quinto Circuito. 10 de septiembre de 2026. Unanimidad de votos de las Magistradas Mayra Sandoval Mendoza, Virginia Pétriz Herrera y Mónica Saloma Palacios. Ponente: Magistrada Virginia Pétriz Herrera. Secretaria: Ana Paola Surdez López. Tesis y/o criterios contendientes: El sustentado por el Segundo Tribunal Colegiado del Décimo Quinto Circuito, al resolver el amparo en revisión administrativo 492/2025, y el diverso sustentado por el Tercer Tribunal Colegiado del Décimo Quinto Circuito, al resolver el amparo en revisión administrativo 253/2025.",
+   "votos": [],
+   "notas_publicacion": "Esta tesis se publicó el viernes 13 de noviembre de 2026 a las 10:24 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 17 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032905"
+  },
+  {
+   "registro": 2032922,
+   "rubro": "SUSPENSIÓN PROVISIONAL EN AMPARO INDIRECTO. PROCEDE CONTRA CUOTAS COMPENSATORIAS DERIVADAS DE RESOLUCIONES PRELIMINARES ANTIDUMPING SI SE GARANTIZA EL INTERÉS FISCAL.",
+   "clave": "PR.CRT. J/3 A (12a.)",
+   "tipo": "Jurisprudencia",
+   "instancia": "Plenos Regionales",
+   "materias": "Administrativa, Común",
+   "epoca": "Duodécima Época",
+   "fecha_publicacion": "2026-11-13 10:24:00.0",
+   "texto": "Hechos: Los tribunales colegiados de circuito contendientes sustentaron criterios contradictorios al analizar el alcance interpretativo del artículo 129, fracción X, de la Ley de Amparo, a efecto de determinar si procede la suspensión provisional contra las resoluciones preliminares de procedimientos administrativos de investigación antidumping, mediante las cuales se impusieron cuotas compensatorias provisionales a diversos productos originarios de países extranjeros. Mientras que uno consideró que no porque el establecimiento de dichas cuotas respondía a una noción de orden público e interés social, lo cual debía estudiarse casuísticamente, cuya finalidad era contrarrestar prácticas de dumping que causaban daño material a la industria nacional; el otro estimó que dicho artículo las excluye expresamente del régimen general de afectación al orden público e interés social y las somete al diverso 135 de la propia ley, por lo que sí procede sujetando su concesión a que se otorgue la garantía del interés fiscal. Al conocer de la contradicción de criterios, este Pleno Regional fijó como punto a dilucidar el siguiente: ¿Cuando se solicita la suspensión provisional en el juicio de amparo contra cuotas compensatorias derivadas de una resolución preliminar de un procedimiento administrativo de investigación antidumping, el juzgador debe analizar casuísticamente si su concesión –aun condicionada al otorgamiento de garantía del interés fiscal en términos del artículo 135 de la Ley de Amparo– afecta el orden público e interés social, y ese análisis puede conducir a negar la medida cautelar; o bien, la excepción prevista en el artículo 129, fracción X, del mismo ordenamiento implica que dicha suspensión, garantizado el interés fiscal, no puede considerarse por sí misma contraria al orden público ni al interés social? Criterio jurídico: Procede la suspensión provisional contra las cuotas compensatorias derivadas de una resolución preliminar de un procedimiento administrativo de investigación antidumping, sin que pueda considerarse, por sí misma, contraria al orden público ni al interés social, sujetándose su efectividad al otorgamiento de la garantía del interés fiscal correspondiente. Justificación: De la interpretación sistemática de los artículos 129, fracción X y 135 de la Ley de Amparo, deriva que el legislador determinó que no se contravienen disposiciones de orden público ni se sigue perjuicio al interés social tratándose de la suspensión de las cuotas compensatorias que se imponen en ese tipo de resoluciones. De manera que una vez garantizado el interés fiscal en términos del artículo 135 referido, será efectiva la suspensión concedida. La estimación del orden público no es una determinación abstracta, sino que atiende a los efectos reales que la suspensión produce en la colectividad. Por ello, si el legislador ya realizó esa ponderación y determinó que la medida cautelar condicionada a esa garantía no priva a la sociedad de un beneficio ni le infiere un daño que de otra manera no resentiría, la persona juzgadora no está habilitada para reabrir ese juicio de manera casuística sustituyendo la decisión legislativa por consideraciones de política económica o de contexto. Además, ello es congruente con los artículos 64 y 65 de la Ley de Comercio Exterior, que confirman la procedencia de garantizar las cuotas compensatorias provisionales en los términos del Código Fiscal de la Federación, en tanto que ello funge como mecanismo de tutela del interés fiscal. Esto es, asegurar que en caso de que la resolución definitiva confirme la procedencia de la cuota, el Estado pueda hacerla efectiva, sin que el diferimiento temporal haya generado una pérdida patrimonial irreparable para el erario. PLENO REGIONAL ESPECIALIZADO EN COMPETENCIA ECONÓMICA, RADIODIFUSIÓN Y TELECOMUNICACIONES.",
+   "precedentes": "Contradicción de criterios 6/2026. Entre los sustentados por los Tribunales Colegiados de Circuito Primero y Segundo, ambos en Materia Administrativa Especializados en Competencia Económica, Radiodifusión y Telecomunicaciones, con residencia en la Ciudad de México y jurisdicción en toda la República. 19 de mayo de 2026. Mayoría de votos de las personas Magistradas Mayra Sandoval Mendoza y Urbano Martínez Hernández. Disidente y ponente: Magistrada Paula María García Villegas Sánchez Cordero. Secretario: Mario Rafael Sulvaran Viñas. Tesis y/o criterios contendientes: El sustentado por el Primer Tribunal Colegiado de Circuito en Materia Administrativa Especializado en Competencia Económica, Radiodifusión y Telecomunicaciones, con residencia en la Ciudad de México y jurisdicción en toda la República, al resolver la queja 73/2026, y el diverso sustentado por el Segundo Tribunal Colegiado de Circuito en Materia Administrativa Especializado en Competencia Económica, Radiodifusión y Telecomunicaciones, con residencia en la Ciudad de México y jurisdicción en toda la República, al resolver las quejas 74/2026 y 75/2026.",
+   "votos": [
+    "47791"
+   ],
+   "notas_publicacion": "Esta tesis se publicó el viernes 13 de noviembre de 2026 a las 10:24 horas en el Semanario Judicial de la Federación y, por ende, se considera de aplicación obligatoria a partir del día hábil siguiente, 17 de noviembre de 2026, para los efectos previstos en el punto octavo del Acuerdo General Plenario 7/2025 (12a.).",
+   "alertas_vigencia": [
+    "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"
+   ],
+   "url": "https://sjf2.scjn.gob.mx/detalle/tesis/2032922"
+  }
+ ],
+ "comunicados": [
+  {
+   "id": 8581,
+   "numero": "157",
+   "fecha": "",
+   "titulo": "La Suprema Corte protege la representación de las minorías y el pluralismo político en el Ayuntamiento de la capital de Puebla.",
+   "asuntos": [],
+   "votaciones": [],
+   "resumen": "",
+   "url": "https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8581"
+  },
+  {
+   "id": 8582,
+   "numero": "158",
+   "fecha": "",
+   "titulo": "Mediante diálogo constructivo y respetuoso se alcanzan acuerdos para encauzar la inconformidad por la evaluación del desempeño judicial.",
+   "asuntos": [],
+   "votaciones": [],
+   "resumen": "",
+   "url": "https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8582"
+  },
+  {
+   "id": 8583,
+   "numero": "159",
+   "fecha": "",
+   "titulo": "La Suprema Corte garantiza perspectiva de infancia, género e interseccionalidad y brinda certeza sobre las reglas en juicios contenciosos administrativos, propiedad industrial y competencia económica.",
+   "asuntos": [],
+   "votaciones": [],
+   "resumen": "",
+   "url": "https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8583"
+  },
+  {
+   "id": 8584,
+   "numero": "160",
+   "fecha": "",
+   "titulo": "La Suprema Corte protege la libre determinación de pueblos y comunidades indígenas y brinda certeza jurídica en materia penal y relacionada con la Ley de Amparo.",
+   "asuntos": [],
+   "votaciones": [],
+   "resumen": "",
+   "url": "https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8584"
+  },
+  {
+   "id": 8585,
+   "numero": "161",
+   "fecha": "",
+   "titulo": "La Suprema Corte avala sanciones por lesiones en la práctica médica y confirma reglas sobre procedimientos administrativos y de competencia económica.",
+   "asuntos": [],
+   "votaciones": [],
+   "resumen": "",
+   "url": "https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8585"
+  },
+  {
+   "id": 8586,
+   "numero": "162",
+   "fecha": "",
+   "titulo": "La Suprema Corte precisa los límites para el acceso a datos de telecomunicaciones con control judicial, fortalece los derechos de las víctimas y valida disposiciones en materia de comercio exterior.",
+   "asuntos": [],
+   "votaciones": [],
+   "resumen": "",
+   "url": "https://www.internet2.scjn.gob.mx/red2/comunicados/comunicado.asp?id=8586"
+  }
+ ]
 }

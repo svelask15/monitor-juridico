@@ -19,7 +19,7 @@ def _orden_dof(notas: list[dict], prioridad_max: int):
 
 def hay_algo(nov: dict, prioridad_max: int) -> bool:
     return bool(
-        nov.get("comunicados") or nov.get("tesis") or nov.get("sesiones")
+        nov.get("comunicados") or nov.get("tesis") or nov.get("sesiones") or nov.get("agenda")
         or any(n["prioridad"] <= prioridad_max for n in nov.get("dof", []))
     )
 
@@ -31,7 +31,8 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
     com = nov.get("comunicados", [])
     dof = [n for n in nov.get("dof", []) if n["prioridad"] <= prioridad_max]
     ses_n = len(nov.get("sesiones", []))
-    L.append(f"**Resumen:** {ses_n} sesiones del Pleno · {len(com)} comunicados · {len(tesis)} tesis nuevas "
+    ag_n = len(nov.get("agenda", []))
+    L.append(f"**Resumen:** {ses_n} sesiones del Pleno · {ag_n} listas para próximas sesiones · {len(com)} comunicados · {len(tesis)} tesis nuevas "
              f"({sum(t['tipo'] == 'Jurisprudencia' for t in tesis)} jurisprudencias, "
              f"{sum(bool(t.get('contradiccion')) for t in tesis)} por contradicción de criterios) · "
              f"{len(alertas)} alertas de vigencia · {len(dof)} publicaciones relevantes en el DOF")
@@ -84,6 +85,20 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             L.append("**Votos anunciados**")
             L += [f"- _{v['quien']}:_ {v['texto']}" for v in ses["votos_anunciados"]]
             L.append("")
+
+    for lista in nov.get("agenda", []):
+        aviso = " · lista actualizada" if lista.get("actualizada") else ""
+        L += [f"## 📅 Agenda: sesión del {lista['fecha']}{aviso}",
+              f"{len(lista['asuntos'])} asuntos · [Lista oficial (PDF)]({lista['url']})", ""]
+        for a_ in lista["asuntos"]:
+            desc = a_["descripcion"][:160] + ("…" if len(a_["descripcion"]) > 160 else "")
+            desc = desc[:1].upper() + desc[1:]
+            pon = f" · ponencia {a_['ponente']}" if a_["ponente"] else ""
+            proy = f" · [proyecto]({a_['proyecto']})" if a_.get("proyecto") else ""
+            desde = a_.get("listado_desde", "")
+            antes = f" _(en lista desde el {desde})_" if desde and desde.lower() != lista["fecha"].lower() else ""
+            L.append(f"{a_['orden']}. **{a_['tipo']} {a_['numero']}**{pon} — {desc}{proy}{antes}")
+        L.append("")
 
     if tesis:
         L += ["## 📚 Tesis y jurisprudencia nuevas (Semanario Judicial)", ""]

@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-from monitor import comunicados, dof, estado, notificar, reporte, sesiones, sjf
+from monitor import agenda, comunicados, dof, estado, notificar, reporte, sesiones, sjf
 from monitor.clasificar import clasificar
 
 RAIZ = Path(__file__).resolve().parent
@@ -122,11 +122,19 @@ def revisar_sesiones(cfg, est, hoy, nov):
     log(f"Sesiones del Pleno: {len(nuevas)} versiones taquigráficas nuevas")
 
 
+def revisar_agenda(cfg, est, hoy, nov):
+    vistas = est.setdefault("agenda_vista", {})
+    listas = agenda.obtener(hoy.isoformat(), vistas)
+    nov["agenda"] = [x.dict() for x in listas]
+    log(f"Agenda del Pleno: {len(listas)} listas nuevas o actualizadas")
+
+
 FUENTES = {
     "dof": ("Diario Oficial (SIDOF)", revisar_dof),
     "semanario": ("Semanario Judicial de la Federación", revisar_semanario),
     "comunicados": ("Comunicados de prensa de la SCJN", revisar_comunicados),
     "sesiones": ("Versiones taquigráficas del Pleno", revisar_sesiones),
+    "agenda": ("Listas oficiales para sesión (agenda)", revisar_agenda),
 }
 
 
@@ -159,7 +167,7 @@ def diario(cfg, args) -> int:
             errores.append(f"{nombre}: {type(e).__name__}: {str(e)[:200]}")
 
     pmax = cfg["dof"].get("prioridad_maxima", 2)
-    nov_guardar = {k: v for k, v in nov.items() if k not in ("avisos", "instancias")}
+    nov_guardar = {k: v for k, v in nov.items() if k not in ("avisos", "instancias", "agenda")}
     nov_guardar["dof"] = [n for n in nov["dof"] if n["prioridad"] <= pmax]
     estado.guardar_historico(hoy, nov_guardar)
     estado.guardar(est)

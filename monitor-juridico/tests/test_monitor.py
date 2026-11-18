@@ -182,3 +182,27 @@ class PruebasSesiones(unittest.TestCase):
         f = self.m.parsear_listado(html)
         self.assertEqual(f[0]["url"], "https://www.scjn.gob.mx/sites/default/files/versiones-taquigraficas/documento/2026-11-13/12%20noviembre.pdf")
         self.assertEqual(f[0]["instancia"], "Pleno")
+
+
+class PruebasAgenda(unittest.TestCase):
+    def test_lista(self):
+        from pathlib import Path
+        from monitor import agenda
+        texto = (Path(__file__).parent / "fixtures" / "lista_extracto.txt").read_text(encoding="utf-8")
+        urls = ["http://www2.scjn.gob.mx/Juridica/Engroses/Cerrados/Publico/Proyecto/2026/11/CC360_2026.pdf",
+                "http://www2.scjn.gob.mx/Juridica/Engroses/Cerrados/Publico/Proyecto/2026/11/QUEJA_CC_y_AI1_2026_CA.pdf"]
+        l = agenda.parsear_lista(texto, "u", "", urls)
+        self.assertEqual(l.fecha, "19 de noviembre de 2026")
+        a = {x["numero"]: x for x in l.asuntos}
+        self.assertEqual(list(a), ["360/2026", "1/2026-CA", "271/2026", "2932/2022"])
+        self.assertEqual(a["360/2026"]["tipo"], "Controversia Constitucional")
+        self.assertEqual(a["360/2026"]["ponente"], "Guerrero García")
+        self.assertTrue(a["360/2026"]["proyecto"].endswith("CC360_2026.pdf"))
+        self.assertTrue(a["1/2026-CA"]["proyecto"].endswith("AI1_2026_CA.pdf"))
+        self.assertEqual(a["1/2026-CA"]["tipo"], "Queja en la Controversia Constitucional")
+        self.assertEqual(a["271/2026"]["ponente"], "Ortiz Ahlf")
+        self.assertEqual(a["2932/2022"]["ponente"], "Aguilar Ortiz")
+        self.assertEqual(a["2932/2022"]["listado_desde"], "2 de octubre de 2025")
+        self.assertEqual(a["271/2026"]["proyecto"], "")
+        self.assertNotIn("CURP", str(l.asuntos))
+        self.assertEqual(agenda.fecha_iso("19 de noviembre de 2026"), "2026-11-19")

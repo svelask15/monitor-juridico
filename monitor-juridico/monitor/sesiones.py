@@ -23,8 +23,10 @@ from .http import nueva_sesion, pausa
 SITIO = "https://www.scjn.gob.mx"
 LISTADO = SITIO + "/multimedia/versiones-taquigraficas?page={pagina}"
 
-ESTADOS = r"RESUELT[OA]S?|EN LISTA|RETIRAD[OA]S?|APLAZAD[OA]S?|NO EJERCE|SE EJERCE|DESECHAD[OA]|SOBRESE[ÍI]D[OA]|DESIERT[OA]"
-_ENTRADA = re.compile(r"(?<![\w/])(\d{1,5}/\d{4}(?:-[A-Z]{1,3})?) (?=[A-ZÁÉÍÓÚÑ]{3,})")
+ESTADOS = (r"RESUELT[OA]S?|EN LISTA|RETIRAD[OA]S?|APLAZAD[OA]S?|NO EJERCE|SE EJERCE|EJERCE|NO REASUME|REASUME|"
+           r"DESECHAD[OA]|SOBRESE[ÍI]D[OA]|DESIERT[OA]|INEXISTENTE|EXISTENTE|IMPROCEDENTE|SIN MATERIA")
+NUMERO = r"\d{1,5}/\d{4}(?:-[A-Z]{1,3})?(?: Y SUS? ACUMULADAS? (?:\d{1,5}(?:/\d{4})?(?:, | Y )?)+)?"
+_ENTRADA = re.compile(r"(?<![\w/])(" + NUMERO + r") (?=[A-ZÁÉÍÓÚÑ]{3,})")
 _PONENCIA = re.compile(
     r"\(PONENCIA (?:DE LA|DEL|DE) (?:SEÑORA? )?(?:MINISTR[OA] )?(?:PRESIDENT[EA] )?([A-ZÁÉÍÓÚÑ ]+?)\)\.?")
 _ESTADO = re.compile(rf"\b({ESTADOS})\b")
@@ -33,6 +35,10 @@ _TIPO = re.compile(r"^(.*?)(?= PROMOVID| INTERPUEST| SUSCITAD| FORMULAD| RESPECT
 _ORADOR = re.compile(
     r"(SEÑORA? MINISTR[OA](?: PRESIDENT[EA])?(?: [A-ZÁÉÍÓÚÑ]+){0,3}|SECRETARI[OA] GENERAL DE ACUERDOS):")
 _VOTO = re.compile(r"\bvotos? (concurrente|particular|aclaratorio|razonado|de minor[ií]a)", re.I)
+_PRIMERA_PERSONA = re.compile(
+    r"\b(anuncio|haré|hago|formularé|formulo|emitiré|elaboraré|reservo|me reservo|reservarme|reservar|"
+    r"tengo reserva|haré reserva|voy a (?:emitir|hacer|formular|votar|estar|reservar)|con (?:un |reserva de |mi )?votos?)\b", re.I)
+_DISCUSION = re.compile(r"cada quien|pueden formular|será parte de|acepto (?:los|el) votos?|uno sostiene|hay algunos como", re.I)
 _DECISION = re.compile(
     r"((?:[A-ZÁÉÍÓÚÑ0-9/,;]+ ){3,}?(?:RESUELT[OA]S?|SE EJERCE|NO SE EJERCE|SE APLAZA|SE RETIRA|SE DESECHA)(?: [A-ZÁÉÍÓÚÑ0-9/,;.]+)*\.)")
 _FECHA = re.compile(r"CELEBRADA EL \w+ (\d{1,2} DE \w+ DE \d{4})")
@@ -73,11 +79,24 @@ def parsear_listado(html_texto: str) -> list[dict]:
 def texto_pdf(contenido: bytes) -> str:
     from pypdf import PdfReader
     lector = PdfReader(io.BytesIO(contenido))
-    return "\n".join((p.extract_text() or "") for p in lector.pages)
+    paginas = []
+    for p in lector.pages:
+        t = p.extract_text() or ""
+        # el número de página (y adornos) queda al inicio o al final del texto de cada hoja;
+        # si no se quita, aparece a media frase al unir las páginas ("Aguilar 49 Ortiz")
+        t = re.sub(r"^[\s“”_]*\d{1,3}[\s“”_]*(?=\S)", "", t)
+        t = re.sub(r"(?<=\S)[\s“”_]+\d{1,3}[\s“”_]*$", "", t)
+        paginas.append(t)
+    return "\n".join(paginas)
+
+
+_LINEA_BASURA = re.compile(r"^[\s“”_]*\d{0,3}[\s“”_]*$")
 
 
 def _plano(texto: str) -> str:
-    texto = texto.replace("\f", " ").replace("“", " ").replace("”", " ")
+    """Une el texto en una sola línea, quitando números de página y adornos."""
+    lineas = [l for l in texto.replace("\f", "\n").splitlines() if not _LINEA_BASURA.match(l)]
+    texto = " ".join(lineas).replace("“", " ").replace("”", " ")
     return re.sub(r"\s+", " ", texto).strip()
 
 
@@ -122,8 +141,11 @@ def parsear_indice(plano: str) -> list[dict]:
 def _estado_legible(e: str) -> str:
     for raiz, nombre in (("RESUELT", "Resueltos"), ("RETIRAD", "Retirados"), ("APLAZAD", "Aplazados"),
                          ("EN LISTA", "Quedaron en lista"), ("NO EJERCE", "No se ejerce la facultad de atracción"),
-                         ("SE EJERCE", "Se ejerce la facultad de atracción"), ("DESECHAD", "Desechados"),
-                         ("SOBRESE", "Sobreseídos"), ("DESIERT", "Desiertos")):
+                         ("SE EJERCE", "Se ejerce la facultad de atracción"), ("EJERCE", "Se ejerce la facultad de atracción"),
+                         ("NO REASUME", "No se reasume competencia"), ("REASUME", "Se reasume competencia"),
+                         ("DESECHAD", "Desechados"), ("SOBRESE", "Sobreseídos"), ("DESIERT", "Desiertos"),
+                         ("INEXISTENTE", "Contradicción inexistente"), ("EXISTENTE", "Contradicción existente"),
+                         ("IMPROCEDENTE", "Improcedentes"), ("SIN MATERIA", "Sin materia")):
         if e.startswith(raiz):
             return nombre
     return e.capitalize()
@@ -153,8 +175,8 @@ def parsear_debate(plano: str) -> tuple[list[str], list[dict], list[str]]:
             quien = re.sub(r"^SEÑORA? MINISTR[OA] ", "", orador)
             quien = _titulo(quien.replace("PRESIDENTE ", "Presidente ") if quien != "PRESIDENTE" else "Presidente")
             for o in _oraciones(texto):
-                if _VOTO.search(o) and not re.search(r"\bmi voto es\b(?!.*\bvoto (concurrente|particular|aclaratorio))", o, re.I):
-                    votos.append({"quien": quien, "texto": o[:350]})
+                if _VOTO.search(o) and _PRIMERA_PERSONA.search(o) and not _DISCUSION.search(o):
+                    votos.append({"quien": quien, "texto": o[:300] + ("…" if len(o) > 300 else "")})
             if "PRESIDENT" in orador:
                 for m in _DECISION.finditer(texto):
                     d = m.group(1).strip()

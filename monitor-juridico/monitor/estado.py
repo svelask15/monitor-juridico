@@ -22,6 +22,7 @@ VACIO = {
     "sjf_inicializado": False,
     "comunicados_ultimo_id": None,
     "sesiones_vistas": [],
+    "agenda_vista": {},  # fecha ISO de la sesión -> URL de la lista ya enviada
 }
 
 
@@ -37,6 +38,7 @@ def guardar(estado: dict) -> None:
     estado["dof_codigos"] = sorted(set(estado["dof_codigos"]))[-20000:]
     estado["sjf_registros"] = sorted(set(estado["sjf_registros"]))
     estado["sesiones_vistas"] = list(dict.fromkeys(estado.get("sesiones_vistas", [])))[-400:]
+    estado["agenda_vista"] = dict(sorted(estado.get("agenda_vista", {}).items())[-60:])
     ARCHIVO.write_text(json.dumps(estado, ensure_ascii=False, indent=1), encoding="utf-8")
 
 

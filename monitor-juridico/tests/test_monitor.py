@@ -237,3 +237,25 @@ SUPREMA CORTE DE JUSTICIA DE LA NACIÓN TRIBUNAL PLENO SESIÓN PÚBLICA"""
         self.assertNotIn("2843", a["53/2026-CA"]["descripcion"])
         self.assertIn("94/2026 Y ACUMULADAS 95/2026", a)
         self.assertIn("Fracción III", a["6/2026"]["tipo"])
+
+
+class PruebasMaterias(unittest.TestCase):
+    def test_clasificacion(self):
+        from monitor.materias import clasificar, es_tramite
+        self.assertIn("Penal", clasificar("Acción de Inconstitucionalidad", "invalidez del artículo 295 Bis del Código Penal"))
+        self.assertNotIn("Derechos humanos", clasificar("juzgado en el estado de aguascalientes"))  # 'agua' no cuenta
+        self.assertEqual(clasificar("Ley Federal del Trabajo"), ["Laboral y seguridad social"])
+        self.assertTrue(es_tramite("Controversia Constitucional", "invalidez de la ley de ingresos del municipio de Ario"))
+        self.assertFalse(es_tramite("Amparo en Revisión", ""))
+
+    def test_filtrar(self):
+        from monitor import reporte
+        nov = {"dof": [{"codigo": 1, "fecha": "17-11-2026", "edicion": "Matutina", "titulo": "Acuerdo fiscal",
+                        "poder": "", "organismo": "SAT", "pagina": 1, "url": "u", "categoria": "acuerdo",
+                        "categoria_etiqueta": "x", "prioridad": 2, "palabras_clave": [], "materias": ["Fiscal"]},
+                       {"codigo": 2, "fecha": "17-11-2026", "edicion": "Matutina", "titulo": "DECRETO constitucional",
+                        "poder": "", "organismo": "PR", "pagina": 1, "url": "u2", "categoria": "constitucion",
+                        "categoria_etiqueta": "x", "prioridad": 1, "palabras_clave": [], "materias": ["Constitucional"]}]}
+        md = reporte.markdown("t", nov, 3, None, {"formato": "compacto", "interes": ["Penal"], "modo": "filtrar"})
+        self.assertNotIn("Acuerdo fiscal", md)
+        self.assertIn("DECRETO constitucional", md)  # lo prioritario siempre llega

@@ -37,6 +37,21 @@ comunicados:
   # Si no hay fechas disponibles, cuántos de los más recientes mostrar la primera vez
   mostrar_al_iniciar: 6
 
+materias:
+  # Materias que más te interesan. Opciones: Constitucional, Derechos humanos, Penal,
+  # Civil y familiar, Mercantil, Laboral y seguridad social, Administrativa, Fiscal,
+  # Electoral, Competencia y telecomunicaciones, Municipal y federalismo.
+  # Vacío = todas por igual.
+  interes: []
+  # priorizar = todo llega, pero lo de tus materias va primero y marcado con ★
+  # filtrar   = en el correo solo aparece lo de tus materias (más reformas
+  #             constitucionales, leyes nuevas y alertas de vigencia, que siempre llegan)
+  # En los dos casos el archivo histórico (para la página) guarda todo completo.
+  modo: priorizar
+
 envio:
   # Enviar correo/Telegram aunque no haya novedades (para saber que sigue vivo)
   enviar_si_vacio: false
+  # compacto = asuntos de trámite agrupados en una línea, votaciones unánimes resumidas
+  # completo = todo el detalle de cada asunto en el correo
+  formato: compacto

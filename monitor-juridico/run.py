@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-from monitor import agenda, comunicados, dof, estado, notificar, reporte, sesiones, sjf
+from monitor import agenda, comunicados, dof, estado, materias, notificar, reporte, sesiones, sjf
 from monitor.clasificar import clasificar
 
 RAIZ = Path(__file__).resolve().parent
@@ -139,6 +139,12 @@ FUENTES = {
 
 
 # ------------------------------------------------------------------- flujo
+def opciones_correo(cfg) -> dict:
+    m = cfg.get("materias") or {}
+    return {"formato": (cfg.get("envio") or {}).get("formato", "compacto"),
+            "interes": m.get("interes") or [], "modo": m.get("modo", "priorizar")}
+
+
 def enviar(asunto, md, cfg, args, vacio):
     if args.sin_enviar or (vacio and not cfg["envio"].get("enviar_si_vacio")):
         log("No se envía notificación")
@@ -166,15 +172,16 @@ def diario(cfg, args) -> int:
             traceback.print_exc()
             errores.append(f"{nombre}: {type(e).__name__}: {str(e)[:200]}")
 
+    materias.anotar(nov)
     pmax = cfg["dof"].get("prioridad_maxima", 2)
-    nov_guardar = {k: v for k, v in nov.items() if k not in ("avisos", "instancias", "agenda")}
+    nov_guardar = {k: v for k, v in nov.items() if k not in ("avisos", "instancias")}
     nov_guardar["dof"] = [n for n in nov["dof"] if n["prioridad"] <= pmax]
     estado.guardar_historico(hoy, nov_guardar)
     estado.guardar(est)
 
     titulo = f"Monitor jurídico — {hoy:%d/%m/%Y}"
     errores += nov.pop("avisos", [])
-    md = reporte.markdown(titulo, nov, pmax, errores)
+    md = reporte.markdown(titulo, nov, pmax, errores, opciones_correo(cfg))
     REPORTES.mkdir(exist_ok=True)
     (REPORTES / f"{hoy.isoformat()}.md").write_text(md, encoding="utf-8")
     vacio = not reporte.hay_algo(nov, pmax) and not errores
@@ -189,7 +196,7 @@ def semanal(cfg, args) -> int:
     nov = estado.leer_historico(desde, hoy)
     pmax = cfg["dof"].get("prioridad_maxima", 2)
     titulo = f"Resumen semanal — {desde:%d/%m} al {hoy:%d/%m/%Y}"
-    md = reporte.markdown(titulo, nov, pmax)
+    md = reporte.markdown(titulo, nov, pmax, opciones=opciones_correo(cfg))
     REPORTES.mkdir(exist_ok=True)
     (REPORTES / f"semana-{hoy.isoformat()}.md").write_text(md, encoding="utf-8")
     enviar(titulo, md, cfg, args, not reporte.hay_algo(nov, pmax))

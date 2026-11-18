@@ -54,7 +54,7 @@ def guardar_historico(fecha: dt.date, novedades: dict) -> Path:
 
 
 def leer_historico(desde: dt.date, hasta: dt.date) -> dict:
-    junto: dict = {"dof": [], "tesis": [], "comunicados": [], "sesiones": []}
+    junto: dict = {"dof": [], "tesis": [], "comunicados": [], "sesiones": [], "agenda": []}
     d = desde
     while d <= hasta:
         ruta = HISTORICO / f"{d.isoformat()}.json"

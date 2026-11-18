@@ -47,6 +47,32 @@ def _desc(a: dict, n: int) -> str:
     return d[:1].upper() + d[1:]
 
 
+def _es_scjn(t: dict) -> bool:
+    i = (t.get("instancia") or "").lower()
+    return i == "pleno" or "suprema corte" in i
+
+
+def _lineas_tesis(t: dict, op: dict, destacar: bool = False) -> list[str]:
+    tipo = "Jurisprudencia" if t["tipo"] == "Jurisprudencia" else "Tesis aislada"
+    L = [f"- **{t['clave'] or 'Sin clave'}** · {tipo} — {t['rubro']}{_etiquetas(t.get('materias_lista', []), op)}  "]
+    extra = " · ".join(x for x in (t["materias"], f"publicada {t['fecha_publicacion']}" if t["fecha_publicacion"] else "") if x)
+    L.append(f"  {extra} · [registro {t['registro']}]({t['url']})")
+    if destacar and t.get("alertas_vigencia"):
+        L.append(f"  **Cambio de criterio:** {'; '.join(t['alertas_vigencia'])}")
+    elif destacar and t.get("contradiccion"):
+        L.append("  **Define el criterio que debe prevalecer** en una contradicción de criterios "
+                 "(el criterio contrario deja de aplicarse)")
+    if t.get("precedentes"):
+        pre = t["precedentes"][:320] + ("…" if len(t["precedentes"]) > 320 else "")
+        L.append(f"  _{'Contradicción de criterios' if t.get('contradiccion') else 'Precedente'}:_ {pre}")
+    if t.get("referencias"):
+        L.append(f"  _Cita:_ {', '.join(t['referencias'])}")
+    votos = t.get("votos_detalle") or [{"descripcion": f"Voto {v}", "url": t["url"]} for v in t.get("votos", [])]
+    for v in votos:
+        L.append(f"  _Voto:_ [{v['descripcion']}]({v['url']})")
+    return L
+
+
 _TIPO_VOTO = re.compile(r"\bvotos? (concurrente|particular|aclaratorio|razonado|de minor[ií]a)", re.I)
 
 
@@ -81,18 +107,28 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
     ag_n = len(nov.get("agenda", []))
     L.append(f"**Resumen:** {ses_n} sesiones del Pleno · {ag_n} listas para próximas sesiones · {len(com)} comunicados · {len(tesis)} tesis nuevas "
              f"({sum(t['tipo'] == 'Jurisprudencia' for t in tesis)} jurisprudencias, "
+             f"{sum(_es_scjn(t) and t['tipo'] == 'Jurisprudencia' for t in tesis)} de la SCJN, "
              f"{sum(bool(t.get('contradiccion')) for t in tesis)} por contradicción de criterios) · "
              f"{len(alertas)} alertas de vigencia · {len(dof)} publicaciones relevantes en el DOF")
     L.append("")
 
+    jur_scjn = [t for t in tesis if _es_scjn(t) and t["tipo"] == "Jurisprudencia"]
+    if jur_scjn:
+        L += ["## ⭐ Jurisprudencia nueva de la SCJN", ""]
+        for t in sorted(jur_scjn, key=lambda t: (not t.get("alertas_vigencia"), not t.get("contradiccion"), t["registro"])):
+            L += _lineas_tesis(t, op, destacar=True)
+        L.append("")
+    tesis_resto = [t for t in tesis if t not in jur_scjn]
+    alertas = [t for t in alertas if t not in jur_scjn]
     if alertas:
-        L += ["## ⚠️ Criterios que podrían haber dejado de estar vigentes", "",
+        L += ["## ⚠️ Otros criterios que podrían haber dejado de estar vigentes", "",
               "_El texto de la tesis lo dice expresamente; verifica en el Semanario._", ""]
         for t in alertas:
             L.append(f"- **{t['clave'] or t['registro']}** — {t['rubro'][:220]}  ")
             refs = f" · cita: {', '.join(t.get('referencias', []))}" if t.get("referencias") else ""
             L.append(f"  {'; '.join(t['alertas_vigencia'])}{refs} · [registro {t['registro']}]({t['url']})")
         L.append("")
+
 
     if com:
         L += ["## 🏛️ Lo que resolvió el Pleno de la SCJN", ""]
@@ -188,28 +224,18 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             L += ["", "_De trámite u otras materias:_"] + _agrupado(resto, False)
         L.append("")
 
-    if tesis:
-        L += ["## 📚 Tesis y jurisprudencia nuevas (Semanario Judicial)", ""]
+    if tesis_resto:
+        L += ["## 📚 Otras tesis y jurisprudencias nuevas (Semanario Judicial)", ""]
         def orden_inst(i):
             n = i.lower()
             return (0 if n == "pleno" or "suprema corte" in n else 1, i)
-        for inst in sorted({t["instancia"] or "Sin instancia" for t in tesis}, key=orden_inst):
-            grupo = [t for t in tesis if (t["instancia"] or "Sin instancia") == inst]
+        for inst in sorted({t["instancia"] or "Sin instancia" for t in tesis_resto}, key=orden_inst):
+            grupo = [t for t in tesis_resto if (t["instancia"] or "Sin instancia") == inst]
             nombre = "Pleno de la SCJN" if inst.lower() == "pleno" else inst
             L.append(f"### {nombre} ({len(grupo)})")
-            for t in sorted(grupo, key=lambda t: (t["tipo"] != "Jurisprudencia", t["registro"])):
-                tipo = "Jurisprudencia" if t["tipo"] == "Jurisprudencia" else "Tesis aislada"
-                L.append(f"- **{t['clave'] or 'Sin clave'}** · {tipo} — {t['rubro']}{_etiquetas(t.get('materias_lista', []), op)}  ")
-                extra = " · ".join(x for x in (t["materias"], f"publicada {t['fecha_publicacion']}" if t["fecha_publicacion"] else "") if x)
-                L.append(f"  {extra} · [registro {t['registro']}]({t['url']})")
-                if t.get("precedentes"):
-                    pre = t["precedentes"][:320] + ("…" if len(t["precedentes"]) > 320 else "")
-                    L.append(f"  _{'Contradicción de criterios' if t.get('contradiccion') else 'Precedente'}:_ {pre}")
-                if t.get("referencias"):
-                    L.append(f"  _Cita:_ {', '.join(t['referencias'])}")
-                votos = t.get("votos_detalle") or [{"descripcion": f"Voto {v}", "url": t["url"]} for v in t.get("votos", [])]
-                for v in votos:
-                    L.append(f"  _Voto:_ [{v['descripcion']}]({v['url']})")
+            grupo = sorted(grupo, key=lambda t: (t["tipo"] != "Jurisprudencia", t["registro"]))
+            for t in _orden_interes(grupo, op, "materias_lista"):
+                L += _lineas_tesis(t, op)
             L.append("")
 
     if dof:

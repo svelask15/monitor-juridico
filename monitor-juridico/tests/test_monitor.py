@@ -120,8 +120,8 @@ class PruebasReporte(unittest.TestCase):
         c = comunicados.parsear(COMUNICADO_HTML, 8545)
         nov = {"dof": notas, "tesis": [t.dict()], "comunicados": [c.dict()]}
         md = reporte.markdown("Prueba", nov, 2, ["Semanario: BloqueoFirewall"])
-        self.assertIn("Criterios que podrían haber dejado de estar vigentes", md)
-        self.assertIn("Pleno de la SCJN (1)", md)
+        self.assertIn("Jurisprudencia nueva de la SCJN", md)
+        self.assertIn("Cambio de criterio", md)
         self.assertIn("Reformas a la Constitución", md)
         self.assertNotIn("licitación", md)  # prioridad 4 queda fuera
         html = reporte.html_desde_markdown(md)

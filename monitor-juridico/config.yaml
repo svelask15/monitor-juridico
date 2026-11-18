@@ -42,7 +42,7 @@ materias:
   # Civil y familiar, Mercantil, Laboral y seguridad social, Administrativa, Fiscal,
   # Electoral, Competencia y telecomunicaciones, Municipal y federalismo.
   # Vacío = todas por igual.
-  interes: []
+  interes: ["Constitucional"]
   # priorizar = todo llega, pero lo de tus materias va primero y marcado con ★
   # filtrar   = en el correo solo aparece lo de tus materias (más reformas
   #             constitucionales, leyes nuevas y alertas de vigencia, que siempre llegan)

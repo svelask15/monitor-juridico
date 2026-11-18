@@ -19,9 +19,11 @@ dof:
 semanario:
   # Épocas a vigilar: 210 = Duodécima (vigente), 200 = Undécima
   epocas: ["210"]
-  # Qué instancias te interesan. Escribe "todas" para incluir también
-  # Plenos Regionales y Tribunales Colegiados (son muchísimas tesis).
-  instancias: ["Pleno", "Plenos Regionales"]
+  # Qué instancias te interesan. "Pleno" = Pleno de la SCJN (coincidencia exacta);
+  # los demás valores funcionan como "contiene". Escribe "todas" para incluir
+  # también Tribunales Colegiados (son muchísimas tesis). Al final de cada correo
+  # verás cuántas tesis nuevas hubo por instancia, para ajustar esto.
+  instancias: ["Pleno", "Suprema Corte", "Plenos Regionales"]
   # La primera vez, cuántas de las tesis más recientes mostrar como muestra
   mostrar_al_iniciar: 15
   # Máximo de tesis nuevas a las que se les descarga el texto completo por corrida

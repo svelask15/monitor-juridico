@@ -79,8 +79,17 @@ def revisar_semanario(cfg, est, hoy, nov):
             except Exception as e:  # noqa: BLE001
                 log(f"  sin detalle para {t.registro}: {e}")
         t.alertas_vigencia = sjf.detectar_cambios_vigencia(t)
+        for id_voto in t.votos[:4]:
+            try:
+                t.votos_detalle.append(cli.voto(int(id_voto)) if str(id_voto).isdigit()
+                                       else {"id": id_voto, "url": t.url, "descripcion": id_voto})
+            except Exception as e:  # noqa: BLE001
+                log(f"  sin detalle del voto {id_voto}: {e}")
         completas.append(t.dict())
     nov["tesis"] = completas
+    from collections import Counter
+    conteo = Counter(t.instancia or "(sin instancia)" for t in nuevas)
+    nov["instancias"] = [f"{k}: {v}" for k, v in conteo.most_common()]
     log(f"Semanario: {len(todas)} tesis en la época, {len(nuevas)} nuevas, {len(completas)} reportadas")
 
 
@@ -141,7 +150,7 @@ def diario(cfg, args) -> int:
             errores.append(f"{nombre}: {type(e).__name__}: {str(e)[:200]}")
 
     pmax = cfg["dof"].get("prioridad_maxima", 2)
-    nov_guardar = {k: v for k, v in nov.items() if k != "avisos"}
+    nov_guardar = {k: v for k, v in nov.items() if k not in ("avisos", "instancias")}
     nov_guardar["dof"] = [n for n in nov["dof"] if n["prioridad"] <= pmax]
     estado.guardar_historico(hoy, nov_guardar)
     estado.guardar(est)

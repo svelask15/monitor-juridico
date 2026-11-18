@@ -42,6 +42,9 @@ class Tesis:
     votos: list[str] = field(default_factory=list)
     notas_publicacion: str = ""
     alertas_vigencia: list[str] = field(default_factory=list)
+    contradiccion: bool = False  # la jurisprudencia resuelve una contradicción de criterios
+    referencias: list[str] = field(default_factory=list)  # tesis/registros que cita
+    votos_detalle: list[dict] = field(default_factory=list)
 
     @property
     def url(self) -> str:
@@ -80,13 +83,15 @@ def _tipo(o: dict) -> str:
 
 
 def _fecha(valor) -> str:
-    """La API entrega la fecha como texto o como epoch en milisegundos."""
+    """La API entrega la fecha como texto, ISO ("2026-10-30 10:40:00.0") o epoch en ms."""
     import datetime as dt
     if isinstance(valor, (int, float)) or (isinstance(valor, str) and valor.isdigit() and len(valor) >= 10):
         n = int(valor)
         n = n / 1000 if n > 10**11 else n
         return dt.datetime.fromtimestamp(n, dt.timezone.utc).strftime("%d/%m/%Y")
-    return limpiar(valor)
+    texto = limpiar(valor)
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", texto)
+    return f"{m.group(3)}/{m.group(2)}/{m.group(1)}" if m else texto
 
 
 def parsear_tesis(o: dict) -> Tesis:
@@ -119,7 +124,6 @@ PATRONES_VIGENCIA = [
     (re.compile(r"sustitu\w* (?:de )?(?:la )?jurisprudencia", re.I), "sustitución de jurisprudencia"),
     (re.compile(r"(?:queda|quedó|quedan|deja|dejó|dejan) sin efect\w*", re.I), "criterio que queda sin efectos"),
     (re.compile(r"(?:se )?(?:aparta|apartó|abandona|abandonó|super[oóa]\w*) (?:del|el|de la|la) (?:criterio|jurisprudencia|tesis)", re.I), "abandono / superación de criterio"),
-    (re.compile(r"contradicci[oó]n de (?:criterios|tesis)", re.I), "proviene de una contradicción de criterios (revisa qué criterio deja de aplicarse)"),
     (re.compile(r"no es obligatori\w*|dej\w* de ser obligatori\w*", re.I), "criterio que deja de ser obligatorio"),
 ]
 _REF_REGISTRO = re.compile(r"registro digital:?\s*(\d{6,8})", re.I)
@@ -128,20 +132,23 @@ _REF_CLAVE = re.compile(
 )
 
 
+_CDC = re.compile(r"contradicci[oó]n de (?:criterios|tesis)", re.I)
+
+
 def detectar_cambios_vigencia(t: Tesis) -> list[str]:
+    """Llena t.contradiccion y t.referencias; devuelve solo las alertas fuertes.
+
+    Que una jurisprudencia venga de una contradicción de criterios es normal
+    (casi todas las de Plenos Regionales), así que eso NO es alerta: se marca
+    aparte. Alerta = el texto dice expresamente que un criterio se interrumpe,
+    se sustituye, se abandona o queda sin efectos.
+    """
     cuerpo = " ".join([t.rubro, t.texto, t.precedentes, t.notas_publicacion])
-    alertas = []
-    for patron, etiqueta in PATRONES_VIGENCIA:
-        if patron.search(cuerpo):
-            alertas.append(etiqueta)
-    if alertas:
-        refs = sorted(set(_REF_REGISTRO.findall(cuerpo)))
-        claves = sorted(set(c.strip() for c in _REF_CLAVE.findall(cuerpo)) - {t.clave})
-        if refs:
-            alertas.append("registros mencionados: " + ", ".join(refs))
-        if claves:
-            alertas.append("tesis mencionadas: " + ", ".join(claves[:8]))
-    return alertas
+    t.contradiccion = bool(_CDC.search(t.precedentes) or _CDC.search(t.rubro))
+    refs = [f"registro {r}" for r in sorted(set(_REF_REGISTRO.findall(cuerpo)))]
+    claves = sorted(set(c.strip() for c in _REF_CLAVE.findall(cuerpo)) - {t.clave})
+    t.referencias = (claves[:8] + refs)[:10]
+    return [etiqueta for patron, etiqueta in PATRONES_VIGENCIA if patron.search(cuerpo)]
 
 
 # --------------------------------------------------------------------- cliente
@@ -222,8 +229,49 @@ class ClienteSJF:
         return None
 
 
+VOTOS_API = f"{SITIO}/services/sjfvotosmicroservice/api/public/votos"
+_TIPO_VOTO = re.compile(r"\bvotos?\s+(particular|concurrente|aclaratorio|minoritario|de minoría|paralelo|razonado|disidente)", re.I)
+
+
+def describir_voto(texto: str) -> str:
+    """Primera línea del voto, p. ej. 'Voto particular que formula la Magistrada …'."""
+    primera = next((l.strip() for l in re.split(r"(?<=\.)\s+|\n", limpiar(texto)) if l.strip()), "")
+    return primera[:180]
+
+
+def _voto(self, id_voto: int) -> dict:
+    url = f"{SITIO}/detalle/voto/{id_voto}"
+    for params in ({"isSemanal": "true"}, {}):
+        try:
+            data = self._json("GET", f"{VOTOS_API}/{id_voto}", params=params)
+        except BloqueoFirewall:
+            break
+        except Exception:  # noqa: BLE001
+            continue
+        if isinstance(data, list):
+            data = data[0] if data else {}
+        texto = (data or {}).get("texto") or (data or {}).get("rubro") or ""
+        if texto:
+            return {"id": id_voto, "url": url, "descripcion": describir_voto(texto)}
+    return {"id": id_voto, "url": url, "descripcion": f"Voto {id_voto}"}
+
+
+ClienteSJF.voto = _voto
+
+
+def _norm(t: str) -> str:
+    import unicodedata
+    t = unicodedata.normalize("NFKD", t or "")
+    return "".join(c for c in t if not unicodedata.combining(c)).lower().strip()
+
+
 def instancia_permitida(t: Tesis, instancias: list[str]) -> bool:
+    """'Pleno' = coincidencia exacta; cualquier otro valor = 'contiene'
+    (p. ej. 'Suprema Corte' acepta 'Pleno de la Suprema Corte de Justicia...')."""
     if not instancias or "todas" in [i.lower() for i in instancias]:
         return True
-    actual = t.instancia.strip().lower()
-    return any(actual == i.strip().lower() for i in instancias)
+    actual = _norm(t.instancia)
+    for i in map(_norm, instancias):
+        if actual == i or (i != "pleno" and i in actual):
+            return True
+    return False

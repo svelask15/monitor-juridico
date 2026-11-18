@@ -53,7 +53,8 @@ def clasificar(nota: NotaDOF, palabras_clave: list[str] | None = None) -> dict:
         if regla(t, n):
             categoria = clave
             break
-    coincidencias = [p for p in (palabras_clave or []) if normalizar(p) in t]
+    es_aviso = bool(re.search(r"convocatoria|licitacion|aviso|ref:\d", f"{t} {n}"))
+    coincidencias = [] if es_aviso else [p for p in (palabras_clave or []) if normalizar(p) in t]
     etiqueta, prioridad = CATEGORIAS[categoria]
     if coincidencias and prioridad > 2:
         prioridad = 2  # una palabra clave tuya sube la nota de nivel

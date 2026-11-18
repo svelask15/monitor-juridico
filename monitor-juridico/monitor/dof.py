@@ -46,7 +46,8 @@ def parsear_dia(data: dict) -> list[NotaDOF]:
     for clave, edicion in EDICIONES.items():
         for n in data.get(clave) or []:
             codigo = n.get("codNota")
-            if not codigo:
+            # las notas sin título son encabezados de sección (preceden a la nota real)
+            if not codigo or not (n.get("titulo") or "").strip():
                 continue
             fecha = n.get("fecha", "")
             notas.append(

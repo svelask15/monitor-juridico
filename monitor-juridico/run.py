@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
-from monitor import agenda, comunicados, dof, estado, materias, notificar, pagina, reporte, sesiones, sjf
+from monitor import agenda, archivo, comunicados, dof, estado, materias, notificar, pagina, reporte, sesiones, sjf
 from monitor.clasificar import clasificar
 
 RAIZ = Path(__file__).resolve().parent
@@ -65,6 +65,13 @@ def revisar_semanario(cfg, est, hoy, nov):
     est["sjf_registros"].extend(t.registro for t in todas)
 
     relevantes = [t for t in nuevas if sjf.instancia_permitida(t, c.get("instancias", []))]
+    if est["sjf_inicializado"] and not est.get("scjn_recuperado"):
+        # el filtro anterior no reconocía "S.C.J.N.": se envían una vez las de la SCJN de las últimas 3 semanas
+        limite = (hoy - dt.timedelta(days=21)).isoformat()
+        ya = {t.registro for t in relevantes}
+        relevantes += [t for t in todas if sjf.es_scjn(t) and t.registro not in ya
+                       and pagina.iso(t.fecha_publicacion) >= limite]
+        est["scjn_recuperado"] = True
     if not est["sjf_inicializado"]:
         # primera vez: todo es "nuevo"; se muestran solo las más recientes como muestra
         relevantes = sorted(relevantes, key=lambda t: t.registro, reverse=True)[: c.get("mostrar_al_iniciar", 15)]
@@ -87,6 +94,11 @@ def revisar_semanario(cfg, est, hoy, nov):
                 log(f"  sin detalle del voto {id_voto}: {e}")
         completas.append(t.dict())
     nov["tesis"] = completas
+    try:
+        r = archivo.actualizar_tesis(cli, todas, sjf.es_scjn, completas)
+        log(f"Archivo de tesis: {r['total']} guardadas, {r['detalles']} detalles descargados, {r['manuales']} por registro")
+    except Exception as e:  # noqa: BLE001
+        log(f"Archivo de tesis: no se pudo actualizar ({e})")
     from collections import Counter
     conteo = Counter(t.instancia or "(sin instancia)" for t in nuevas)
     nov["instancias"] = [f"{k}: {v}" for k, v in conteo.most_common()]
@@ -119,6 +131,7 @@ def revisar_sesiones(cfg, est, hoy, nov):
     nuevas = sesiones.obtener_nuevas(vistas, inicial=not vistas)
     est.setdefault("sesiones_vistas", []).extend(x.url for x in nuevas)
     nov["sesiones"] = [x.dict() for x in nuevas]
+    archivo.guardar_sesiones(nov["sesiones"])
     log(f"Sesiones del Pleno: {len(nuevas)} versiones taquigráficas nuevas")
 
 
@@ -126,7 +139,20 @@ def revisar_agenda(cfg, est, hoy, nov):
     vistas = est.setdefault("agenda_vista", {})
     listas = agenda.obtener(hoy.isoformat(), vistas)
     nov["agenda"] = [x.dict() for x in listas]
+    archivo.guardar_listas(nov["agenda"])
     log(f"Agenda del Pleno: {len(listas)} listas nuevas o actualizadas")
+
+
+def revisar_archivo(cfg, est, hoy, nov):
+    """Rellena hacia atrás el archivo de la página (listas y sesiones anteriores)."""
+    a = archivo.rellenar_agenda()
+    s = archivo.rellenar_sesiones()
+    log(f"Archivo histórico: {a} listas y {s} sesiones anteriores agregadas")
+    c = cfg.get("archivo") or {}
+    if c.get("epocas_anteriores", ["200", "100", "5", "4"]):
+        r = archivo.rellenar_epocas(sjf.ClienteSJF(), c.get("epocas_anteriores", ["200", "100", "5", "4"]),
+                                    c.get("paginas_por_corrida", 25))
+        log("Épocas anteriores: " + "; ".join(f"{archivo.EPOCAS.get(k, k)}: {v}" for k, v in r.items()))
 
 
 FUENTES = {
@@ -135,6 +161,7 @@ FUENTES = {
     "comunicados": ("Comunicados de prensa de la SCJN", revisar_comunicados),
     "sesiones": ("Versiones taquigráficas del Pleno", revisar_sesiones),
     "agenda": ("Listas oficiales para sesión (agenda)", revisar_agenda),
+    "archivo": ("Archivo histórico de la página", revisar_archivo),
 }
 
 

@@ -292,3 +292,42 @@ class PruebasOrtografia(unittest.TestCase):
                          "Ley de Ingresos del Municipio de Mezquital", "Estado de Durango", "fracción IX", "apartados Q y S"):
             self.assertIn(esperado, t)
         self.assertEqual(oracion("Promovida por el Municipio de San Juan"), "Promovida por el Municipio de San Juan")
+
+
+class PruebasArchivo(unittest.TestCase):
+    def test_pagina_con_archivo_y_registros(self):
+        import json, tempfile
+        from pathlib import Path
+        from unittest import mock
+        from monitor import agenda, archivo, pagina, sjf
+        F = Path(__file__).parent / "fixtures"
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            (d / "hist").mkdir()
+            (d / "arch" / "agenda").mkdir(parents=True)
+            lista = agenda.parsear_lista((F / "lista_18nov.txt").read_text(encoding="utf-8"), "https://x/l.pdf")
+            (d / "arch" / "agenda" / "2026-11-18.json").write_text(json.dumps(lista.dict()))
+            t = sjf.parsear_tesis(TESIS_API)
+            (d / "arch" / "tesis.json").write_text(json.dumps({str(t.registro): {**t.dict(), "agregada_por_ti": True}}))
+            out = pagina.construir(d / "docs", d / "hist", d / "arch")
+            js = (out / "datos" / "2026-11.js").read_text(encoding="utf-8")
+            self.assertIn('"f":"agenda"', js)
+            self.assertIn('"registro":2031234', js)
+            self.assertIn('"manual":true', js)
+            manual = d / "t.txt"
+            manual.write_text("# comentario 1234567\n2032853  # nota\n2031234\n")
+            with mock.patch.object(archivo, "MANUAL", manual):
+                self.assertEqual(archivo.registros_manuales(), [2032853, 2031234])
+
+
+class PruebasEpocas(unittest.TestCase):
+    def test_compacta_y_scjn(self):
+        from monitor import archivo, sjf
+        d = {"ius": 161000, "claveTesis": "1a./J. 61/2011", "instanciaAbr": "S.C.J.N.", "ta_tj": 1,
+             "rubro": "<p>AMPARO.</p>", "localizacion": "[J]; 9a. Época; 1a. Sala; Tomo XXXIV, Agosto de 2011; Pág. 5"}
+        c = archivo.compacta(d, "5")
+        self.assertEqual((c["tipo"], c["instancia"], c["epoca"], c["fecha"]), ("Jurisprudencia", "Primera Sala", "Novena Época", "2011-08-01"))
+        t = sjf.parsear_tesis({"ius": 1, "claveTesis": "P./J. 222/2026 (12a.)", "instanciaAbr": "S.C.J.N.", "ta_tj": 1})
+        self.assertTrue(sjf.es_scjn(t))
+        self.assertTrue(sjf.instancia_permitida(t, ["Pleno", "Suprema Corte"]))
+        self.assertFalse(sjf.es_scjn(sjf.parsear_tesis({"ius": 2, "claveTesis": "PR.P.T.CS. J/32 L (12a.)", "instancia": "Plenos Regionales"})))

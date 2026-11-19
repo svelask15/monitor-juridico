@@ -68,12 +68,14 @@
 <header>
   <h1>Monitor jurídico</h1>
   <p id="estado">Cargando archivo…</p>
+  <p id="agregar"></p>
 </header>
 <nav id="pestanas"></nav>
 <div class="contenedor">
   <div class="filtros">
-    <div class="fila"><input type="search" id="q" placeholder="Buscar: prisión preventiva, 25/2026, Ley de Amparo, Ríos González…"></div>
+    <div class="fila"><input type="search" id="q" placeholder="Buscar: prisión preventiva, 25/2026, registro 2032853, Ley de Amparo, Ríos González…"></div>
     <div class="fila" id="materias"></div>
+    <div class="fila" id="epocas"></div>
     <div class="fila">
       <span>Del</span><input type="date" id="desde"><span>al</span><input type="date" id="hasta">
       <select id="ponente"><option value="">Toda ponencia</option></select>
@@ -91,7 +93,7 @@
 <dialog id="modal"><div class="cab"><h2 id="mTitulo"></h2><button onclick="modal.close()" aria-label="Cerrar">×</button></div><div class="cuerpo" id="mCuerpo"></div></dialog>
 <footer>Datos tomados de fuentes oficiales: SCJN (versiones taquigráficas, listas oficiales, Semanario Judicial) y DOF (SIDOF). Clasificación automática por reglas; verifica siempre en la fuente.</footer>
 
-<script>var DATOS = [];</script>
+<script>var DATOS = [], DATOS_EPOCA = [];</script>
 <script src="datos/indice.js"></script>
 <script>
   if (typeof INDICE !== "undefined") {
@@ -104,6 +106,7 @@
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  const mesAnio = (f) => { const p = (f || "").split("-"); return p.length >= 2 ? `${MESES[+p[1]-1]} de ${p[0]}` : "Sin fecha"; };
   const fechaLarga = (f) => { const p = (f || "").split("-"); return p.length === 3 ? `${+p[2]} de ${MESES[+p[1]-1]} de ${p[0]}` : (f || "Sin fecha"); };
   const SINGULAR = {"Resueltos": "Resuelto", "Retirados": "Retirado", "Aplazados": "Aplazado", "Quedaron en lista": "Quedó en lista",
     "Desechados": "Desechado", "Sobreseídos": "Sobreseído", "Desiertos": "Desierto", "Improcedentes": "Improcedente"};
@@ -114,18 +117,42 @@
 
   const REG = [], SES = {};
   DATOS.forEach((m) => { m.registros.forEach((r) => REG.push(r)); m.sesiones.forEach((s) => SES[s.id] = s); });
-  REG.forEach((r) => r._q = norm([r.titulo, r.texto, r.numero, r.tipo, r.ponente, r.estado, r.instancia, (r.materias||[]).join(" "), r.cuerpo, r.precedente].join(" ")));
+  const prep = (r) => r._q = norm([r.registro, r.titulo, r.epoca, r.texto, r.numero, r.tipo, r.ponente, r.estado, r.instancia, (r.materias||[]).join(" "), r.cuerpo, r.precedente].join(" "));
+  REG.forEach(prep);
   REG.sort((a, b) => (b.fecha || "").localeCompare(a.fecha || ""));
   const porClave = {};
   REG.forEach((r) => { if (r.clave) (porClave[r.clave] = porClave[r.clave] || []).push(r); });
 
   $("estado").textContent = `Archivo de decisiones de la SCJN, jurisprudencia y Diario Oficial · ${INDICE.total.toLocaleString("es-MX")} registros`;
   $("actualizado").textContent = "Actualizado: " + INDICE.actualizado;
+  if (INDICE.agregar_tesis) $("agregar").innerHTML = `<a style="color:#fff" href="${INDICE.agregar_tesis}" target="_blank" rel="noopener">＋ Agregar tesis al archivo por número de registro</a>`;
 
   // ----- pestañas
   const PESTANAS = [["todo","Todo"],["scjn","⭐ Jurisprudencia SCJN"],["sesion","Sesiones del Pleno"],["agenda","Agenda"],["tesis","Tesis"],["dof","DOF"],["comunicado","Comunicados"]];
   let pestana = "todo";
   PESTANAS.forEach(([k, t]) => { const b = document.createElement("button"); b.textContent = t; b.dataset.k = k; b.onclick = () => { pestana = k; pintar(true); }; $("pestanas").appendChild(b); });
+
+  // ----- épocas anteriores (se cargan solo si las pides)
+  const epocasActivas = new Set(), cargadas = {};
+  if ((INDICE.epocas || []).length) {
+    const et = document.createElement("span"); et.textContent = "Épocas anteriores de la SCJN:"; et.style.color = "var(--suave)"; $("epocas").appendChild(et);
+    INDICE.epocas.forEach((e) => {
+      const c = document.createElement("button"); c.className = "chip";
+      c.textContent = `${e.nombre} (${e.n.toLocaleString("es-MX")}${e.completa ? "" : ", descargando"})`;
+      c.onclick = () => {
+        if (epocasActivas.has(e.nombre)) { epocasActivas.delete(e.nombre); c.classList.remove("on"); pintar(true); return; }
+        epocasActivas.add(e.nombre); c.classList.add("on");
+        if (cargadas[e.id]) { pintar(true); return; }
+        c.textContent = "Cargando " + e.nombre + "…";
+        const sc = document.createElement("script"); sc.src = "datos/epoca-" + e.id + ".js";
+        sc.onload = () => { const d = DATOS_EPOCA.find((x) => x.id === e.id); cargadas[e.id] = true;
+          if (d) { d.registros.forEach((r) => { prep(r); REG.push(r); }); REG.sort((a, b) => (b.fecha || "").localeCompare(a.fecha || "")); }
+          c.textContent = `${e.nombre} (${e.n.toLocaleString("es-MX")}${e.completa ? "" : ", descargando"})`; pintar(true); };
+        document.body.appendChild(sc);
+      };
+      $("epocas").appendChild(c);
+    });
+  }
 
   // ----- filtros
   const materias = [...new Set(REG.flatMap((r) => r.materias || []))].sort();
@@ -140,6 +167,7 @@
     elegidas.clear(); document.querySelectorAll("#materias .chip").forEach((c) => c.classList.remove("on")); pintar(true); };
 
   function pasa(r) {
+    if (r.epoca && !epocasActivas.has(r.epoca)) return false;
     if (pestana === "scjn" && !(r.f === "tesis" && r.scjn && r.tipo === "Jurisprudencia")) return false;
     if (!["todo","scjn"].includes(pestana) && r.f !== pestana) return false;
     const q = norm($("q").value).trim();
@@ -169,7 +197,8 @@
       if (r.proyecto) acciones.push(`<a href="${esc(r.proyecto)}" target="_blank" rel="noopener">Proyecto de sentencia</a>`);
       acciones.push(`<a href="${esc(r.url)}" target="_blank" rel="noopener">Lista oficial</a>`);
     } else if (r.f === "tesis") {
-      meta += `<span>${esc(r.tipo)}</span><span>${esc(r.instancia)}</span>` + ((r.alertas||[]).length ? `<span class="badge alerta">Cambio de criterio</span>` : "")
+      meta += `<span>${esc(r.tipo)}</span><span>${esc(r.instancia)}</span><span>Registro digital ${esc(r.registro || "")}</span>${r.epoca ? `<span>${esc(r.epoca)}</span>` : ""}`
+            + (r.manual ? `<span class="badge tesis">Agregada por ti</span>` : "") + ((r.alertas||[]).length ? `<span class="badge alerta">Cambio de criterio</span>` : "")
             + (r.contradiccion ? `<span>Contradicción de criterios</span>` : "");
       if ((r.alertas||[]).length) extra += `<div class="meta">⚠️ ${esc(r.alertas.join("; "))}</div>`;
       const det = [];
@@ -201,7 +230,10 @@
     $("cuenta").textContent = res.length === 1 ? "1 resultado" : `${res.length.toLocaleString("es-MX")} resultados`;
     if (!res.length) { $("lista").innerHTML = `<div class="vacio">No hay resultados con estos filtros.</div>`; return; }
     let html = "", dia = "";
-    res.slice(0, limite).forEach((r) => { if (r.fecha !== dia) { dia = r.fecha; html += `<div class="dia">${esc(fechaLarga(dia))}</div>`; } html += tarjeta(r); });
+    res.slice(0, limite).forEach((r) => {
+      const clave = r.epoca ? (r.fecha || "").slice(0, 7) : r.fecha;  // épocas anteriores: solo mes y año
+      if (clave !== dia) { dia = clave; html += `<div class="dia">${esc(r.epoca ? mesAnio(r.fecha) : fechaLarga(r.fecha))}</div>`; }
+      html += tarjeta(r); });
     if (res.length > limite) html += `<button class="mas" id="mas">Ver ${Math.min(120, res.length - limite)} más</button>`;
     $("lista").innerHTML = html;
     if ($("mas")) $("mas").onclick = () => { limite += 120; pintar(false); };

@@ -1,0 +1,7 @@
+# Tesis que quieres guardar en el archivo de la página.
+# Escribe un número de registro digital por línea (lo encuentras en el Semanario
+# Judicial, junto a cada tesis). Puedes poner una nota después de un #.
+# En la siguiente revisión el monitor descarga la tesis completa y la agrega.
+#
+# Ejemplo:
+# 2032853   # prescripción en materia laboral

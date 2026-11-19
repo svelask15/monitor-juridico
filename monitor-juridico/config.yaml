@@ -55,3 +55,10 @@ envio:
   # compacto = asuntos de trámite agrupados en una línea, votaciones unánimes resumidas
   # completo = todo el detalle de cada asunto en el correo
   formato: compacto
+
+archivo:
+  # Tesis de la SCJN (Pleno y Salas) de épocas anteriores que se guardan para la página.
+  # 200 = Undécima, 100 = Décima, 5 = Novena, 4 = Octava. Deja la lista vacía para no descargarlas.
+  epocas_anteriores: ["200", "100", "5", "4"]
+  # Páginas de 200 tesis que se descargan por revisión (25 ≈ 5,000 tesis, ~1-2 minutos)
+  paginas_por_corrida: 25

@@ -47,8 +47,8 @@ def _desc(a: dict, n: int) -> str:
 
 
 def _es_scjn(t: dict) -> bool:
-    i = (t.get("instancia") or "").lower()
-    return i == "pleno" or "suprema corte" in i
+    from .sjf import es_scjn
+    return es_scjn(t)
 
 
 def _lineas_tesis(t: dict, op: dict, destacar: bool = False) -> list[str]:
@@ -234,7 +234,8 @@ def markdown(titulo: str, nov: dict, prioridad_max: int = 2, errores: list[str] 
             return (0 if n == "pleno" or "suprema corte" in n else 1, i)
         for inst in sorted({t["instancia"] or "Sin instancia" for t in tesis_resto}, key=orden_inst):
             grupo = [t for t in tesis_resto if (t["instancia"] or "Sin instancia") == inst]
-            nombre = "Pleno de la SCJN" if inst.lower() == "pleno" else inst
+            nombre = {"pleno": "Pleno de la SCJN", "primera sala": "Primera Sala de la SCJN",
+                      "segunda sala": "Segunda Sala de la SCJN"}.get(inst.lower(), inst)
             L.append(f"### {nombre} ({len(grupo)})")
             grupo = sorted(grupo, key=lambda t: (t["tipo"] != "Jurisprudencia", t["registro"]))
             for t in _orden_interes(grupo, op, "materias_lista"):

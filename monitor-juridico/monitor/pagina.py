@@ -19,10 +19,12 @@ from collections import defaultdict
 from pathlib import Path
 
 from .materias import anotar, normalizar
+from .sjf import es_scjn
 from .ortografia import nombre_organo, oracion, tipo as tipo_legible
 
 RAIZ = Path(__file__).resolve().parent.parent
 HISTORICO = RAIZ / "data" / "historico"
+ARCHIVO = RAIZ / "data" / "archivo"
 PLANTILLA = Path(__file__).resolve().parent / "plantilla_pagina.html"
 MESES = {m: i for i, m in enumerate(
     "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split(), 1)}
@@ -114,9 +116,10 @@ def registros_de_dia(dia: str, nov: dict) -> tuple[list[dict], list[dict]]:
                      "cuerpo": _resumen(t.get("texto", ""), 2500), "precedente": t.get("precedentes", ""),
                      "materias": t.get("materias_lista", []), "url": t.get("url", ""),
                      "alertas": t.get("alertas_vigencia", []), "contradiccion": t.get("contradiccion", False),
-                     "referencias": t.get("referencias", []),
+                     "referencias": t.get("referencias", []), "registro": t.get("registro"),
+                     "manual": t.get("agregada_por_ti", False),
                      "votos": [{"d": v.get("descripcion", ""), "u": v.get("url", "")} for v in t.get("votos_detalle", [])],
-                     "scjn": (t.get("instancia", "").lower() == "pleno" or "suprema corte" in t.get("instancia", "").lower())})
+                     "scjn": es_scjn(t)})
 
     for n in nov.get("dof", []):
         if not (n.get("titulo") or "").strip():
@@ -135,17 +138,45 @@ def registros_de_dia(dia: str, nov: dict) -> tuple[list[dict], list[dict]]:
     return regs, sesiones
 
 
-def construir(salida: Path | None = None, historico: Path = HISTORICO) -> Path:
+def _de_archivo(carpeta: Path):
+    """(día, novedades) a partir de data/archivo/: listas, sesiones y tesis guardadas."""
+    for ruta in sorted((carpeta / "agenda").glob("*.json")):
+        yield ruta.stem, {"agenda": [json.loads(ruta.read_text(encoding="utf-8"))]}
+    for ruta in sorted((carpeta / "sesiones").glob("*.json")):
+        yield ruta.stem, {"sesiones": [json.loads(ruta.read_text(encoding="utf-8"))]}
+    tesis = carpeta / "tesis.json"
+    if tesis.exists():
+        yield "", {"tesis": list(json.loads(tesis.read_text(encoding="utf-8")).values())}
+
+
+def url_agregar_tesis() -> str:
+    """Liga para editar tesis_por_registro.txt directamente en GitHub."""
+    repo = os.getenv("GITHUB_REPOSITORY")
+    if not repo:
+        return ""
+    ruta = RAIZ / "tesis_por_registro.txt"
+    base = Path(os.getenv("GITHUB_WORKSPACE") or RAIZ)
+    try:
+        relativa = ruta.relative_to(base).as_posix()
+    except ValueError:
+        relativa = ruta.name
+    return f"https://github.com/{repo}/edit/main/{relativa}"
+
+
+def construir(salida: Path | None = None, historico: Path = HISTORICO, archivo: Path = ARCHIVO) -> Path:
     salida = salida or carpeta_salida()
     (salida / "datos").mkdir(parents=True, exist_ok=True)
     por_id: dict[str, dict] = {}
     sesiones: dict[str, dict] = {}
-    for archivo in sorted(historico.glob("*.json")):
-        dia = archivo.stem
-        nov = json.loads(archivo.read_text(encoding="utf-8"))
+    fuentes = [(a.stem, json.loads(a.read_text(encoding="utf-8"))) for a in sorted(historico.glob("*.json"))]
+    fuentes = list(_de_archivo(archivo)) + fuentes  # lo del día (más reciente) gana si se repite
+    for dia, nov in fuentes:
         regs, ses = registros_de_dia(dia, nov)
         for r in regs:
-            por_id[r["id"]] = r  # si algo se repite, gana la versión más reciente
+            previo = por_id.get(r["id"], {})
+            por_id[r["id"]] = {**previo, **r}  # si algo se repite, gana la versión más reciente
+            if previo.get("manual"):
+                por_id[r["id"]]["manual"] = True
         for s in ses:
             sesiones[s["id"]] = s
 
@@ -162,11 +193,41 @@ def construir(salida: Path | None = None, historico: Path = HISTORICO) -> Path:
         (salida / "datos" / f"{mes}.js").write_text(js, encoding="utf-8")
         viejos.discard(f"{mes}.js")
     for v in viejos - {"indice.js"}:
-        (salida / "datos" / v).unlink()
+        if not v.startswith("epoca-"):
+            (salida / "datos" / v).unlink()
 
-    indice = {"meses": sorted(por_mes, reverse=True),
+    # épocas anteriores: un archivo por época, que la página carga solo si lo pides
+    from .materias import clasificar
+    epocas_idx = []
+    for ruta in sorted((archivo / "epocas").glob("*.json"), key=lambda r: -int(r.stem) if r.stem.isdigit() else 0):
+        datos = json.loads(ruta.read_text(encoding="utf-8"))
+        regs = []
+        for t in datos.get("tesis", {}).values():
+            rid = f"tesis-{t['registro']}"
+            if rid in por_id:
+                continue
+            regs.append({"id": rid, "f": "tesis", "fecha": t.get("fecha", ""), "tipo": t["tipo"], "numero": t["clave"],
+                         "instancia": t["instancia"], "titulo": t["clave"] or f"Registro {t['registro']}",
+                         "texto": t["rubro"], "materias": clasificar(t["rubro"]), "registro": t["registro"],
+                         "url": f"https://sjf2.scjn.gob.mx/detalle/tesis/{t['registro']}", "scjn": True,
+                         "epoca": t["epoca"]})
+        if regs:
+            regs.sort(key=lambda r: r["fecha"], reverse=True)
+            nombre = regs[0]["epoca"]
+            (salida / "datos" / f"epoca-{ruta.stem}.js").write_text(
+                "DATOS_EPOCA.push(" + json.dumps({"id": ruta.stem, "registros": regs}, ensure_ascii=False,
+                                                  separators=(",", ":")) + ");\n", encoding="utf-8")
+            viejos.discard(f"epoca-{ruta.stem}.js")
+            epocas_idx.append({"id": ruta.stem, "nombre": nombre, "n": len(regs),
+                               "completa": datos.get("total_paginas") is not None
+                               and datos.get("siguiente", 0) >= datos["total_paginas"]})
+    for v in viejos - {"indice.js"}:
+        if v.startswith("epoca-"):
+            (salida / "datos" / v).unlink()
+
+    indice = {"meses": sorted(por_mes, reverse=True), "epocas": epocas_idx,
               "actualizado": dt.datetime.now(dt.timezone(dt.timedelta(hours=-6))).strftime("%d/%m/%Y %H:%M"),
-              "total": len(por_id)}
+              "total": len(por_id), "agregar_tesis": url_agregar_tesis()}
     (salida / "datos" / "indice.js").write_text("var INDICE = " + json.dumps(indice, ensure_ascii=False) + ";\n",
                                                 encoding="utf-8")
     shutil.copyfile(PLANTILLA, salida / "index.html")

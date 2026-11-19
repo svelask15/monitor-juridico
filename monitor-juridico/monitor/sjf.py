@@ -76,10 +76,39 @@ def limpiar(valor) -> str:
 
 def _tipo(o: dict) -> str:
     t = str(o.get("tipoTesis") or "").lower()
-    ta = str(o.get("ta_tj") or "").upper().replace(".", "").replace(" ", "")
-    if "jurisprud" in t or ta == "TJ" or str(o.get("tipoDocumento")) == "2":
+    ta = str(o.get("ta_tj") if o.get("ta_tj") is not None else "").upper().replace(".", "").replace(" ", "")
+    if "jurisprud" in t or t == "1" or ta in ("TJ", "1") or str(o.get("tipoDocumento")) == "2":
+        return "Jurisprudencia"
+    clave = str(o.get("claveTesis") or "")
+    if "/J." in clave.replace(" ", "") or " J/" in clave:
         return "Jurisprudencia"
     return "Tesis aislada"
+
+
+_CLAVE_SCJN = re.compile(r"^\s*(P|1a|2a)\.")
+
+
+def instancia_legible(o: dict) -> str:
+    """'S.C.J.N.' + clave 'P./J. 2/2021' → 'Pleno'; '1a. …' → 'Primera Sala'; '2a. …' → 'Segunda Sala'."""
+    inst = limpiar(o.get("instancia") or o.get("instanciaAbr"))
+    if inst.upper().replace(" ", "") in ("S.C.J.N.", "SCJN") or "suprema corte" in inst.lower():
+        clave = str(o.get("claveTesis") or "")
+        if clave.strip().startswith("1a."):
+            return "Primera Sala"
+        if clave.strip().startswith("2a."):
+            return "Segunda Sala"
+        return "Pleno"
+    return {"T.C.C.": "Tribunales Colegiados de Circuito", "P.C.": "Plenos de Circuito",
+            "P.R.": "Plenos Regionales"}.get(inst, inst)
+
+
+def es_scjn(t) -> bool:
+    """Acepta un objeto Tesis o un dict."""
+    inst = (t.instancia if hasattr(t, "instancia") else t.get("instancia", "")) or ""
+    clave = (t.clave if hasattr(t, "clave") else t.get("clave", "")) or ""
+    i = inst.strip().lower()
+    return (i in ("pleno", "primera sala", "segunda sala", "s.c.j.n.", "scjn") or "suprema corte" in i
+            or (bool(_CLAVE_SCJN.match(clave)) and "regional" not in i and "circuito" not in i))
 
 
 def _fecha(valor) -> str:
@@ -105,7 +134,7 @@ def parsear_tesis(o: dict) -> Tesis:
         rubro=limpiar(o.get("rubro")),
         clave=limpiar(o.get("claveTesis")),
         tipo=_tipo(o),
-        instancia=limpiar(o.get("instancia") or o.get("instanciaAbr")),
+        instancia=instancia_legible(o),
         materias=limpiar(o.get("materias") or o.get("materia")),
         epoca=limpiar(o.get("epoca") or o.get("epocaAbr")),
         fecha_publicacion=_fecha(o.get("fechaPublicacion") or o.get("fecha")),
@@ -214,6 +243,14 @@ class ClienteSJF:
             pausa(1.5)
         return tesis
 
+    def pagina_scjn(self, epoca: str, pagina: int, tam: int = 200) -> tuple[list[dict], int]:
+        """Una página de tesis de la SCJN (Pleno y Salas) de una época. Devuelve (documentos crudos, total de páginas)."""
+        cuerpo = self.cuerpo_busqueda([epoca])
+        cuerpo["classifiers"].append({"name": "instancia", "value": ["Suprema Corte de Justicia de la Nación"],
+                                      "allSelected": False, "visible": False, "isMatrix": False})
+        data = self._json("POST", f"{API}/tesis?page={pagina}&size={tam}", json=cuerpo)
+        return data.get("documents") or [], int(data.get("totalPage") or data.get("totalPages") or 1)
+
     def detalle(self, registro: int) -> Tesis | None:
         for params in ({"isSemanal": "true"}, {}, {"isGaceta": "true"}):
             try:
@@ -271,6 +308,8 @@ def instancia_permitida(t: Tesis, instancias: list[str]) -> bool:
     if not instancias or "todas" in [i.lower() for i in instancias]:
         return True
     actual = _norm(t.instancia)
+    if es_scjn(t) and any(_norm(i) in ("pleno", "suprema corte", "scjn", "s.c.j.n.") for i in instancias):
+        return True
     for i in map(_norm, instancias):
         if actual == i or (i != "pleno" and i in actual):
             return True

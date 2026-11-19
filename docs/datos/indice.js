@@ -1,1 +1,1 @@
-var INDICE = {"meses": ["2026-11", "2026-10"], "actualizado": "18/11/2026 17:07", "total": 168};
+var INDICE = {"meses": ["2026-11", "2026-10", "2026-09", "2026-08", "2026-07", "2026-06", "2026-05", "2026-04", "2026-03", "2026-02", "2026-01", "2025-11"], "epocas": [{"id": "200", "nombre": "Undécima Época", "n": 1635, "completa": true}, {"id": "100", "nombre": "Décima Época", "n": 3200, "completa": false}], "actualizado": "18/11/2026 18:07", "total": 638, "agregar_tesis": "https://github.com/svelask15/monitor-juridico/edit/main/monitor-juridico/tesis_por_registro.txt"};
